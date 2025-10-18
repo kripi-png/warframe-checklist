@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@layer base {
+  input[type='number'] {
+    /* hide numbers in number input */
+    -moz-appearance: textfield;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    /* hide numbers in number input */
+    @apply appearance-none;
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
