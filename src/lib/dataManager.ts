@@ -1,152 +1,128 @@
-// 1. Attempt loading data from localStorage by key (page url?)
-// 2. If data does not exist, generate it based on the raw data
-//  2.1 item entries should have index for id instead of the "name" and "price" field
+import { writable } from 'svelte/store';
+import type { ChecklistStore, Dataset, PersistedData, PersistedItem } from './types/data';
+import type { Arcane } from './types/item';
+import nokko from './nokko.json';
 
-interface JSONData {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+interface DatasetMap {
+  [key: string]: Dataset;
 }
 
-export interface Item {
-  name: string;
-  wikiUrl: string;
-  price: number;
-  checked: boolean;
-  forHelminth?: boolean;
+const datasetMap: DatasetMap = {
+  nokko: nokko as Dataset,
+};
+
+function getDataset(key: string): Dataset {
+  if (!Object.hasOwn(datasetMap, key)) {
+    throw new Error(`Unknown dataset key: ${key}`);
+  }
+  return datasetMap[key];
 }
 
-export interface Arcane {
-  name: string;
-  price: number;
-  maxLevel: 5;
-  currentLevel: 0 | 1 | 2 | 3 | 4 | 5;
-  ownedCount: number;
-  wikiUrl: string;
-  checked: boolean;
-}
-
-interface DatasetBlock {
-  title: string;
-  id: string;
-  type: 'item' | 'arcane';
-  items: Item[] | Arcane[];
-}
-
-interface Dataset {
-  blocks: DatasetBlock[];
-}
-
-export interface PersistedItem {
-  id: string;
-  checked: boolean;
-  currentLevel?: number;
-  ownedCount?: number;
-}
-
-import _dataset from './dataset.json';
-const dataset = _dataset as JSONData;
-
-export function prepareInitialData(key: string) {
-  // strip static information out of the data, and only store
-  // an id and user-specific data (ownedCount, checked, etc.) to localStorage
-  const data: Dataset = dataset[key];
-  const persistedData = data.blocks.map((block) => {
-    const { id: blockId, items, type } = block;
-    const persistedItems = items.map((item, i) => {
-      const { checked } = item;
-
+const stripStaticData = (data: Dataset): PersistedData => ({
+  blocks: data.blocks.map((block) => ({
+    // keep other properties, rewrite items
+    ...block,
+    items: block.items.map((item, i) => {
       const obj: PersistedItem = {
-        id: `${blockId}_${i}`,
-        checked,
+        id: `${block.id}_${i}`,
+        checked: item.checked,
       };
 
-      if (type === 'arcane') {
-        const { currentLevel, ownedCount } = item as Arcane;
-        obj.currentLevel = currentLevel;
-        obj.ownedCount = ownedCount;
+      if (block.type === 'arcane') {
+        obj.currentLevel = (<Arcane>item).currentLevel;
+        obj.ownedCount = (<Arcane>item).ownedCount;
       }
-
       return obj;
+    }),
+  })),
+});
+
+/*
+TODO:
+- Move from block.id to {[block.id]: blockData}
+  - instead of blocks.find() -> blocks[block.id]
+*/
+const mergeData = (key: string, persistableValue: PersistedData): Dataset => {
+  const staticData = getDataset(key);
+  const merged = staticData.blocks.map((block) => ({
+    ...block,
+    items: block.items.map((item, i) => ({
+      ...item,
+      ...persistableValue.blocks.find((b) => b.id === block.id)?.items[i],
+    })),
+  }));
+  return {
+    blocks: merged,
+  };
+};
+
+export function createChecklistStore(key: string): ChecklistStore {
+  // wrapper for the writable store that also takes care of persisting the state in localStorage
+  // as well as mapping the persisted, partial data to the full data
+  const browser = typeof window !== 'undefined' && typeof document !== 'undefined';
+  const storageArea = browser ? localStorage : null;
+
+  let persistableValue: PersistedData;
+  try {
+    const item = storageArea?.getItem(key);
+    persistableValue = item ? JSON.parse(item) : stripStaticData(getDataset(key));
+  } catch (error) {
+    console.error(error);
+    persistableValue = stripStaticData(getDataset(key));
+  }
+
+  const { subscribe, update: internalUpdate } = writable<Dataset>(mergeData(key, persistableValue));
+
+  const save = (newData: Dataset) => {
+    try {
+      const json = JSON.stringify(stripStaticData(newData));
+      storageArea?.setItem(key, json);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const toggleItem = (blockId: string, index: number, checked?: boolean) => {
+    // toggle item with index {index} in block {blockId}
+    // if {checked} is defined, set the item's checked state to {checked} (force the checked state)
+    internalUpdate((data) => {
+      try {
+        const blockIndex = data.blocks.findIndex((b) => b.id === blockId);
+        if (blockIndex === -1) {
+          console.error(`Not found block for id ${blockId}`);
+          return data;
+        }
+
+        const block = data.blocks[blockIndex];
+        const item = block.items[index];
+        if (!item) {
+          console.error(`Not found item for index ${index} in block ${blockId}`);
+          return data;
+        }
+
+        block.items[index].checked = checked ?? !item.checked;
+        data.blocks[blockIndex] = block;
+
+        save(data); // localStorage
+        return data;
+      } catch (error) {
+        console.error(error);
+        return data;
+      }
     });
+  };
 
-    return { ...block, items: persistedItems };
-  });
-
-  return { blocks: persistedData };
+  return {
+    toggleItem,
+    subscribe,
+    update: internalUpdate,
+  };
 }
 
 export const deconstructItemId = (id: string): [number, string] => {
+  // turn ids like nokko_weapons_25 or arcanes_2 into [25, 'nokko_weapons'] and [2, 'arcanes']
   const parts = id.split('_');
   const item = Number(parts.pop());
   const block = parts.join('_');
   return [item, block];
 };
-
-export const getItemData = (key: string, id: string): Item | Arcane | null => {
-  const [itemId, blockId] = deconstructItemId(id);
-
-  const block = dataset[key].blocks.find((block: DatasetBlock) => block.id === blockId);
-  if (!block) {
-    console.error(`Block not found for id ${blockId}`);
-    return null;
-  }
-
-  if (itemId < 0 || itemId >= block.items.length) {
-    console.error(`Item not found in ${block.id} for id ${itemId}`);
-    return null;
-  }
-
-  return block.items[itemId];
-};
-
-// function getStorage() {
-//   return {
-//     getItem: (k) => localStorage.getItem(k),
-
-//     setItem: (k, v) => localStorage.setItem(k, v),
-//   };
-// }
-
-// export function persistedState(key, initialValue) {
-//   const browser = typeof window !== 'undefined' && typeof document !== 'undefined';
-//   const storageArea = browser ? getStorage() : null;
-
-//   let storedValue;
-//   try {
-//     const item = storageArea?.getItem(key);
-
-//     storedValue = item ? JSON.parse(item) : initialValue;
-//   } catch (error) {
-//     console.error(error);
-//     storedValue = initialValue;
-//   }
-
-//   let state = $state(storedValue);
-//   function updateStorage(value) {
-//     try {
-//       storageArea?.setItem(key, JSON.stringify(value));
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-
-//   $effect.root(() => {
-//     $effect(() => {
-//       updateStorage(state);
-//     });
-
-//     return () => {};
-//   });
-
-//   return {
-//     set value(newValue) {
-//       state = newValue;
-//     },
-//     get current() {
-//       return state;
-//     },
-//     reset() {
-//       state = initialValue;
-//     },
-//   };
-// }

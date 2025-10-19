@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
-    "svelte-material-ui": "^8.0.3",
-    "svelte-persisted-state": "^1.2.0"
+    "svelte-material-ui": "^8.0.3"
   }
 }

@@ -2,17 +2,12 @@
   import Paper from '@smui/paper';
   // import Button from '@smui/button';
   import TextField from '@smui/textfield';
-  import ItemBlock from '$lib/components/ItemBlock.svelte';
-  import Masonry from '$lib/components/Masonry.svelte';
-  import { persistedState } from 'svelte-persisted-state';
-  import { prepareInitialData } from '$lib/dataManager';
+  import ItemChecklists from '$lib/components/ItemChecklists.svelte';
 
   import { layout } from '$lib/layout.svelte';
   layout({ custom });
 
   let money = $state(0);
-
-  const data = persistedState('nokko', prepareInitialData('nokko'));
 </script>
 
 {#snippet custom()}
@@ -28,8 +23,4 @@
   </Paper>
 {/snippet}
 
-<Masonry>
-  {#each data.current.blocks as block (block.title)}
-    <ItemBlock title={block.title} type={block.type} bind:items={block.items} />
-  {/each}
-</Masonry>
+<ItemChecklists />

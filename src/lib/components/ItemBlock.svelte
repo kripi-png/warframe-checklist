@@ -1,55 +1,56 @@
 <script lang="ts">
+  import type { ChecklistStore, DatasetBlock } from '$lib/types/data';
+  import type { Item } from '$lib/types/item';
+  import { getContext } from 'svelte';
   import Paper from '@smui/paper';
   import Checkbox from '@smui/checkbox';
-  import { type PersistedItem, type Item, deconstructItemId, getItemData } from '$lib/dataManager';
 
   interface Props {
-    title: string;
-    type: 'item' | 'arcane';
-    items: PersistedItem[];
+    block: DatasetBlock;
   }
-  let { title, type: itemType, items = $bindable() }: Props = $props();
+  let { block }: Props = $props();
 
-  let totalPrice = $derived(
-    items.reduce((acc, item) => {
-      const data = getItemData('nokko', item.id);
-      if (data) return acc + data.price;
-      return acc;
-    }, 0),
-  );
-  let completedCount = $derived(items.filter((item) => item.checked).length);
+  const store = getContext<ChecklistStore>('checklist');
+
+  let totalPrice = $derived.by(() => {
+    let total = 0;
+    for (let item of block.items) {
+      if (!item.price || item.checked) continue;
+      total += item.price;
+    }
+    return total;
+  });
+
+  let completedCount = $derived(block.items.filter((item) => item.checked).length);
 
   const onCheck = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    const rawId = target.parentElement?.dataset.id;
-    if (!rawId) return;
+    const id = Number(target.parentElement?.dataset.id);
 
-    const [id, _] = deconstructItemId(rawId);
-    items[id].checked = target.checked;
+    store.toggleItem(block.id, id);
   };
 </script>
 
 <Paper>
-  <h2 class="text-2xl font-bold text-white">{title}</h2>
-  <h3>{completedCount} / {items.length}</h3>
+  <h2 class="text-2xl font-bold text-white">
+    {block.title}
+  </h2>
+  <h3>{completedCount} / {block.items.length}</h3>
   <h3>Total: {totalPrice} Fergolyte</h3>
   <div class="flex flex-col text-white">
-    {#each items as item (item.id)}
-      {@const itemData = getItemData('nokko', item.id)}
-      {#if itemData}
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-1">
-            <Checkbox data-id={item.id} onchange={onCheck} checked={item.checked} />
-            <h4 class="">
-              {itemData.name}
-              {#if itemType === 'item'}
-                {(<Item>itemData)?.forHelminth ? '(H)' : ''}
-              {/if}
-            </h4>
-          </div>
-          <span>{itemData.price}</span>
+    {#each block.items as item, i (item)}
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-1">
+          <Checkbox data-id={i} onchange={onCheck} checked={item.checked} />
+          <h4 class="">
+            {item.name}
+            {#if block.type === 'item'}
+              {(<Item>item)?.forHelminth ? '(H)' : ''}
+            {/if}
+          </h4>
         </div>
-      {/if}
+        <span>{item.price}</span>
+      </div>
     {/each}
   </div>
 </Paper>
