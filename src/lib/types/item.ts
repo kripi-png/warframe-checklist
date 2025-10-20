@@ -15,3 +15,5 @@ export interface Arcane extends BaseCheckable {
   currentLevel: 0 | 1 | 2 | 3 | 4 | 5;
   ownedCount: number;
 }
+
+export type ItemEntry = Item | Arcane;

@@ -1,7 +1,14 @@
+import type { Arcane, ItemEntry } from './types/item';
+import type {
+  ChecklistStore,
+  Dataset,
+  DatasetBlock,
+  PersistedData,
+  PersistedItem,
+} from './types/data';
 import { writable } from 'svelte/store';
-import type { ChecklistStore, Dataset, PersistedData, PersistedItem } from './types/data';
-import type { Arcane } from './types/item';
 import nokko from './nokko.json';
+import { getArcaneMaxCount, isArcane } from './utils';
 
 interface DatasetMap {
   [key: string]: Dataset;
@@ -82,23 +89,39 @@ export function createChecklistStore(key: string): ChecklistStore {
     }
   };
 
+  const getItemAndBlockIndex = (
+    data: Dataset,
+    blockId: string,
+    itemIndex: number,
+  ): [ItemEntry, DatasetBlock, number] | undefined => {
+    try {
+      const blockIndex = data.blocks.findIndex((b) => b.id === blockId);
+      if (blockIndex === -1) {
+        console.error(`Not found block for id ${blockId}`);
+        return;
+      }
+
+      const block = data.blocks[blockIndex];
+      const item = block.items[itemIndex];
+      if (!item) {
+        console.error(`Not found item for index ${itemIndex} in block ${blockId}`);
+        return;
+      }
+
+      return [item, block, blockIndex];
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const toggleItem = (blockId: string, index: number, checked?: boolean) => {
     // toggle item with index {index} in block {blockId}
     // if {checked} is defined, set the item's checked state to {checked} (force the checked state)
     internalUpdate((data) => {
       try {
-        const blockIndex = data.blocks.findIndex((b) => b.id === blockId);
-        if (blockIndex === -1) {
-          console.error(`Not found block for id ${blockId}`);
-          return data;
-        }
-
-        const block = data.blocks[blockIndex];
-        const item = block.items[index];
-        if (!item) {
-          console.error(`Not found item for index ${index} in block ${blockId}`);
-          return data;
-        }
+        const info = getItemAndBlockIndex(data, blockId, index);
+        if (!info) return data;
+        const [item, block, blockIndex] = info;
 
         block.items[index].checked = checked ?? !item.checked;
         data.blocks[blockIndex] = block;
@@ -115,20 +138,15 @@ export function createChecklistStore(key: string): ChecklistStore {
   const setArcane = (blockId: string, index: number, owned: number) => {
     internalUpdate((data) => {
       try {
-        const blockIndex = data.blocks.findIndex((b) => b.id === blockId);
-        if (blockIndex === -1) {
-          console.error(`Not found block for id ${blockId}`);
-          return data;
-        }
+        const info = getItemAndBlockIndex(data, blockId, index);
+        if (!info) return data;
+        const [item, block, blockIndex] = info;
+        if (!isArcane(item)) return data;
 
-        const block = data.blocks[blockIndex];
-        const arcane = block.items[index];
-        if (!arcane) {
-          console.error(`Not found arcane for index ${index} in block ${blockId}`);
-          return data;
-        }
+        item.ownedCount = owned;
+        item.checked = owned >= getArcaneMaxCount(item.maxLevel);
 
-        block.items[index].ownedCount = owned;
+        block.items[index] = item;
         data.blocks[blockIndex] = block;
 
         save(data); // localStorage

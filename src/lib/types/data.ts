@@ -4,9 +4,9 @@
 // }
 
 import type { Writable } from 'svelte/store';
-import type { Item, Arcane } from './item';
+import type { ItemEntry } from './item';
 
-export interface DatasetBlock<T = Item | Arcane> {
+export interface DatasetBlock<T = ItemEntry> {
   title: string;
   id: string;
   type: 'item' | 'arcane';
@@ -14,7 +14,7 @@ export interface DatasetBlock<T = Item | Arcane> {
 }
 
 export interface Dataset {
-  blocks: DatasetBlock<Item | Arcane>[];
+  blocks: DatasetBlock<ItemEntry>[];
 }
 
 export interface CustomWritable<T> extends Omit<Writable<T>, 'set'> {
