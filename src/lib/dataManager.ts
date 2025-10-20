@@ -112,7 +112,36 @@ export function createChecklistStore(key: string): ChecklistStore {
     });
   };
 
+  const setArcane = (blockId: string, index: number, owned: number) => {
+    internalUpdate((data) => {
+      try {
+        const blockIndex = data.blocks.findIndex((b) => b.id === blockId);
+        if (blockIndex === -1) {
+          console.error(`Not found block for id ${blockId}`);
+          return data;
+        }
+
+        const block = data.blocks[blockIndex];
+        const arcane = block.items[index];
+        if (!arcane) {
+          console.error(`Not found arcane for index ${index} in block ${blockId}`);
+          return data;
+        }
+
+        block.items[index].ownedCount = owned;
+        data.blocks[blockIndex] = block;
+
+        save(data); // localStorage
+        return data;
+      } catch (error) {
+        console.error(error);
+        return data;
+      }
+    });
+  };
+
   return {
+    setArcane,
     toggleItem,
     subscribe,
     update: internalUpdate,

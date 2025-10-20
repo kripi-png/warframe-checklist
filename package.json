@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
+    "@mediakular/gridcraft": "^0.2.9",
     "svelte-material-ui": "^8.0.3"
   }
 }

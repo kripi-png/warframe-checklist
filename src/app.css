@@ -14,3 +14,17 @@
     margin: 0;
   }
 }
+
+:root {
+  --gc-main-color: #1e293b;
+  --gc-secondary-color: #334155;
+  --gc-tertiary-color: #293647;
+  --gc-text-color: #e8e7e7;
+  --gc-color-selected: #155e75cc;
+  --gc-td-text-align: center;
+}
+
+/* --gc-th-text-align does not work */
+th > div {
+  justify-content: center;
+}

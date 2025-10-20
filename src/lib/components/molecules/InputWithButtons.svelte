@@ -1,28 +1,49 @@
-<script module lang="ts">
-  import type { Props as InputProps } from '../atoms/Input.svelte';
-  interface Props extends InputProps {
-    value: number;
-  }
-</script>
-
 <script lang="ts">
-  import Input from '../atoms/Input.svelte';
+  interface Props {
+    value: number;
+    min?: number | string;
+    max?: number | string;
+    onChange?: (value: number) => void;
+  }
 
-  let { value = $bindable(0), ...rest }: Props = $props();
+  let { value = $bindable(0), onChange = () => {}, ...rest }: Props = $props();
 
-  const increment = () => value++;
-  const decrement = () => value--;
+  const increment = () => {
+    // if max is not specified OR value is low enough
+    if (rest.max === undefined || value < Number(rest.max)) {
+      value += 1;
+      onChange(value);
+    }
+  };
+  const decrement = () => {
+    // if min is not specified OR value is high enough
+    if (rest.min === undefined || value > Number(rest.min)) {
+      value -= 1;
+      onChange(value);
+    }
+  };
 </script>
 
-<!-- TODO: Input highlighting -->
-<div class="flex w-max rounded-2xl text-2xl">
-  <button onclick={decrement} aria-label="decrement" class="px-2 py-1">
+<div class="flex w-max">
+  <button onclick={decrement} aria-label="decrement" class="">
     <i class="fa-solid fa-minus"></i>
   </button>
 
-  <Input {...rest} className="w-10 text-center" bind:value type="number" />
+  <input
+    onchange={(e) => onChange(Number(e.currentTarget.value))}
+    {...rest}
+    class="w-10 text-center"
+    bind:value
+    type="number"
+  />
 
-  <button onclick={increment} aria-label="increment" class="px-2 py-1">
+  <button onclick={increment} aria-label="increment" class="">
     <i class="fa-solid fa-plus"></i>
   </button>
 </div>
+
+<style>
+  div {
+    margin: 0 auto;
+  }
+</style>

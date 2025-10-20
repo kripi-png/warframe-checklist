@@ -1,56 +1,107 @@
 <script lang="ts">
   import type { ChecklistStore, DatasetBlock } from '$lib/types/data';
-  import type { Item } from '$lib/types/item';
+  import type { Arcane, Item } from '$lib/types/item';
   import { getContext } from 'svelte';
-  import Paper from '@smui/paper';
-  import Checkbox from '@smui/checkbox';
+  // import Tooltip from '@smui/tooltip';
+  import { Grid } from '@mediakular/gridcraft';
+  import ItemControls from './molecules/ItemControls.svelte';
+  import { deconstructItemId } from '$lib/dataManager';
+  import InputWithButtons from './molecules/InputWithButtons.svelte';
 
   interface Props {
     block: DatasetBlock;
   }
   let { block }: Props = $props();
 
+  let items = $derived(block.items);
   const store = getContext<ChecklistStore>('checklist');
 
+  let completedCount = $derived(items.filter((item) => item.checked).length);
   let totalPrice = $derived.by(() => {
     let total = 0;
-    for (let item of block.items) {
+    for (let item of items) {
       if (!item.price || item.checked) continue;
-      total += item.price;
+      let price = item.price;
+      // calculate remaining to max level
+      if (block.type === 'arcane') {
+        const arcane = item as Arcane;
+        const total = arcane.maxLevel === 5 ? 21 : 10;
+        // clamp to 0
+        const remaining = Math.max(0, total - arcane.ownedCount);
+        price = remaining * price;
+      }
+      total += price;
     }
     return total;
   });
 
-  let completedCount = $derived(block.items.filter((item) => item.checked).length);
-
-  const onCheck = (e: Event) => {
-    const target = e.target as HTMLInputElement;
-    const id = Number(target.parentElement?.dataset.id);
-
-    store.toggleItem(block.id, id);
-  };
+  let columns = $derived([
+    {
+      key: 'checked',
+      title: '',
+      width: 45,
+      visible: false,
+      accessor: (item: Item | Arcane) => {
+        return item.checked ? '✔️' : ' ';
+      },
+    },
+    { key: 'name', title: 'Name', width: 150 },
+    { key: 'price', title: 'Price' },
+    {
+      key: 'arcane_needed',
+      title: 'Needed',
+      visible: block.type === 'arcane',
+      accessor: (row: Item | Arcane) => {
+        const arcane = row as Arcane;
+        const total = arcane.maxLevel === 5 ? 21 : 10;
+        return String(Math.max(0, total - arcane.ownedCount));
+      },
+    },
+    {
+      key: 'arcane_owned',
+      title: 'Owned',
+      visible: block.type === 'arcane',
+      accessor: (row: Item | Arcane) => {
+        const arcane = row as Arcane;
+        return {
+          value: arcane.ownedCount,
+          min: 0,
+          onChange: (value: number) => {
+            if (!arcane.id) return;
+            store.setArcane(block.id, deconstructItemId(arcane.id)[0], value); //arcane.ownedCount = value;
+          },
+        };
+      },
+      sortValue: (row: Arcane | Item) => (<Arcane>row).ownedCount,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      renderComponent: InputWithButtons as any,
+    },
+    {
+      key: 'item_actions',
+      title: 'Actions',
+      visible: block.type === 'item',
+      accessor: (row: Item | Arcane) => {
+        const item = row as Item;
+        return {
+          item,
+          buyClicked: () => {
+            throw new Error('Not implemented');
+          },
+          dropClicked: () => {
+            if (!item.id) return;
+            store.toggleItem(block.id, deconstructItemId(item.id)[0]);
+          },
+        };
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      renderComponent: ItemControls as any,
+    },
+  ]);
 </script>
 
-<Paper>
-  <h2 class="text-2xl font-bold text-white">
-    {block.title}
-  </h2>
-  <h3>{completedCount} / {block.items.length}</h3>
-  <h3>Total: {totalPrice} Fergolyte</h3>
-  <div class="flex flex-col text-white">
-    {#each block.items as item, i (item)}
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-1">
-          <Checkbox data-id={i} onchange={onCheck} checked={item.checked} />
-          <h4 class="">
-            {item.name}
-            {#if block.type === 'item'}
-              {(<Item>item)?.forHelminth ? '(H)' : ''}
-            {/if}
-          </h4>
-        </div>
-        <span>{item.price}</span>
-      </div>
-    {/each}
-  </div>
-</Paper>
+<div>
+  <h2 class="text-center text-2xl font-bold text-white">{block.title}</h2>
+  <h3 class="text-center">{completedCount} / {block.items.length}</h3>
+  <h3 class="text-center"><span class="text-xs">Fergolyte:</span> {totalPrice}</h3>
+  <Grid bind:data={items} bind:columns />
+</div>
