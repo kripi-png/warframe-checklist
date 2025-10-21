@@ -1,14 +1,9 @@
-import type { Arcane, ItemEntry } from './types/item';
-import type {
-  ChecklistStore,
-  Dataset,
-  DatasetBlock,
-  PersistedData,
-  PersistedItem,
-} from './types/data';
+import type { Arcane, Item, ItemEntry } from './types/item';
+import type { ChecklistStore } from './types/store';
+import type { Dataset, DatasetBlock, PersistedBlock, PersistedData } from './types/data';
 import { writable } from 'svelte/store';
-import nokko from './nokko.json';
 import { getArcaneMaxCount, isArcane } from './utils';
+import nokko from './nokko.json';
 
 interface DatasetMap {
   [key: string]: Dataset;
@@ -25,41 +20,66 @@ function getDataset(key: string): Dataset {
   return datasetMap[key];
 }
 
-const stripStaticData = (data: Dataset): PersistedData => ({
-  blocks: data.blocks.map((block) => ({
-    // keep other properties, rewrite items
-    ...block,
-    items: block.items.map((item, i) => {
-      const obj: PersistedItem = {
-        id: `${block.id}_${i}`,
-        checked: item.checked,
+const toPersistedData = (data: Dataset): PersistedData => {
+  // take out static data (title, maxLevel, price) from the dataset items
+  // to create a new, smaller dataset saved to localStorage
+  return {
+    blocks: data.blocks.map((block) => {
+      const persistedBlock = {
+        ...block,
+        items: block.items.map((item, i) => ({
+          id: i,
+          checked: item.checked,
+        })),
       };
 
       if (block.type === 'arcane') {
-        obj.currentLevel = (<Arcane>item).currentLevel;
-        obj.ownedCount = (<Arcane>item).ownedCount;
+        persistedBlock.items = persistedBlock.items.map((item, i) => ({
+          ...item,
+          currentLevel: block.items[i].currentLevel,
+          ownedCount: block.items[i].ownedCount,
+        }));
       }
-      return obj;
+      return persistedBlock as PersistedBlock;
     }),
-  })),
-});
+  };
+};
 
-/*
-TODO:
-- Move from block.id to {[block.id]: blockData}
-  - instead of blocks.find() -> blocks[block.id]
-*/
 const mergeData = (key: string, persistableValue: PersistedData): Dataset => {
+  // use the original data but replace defaults user related info
   const staticData = getDataset(key);
-  const merged = staticData.blocks.map((block) => ({
-    ...block,
-    items: block.items.map((item, i) => ({
-      ...item,
-      ...persistableValue.blocks.find((b) => b.id === block.id)?.items[i],
-    })),
-  }));
   return {
-    blocks: merged,
+    blocks: staticData.blocks.map((block, bi) => {
+      const persistedBlock = persistableValue.blocks[bi];
+
+      if (persistedBlock.type === 'item') {
+        return {
+          ...block,
+          type: 'item',
+          items: block.items.map((item, i) => ({
+            ...(<Item>item),
+            id: i,
+            checked: persistedBlock.items[i].checked ?? false,
+          })),
+        };
+      }
+
+      if (persistedBlock.type === 'arcane') {
+        return {
+          ...block,
+          type: 'arcane',
+          items: block.items.map((item, i) => ({
+            ...(<Arcane>item),
+            id: i,
+            checked: persistedBlock.items[i].checked ?? false,
+            ownedCount: persistedBlock.items[i].ownedCount ?? 0,
+            currentLevel: persistedBlock.items[i].currentLevel ?? 0,
+          })),
+        };
+      }
+
+      return block;
+    }),
   };
 };
 
@@ -72,17 +92,17 @@ export function createChecklistStore(key: string): ChecklistStore {
   let persistableValue: PersistedData;
   try {
     const item = storageArea?.getItem(key);
-    persistableValue = item ? JSON.parse(item) : stripStaticData(getDataset(key));
+    persistableValue = item ? JSON.parse(item) : toPersistedData(getDataset(key));
   } catch (error) {
     console.error(error);
-    persistableValue = stripStaticData(getDataset(key));
+    persistableValue = toPersistedData(getDataset(key));
   }
 
   const { subscribe, update: internalUpdate } = writable<Dataset>(mergeData(key, persistableValue));
 
   const save = (newData: Dataset) => {
     try {
-      const json = JSON.stringify(stripStaticData(newData));
+      const json = JSON.stringify(toPersistedData(newData));
       storageArea?.setItem(key, json);
     } catch (error) {
       console.error(error);
@@ -165,11 +185,3 @@ export function createChecklistStore(key: string): ChecklistStore {
     update: internalUpdate,
   };
 }
-
-export const deconstructItemId = (id: string): [number, string] => {
-  // turn ids like nokko_weapons_25 or arcanes_2 into [25, 'nokko_weapons'] and [2, 'arcanes']
-  const parts = id.split('_');
-  const item = Number(parts.pop());
-  const block = parts.join('_');
-  return [item, block];
-};
