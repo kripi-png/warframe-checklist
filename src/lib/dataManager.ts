@@ -24,6 +24,7 @@ const toPersistedData = (data: Dataset): PersistedData => {
   // take out static data (title, maxLevel, price) from the dataset items
   // to create a new, smaller dataset saved to localStorage
   return {
+    money: data.money ?? 0,
     blocks: data.blocks.map((block) => {
       const persistedBlock = {
         ...block,
@@ -49,6 +50,7 @@ const mergeData = (key: string, persistableValue: PersistedData): Dataset => {
   // use the original data but replace defaults user related info
   const staticData = getDataset(key);
   return {
+    money: persistableValue.money ?? 0,
     blocks: staticData.blocks.map((block, bi) => {
       const persistedBlock = persistableValue.blocks[bi];
 
@@ -176,9 +178,25 @@ export function createChecklistStore(key: string): ChecklistStore {
     });
   };
 
+  const changeMoney = (amount: number) => {
+    if (isNaN(amount)) return;
+
+    internalUpdate((data) => {
+      try {
+        data.money = amount;
+        save(data); // localStorage
+        return data;
+      } catch (error) {
+        console.error(error);
+        return data;
+      }
+    });
+  };
+
   return {
     setArcane,
     toggleItem,
+    changeMoney,
     subscribe,
     update: internalUpdate,
   };

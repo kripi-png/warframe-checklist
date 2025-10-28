@@ -8,5 +8,6 @@ export interface CustomWritable<T> extends Omit<Writable<T>, 'set'> {
 
 export interface ChecklistStore extends CustomWritable<Dataset> {
   setArcane(blockId: string, index: number, owned: number): void;
-  toggleItem(blockId: string, index: number): void;
+  toggleItem(blockId: string, index: number, checked?: boolean): void;
+  changeMoney(amount: number): void;
 }

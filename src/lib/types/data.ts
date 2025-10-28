@@ -9,6 +9,7 @@ interface DatasetBlockBase<T, Type extends 'item' | 'arcane'> {
 
 export type DatasetBlock = DatasetBlockBase<Item, 'item'> | DatasetBlockBase<Arcane, 'arcane'>;
 export interface Dataset {
+  money: number;
   blocks: DatasetBlock[];
 }
 
@@ -18,5 +19,6 @@ export type PersistedBlock =
   | DatasetBlockBase<PersistedArcane, 'arcane'>;
 
 export interface PersistedData {
+  money: number;
   blocks: PersistedBlock[];
 }

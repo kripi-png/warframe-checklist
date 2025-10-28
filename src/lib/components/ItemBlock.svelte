@@ -90,8 +90,11 @@
         if (isArcane(item)) return null;
         return {
           row: item,
+          canAfford: item.price <= $store.money,
           buyClicked: () => {
-            throw new Error('Not implemented');
+            const newBalance = $store.money - item.price;
+            store.changeMoney(newBalance);
+            store.toggleItem(block.id, item._id, true);
           },
           dropClicked: () => {
             if (item._id === undefined) return;
