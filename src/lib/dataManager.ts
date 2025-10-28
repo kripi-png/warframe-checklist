@@ -55,10 +55,9 @@ const mergeData = (key: string, persistableValue: PersistedData): Dataset => {
       if (persistedBlock.type === 'item') {
         return {
           ...block,
-          type: 'item',
+          type: 'item' as const,
           items: block.items.map((item, i) => ({
             ...(<Item>item),
-            id: i,
             checked: persistedBlock.items[i].checked ?? false,
           })),
         };
@@ -67,10 +66,9 @@ const mergeData = (key: string, persistableValue: PersistedData): Dataset => {
       if (persistedBlock.type === 'arcane') {
         return {
           ...block,
-          type: 'arcane',
+          type: 'arcane' as const,
           items: block.items.map((item, i) => ({
             ...(<Arcane>item),
-            id: i,
             checked: persistedBlock.items[i].checked ?? false,
             ownedCount: persistedBlock.items[i].ownedCount ?? 0,
             currentLevel: persistedBlock.items[i].currentLevel ?? 0,

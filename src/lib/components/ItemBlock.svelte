@@ -39,7 +39,7 @@
       key: 'checked',
       title: '',
       width: 45,
-      accessor: (item: ItemEntry) => {
+      accessor: (item: IndexedRow) => {
         return item.checked ? '✔️' : ' ';
       },
     },
@@ -47,7 +47,7 @@
       key: 'name',
       title: 'Name',
       width: 150,
-      accessor: (item: ItemEntry) => {
+      accessor: (item: IndexedRow) => {
         if (isArcane(item) || !item.forHelminth) return item.name;
         return '(H) ' + item.name;
       },
@@ -57,7 +57,7 @@
       key: 'arcane_needed',
       title: 'Needed',
       visible: block.type === 'arcane',
-      accessor: (item: ItemEntry) => {
+      accessor: (item: IndexedRow) => {
         if (!isArcane(item)) return null;
         const total = item.maxLevel === 5 ? 21 : 10;
         return String(Math.max(0, total - item.ownedCount));
@@ -67,14 +67,14 @@
       key: 'arcane_owned',
       title: 'Owned',
       visible: block.type === 'arcane',
-      accessor: (item: ItemEntry) => {
+      accessor: (item: IndexedRow) => {
         if (!isArcane(item)) return null;
         return {
           value: item.ownedCount,
           min: 0,
           onChange: (value: number) => {
-            if (item.id === undefined) return;
-            store.setArcane(block.id, item.id, value); //arcane.ownedCount = value;
+            if (item._id === undefined) return;
+            store.setArcane(block.id, item._id, value); //arcane.ownedCount = value;
           },
         };
       },
@@ -86,7 +86,7 @@
       key: 'item_actions',
       title: 'Actions',
       visible: block.type === 'item',
-      accessor: (item: ItemEntry) => {
+      accessor: (item: IndexedRow) => {
         if (isArcane(item)) return null;
         return {
           row: item,
@@ -94,8 +94,8 @@
             throw new Error('Not implemented');
           },
           dropClicked: () => {
-            if (item.id === undefined) return;
-            store.toggleItem(block.id, item.id);
+            if (item._id === undefined) return;
+            store.toggleItem(block.id, item._id);
           },
         };
       },
@@ -109,7 +109,8 @@
   } as PagingData;
 
   // for faster reactivity in Grid; does not derive correctly for other usage however
-  let _items = $derived(block.items);
+  type IndexedRow = ItemEntry & { _id: number };
+  let _items = $derived(block.items.map((item, i): IndexedRow => ({ ...item, _id: i })));
 </script>
 
 <div>

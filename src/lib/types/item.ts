@@ -1,5 +1,4 @@
 interface BaseCheckable {
-  id?: number;
   name: string;
   checked: boolean;
   price: number;
