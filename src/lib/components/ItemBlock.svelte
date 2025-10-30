@@ -1,124 +1,106 @@
 <script lang="ts">
-  import type { ItemEntry } from '$lib/types/item';
-  import type { DatasetBlock } from '$lib/types/data';
-  import type { ChecklistStore } from '$lib/types/store';
-  import { getContext } from 'svelte';
-  // import Tooltip from '@smui/tooltip';
-  import { Grid, PagingData } from '@mediakular/gridcraft';
-  import ItemControls from './molecules/ItemControls.svelte';
-  import InputWithButtons from './molecules/InputWithButtons.svelte';
-  import { isArcane } from '$lib/utils';
+import { Grid, PagingData } from '@mediakular/gridcraft';
+import ItemControls from './molecules/ItemControls.svelte';
+import InputWithButtons from './molecules/InputWithButtons.svelte';
+import { isArcane } from '$lib/utils';
+import { getChecklistContext } from '$lib/context/checklist';
+import type { TArcane, TGeneralItem, TGeneralMoney } from '$lib/types/data';
+import BlockTitleArea from './BlockTitleArea.svelte';
 
-  interface Props {
-    block: DatasetBlock;
-  }
-  let { block }: Props = $props();
+const checklist = getChecklistContext();
+type Props = {
+  block: (typeof checklist.blocks)[number];
+};
+let { block }: Props = $props();
 
-  const store = getContext<ChecklistStore>('checklist');
-
-  let completedCount = $derived(block.items.filter((item) => item.checked).length);
-  let totalPrice = $derived.by(() => {
-    let total = 0;
-    for (let item of block.items) {
-      if (!item.price || item.checked) continue;
-      let price = item.price;
-      // calculate remaining to max level
-      if (isArcane(item)) {
-        const total = item.maxLevel === 5 ? 21 : 10;
-        // clamp to 0
-        const remaining = Math.max(0, total - item.ownedCount);
-        price = remaining * price;
+let columns = $derived([
+  {
+    key: 'checked',
+    title: '',
+    width: 45,
+    accessor: (item: TGeneralItem) => {
+      return item.checked ? '✔️' : ' ';
+    },
+  },
+  {
+    key: 'name',
+    title: 'Name',
+    width: 150,
+    accessor: (item: TGeneralItem) => {
+      if (isArcane(item) || !item.forHelminth) return item.name;
+      return '(H) ' + item.name;
+    },
+  },
+  {
+    key: 'price',
+    title: 'Price',
+    accessor: (item: TGeneralItem) => {
+      if (Array.isArray(item.price)) {
+        return `${item.price[0]} | ${item.price[1]}`;
       }
-      total += price;
-    }
-    return total;
-  });
+      return item.price;
+    },
+  },
+  {
+    key: 'arcane_needed',
+    title: 'Needed',
+    visible: block.type === 'arcane',
+    accessor: (_item: TGeneralItem) => {
+      const item = <TArcane<TGeneralMoney>>_item;
+      const total = item.maxLevel === 5 ? 21 : 10;
+      return String(Math.max(0, total - item.ownedCount));
+    },
+  },
+  {
+    key: 'arcane_owned',
+    title: 'Owned',
+    visible: block.type === 'arcane',
+    accessor: (item: TGeneralItem) => {
+      if (!isArcane(item)) return null;
+      return {
+        value: item.ownedCount,
+        min: 0,
+        onChange: (value: number) => {
+          checklist.setItemCount(item.id, value);
+        },
+      };
+    },
+    sortValue: (row: TGeneralItem) =>
+      isArcane(row) ? row.ownedCount : undefined,
+    // biome-ignore lint/suspicious/noExplicitAny: <Grid> columns break without
+    renderComponent: InputWithButtons as any,
+  },
+  {
+    key: 'item_actions',
+    title: 'Actions',
+    visible: block.type === 'item',
+    accessor: (item: TGeneralItem) => {
+      if (isArcane(item)) return null;
+      return {
+        row: item,
+        canAfford: checklist.canAfford(checklist.balance, item.price),
+        buyClicked: () => {
+          checklist.buyItem(item.id);
+        },
+        dropClicked: () => {
+          checklist.toggleItem(item.id);
+        },
+      };
+    },
+    // biome-ignore lint/suspicious/noExplicitAny: <Grid> columns break without
+    renderComponent: ItemControls as any,
+  },
+]);
+let paging = {
+  itemsPerPage: 9999,
+  currentPage: 1,
+} as PagingData;
 
-  let columns = $derived([
-    {
-      key: 'checked',
-      title: '',
-      width: 45,
-      accessor: (item: IndexedRow) => {
-        return item.checked ? '✔️' : ' ';
-      },
-    },
-    {
-      key: 'name',
-      title: 'Name',
-      width: 150,
-      accessor: (item: IndexedRow) => {
-        if (isArcane(item) || !item.forHelminth) return item.name;
-        return '(H) ' + item.name;
-      },
-    },
-    { key: 'price', title: 'Price' },
-    {
-      key: 'arcane_needed',
-      title: 'Needed',
-      visible: block.type === 'arcane',
-      accessor: (item: IndexedRow) => {
-        if (!isArcane(item)) return null;
-        const total = item.maxLevel === 5 ? 21 : 10;
-        return String(Math.max(0, total - item.ownedCount));
-      },
-    },
-    {
-      key: 'arcane_owned',
-      title: 'Owned',
-      visible: block.type === 'arcane',
-      accessor: (item: IndexedRow) => {
-        if (!isArcane(item)) return null;
-        return {
-          value: item.ownedCount,
-          min: 0,
-          onChange: (value: number) => {
-            if (item._id === undefined) return;
-            store.setArcane(block.id, item._id, value); //arcane.ownedCount = value;
-          },
-        };
-      },
-      sortValue: (row: ItemEntry) => (isArcane(row) ? row.ownedCount : undefined),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      renderComponent: InputWithButtons as any,
-    },
-    {
-      key: 'item_actions',
-      title: 'Actions',
-      visible: block.type === 'item',
-      accessor: (item: IndexedRow) => {
-        if (isArcane(item)) return null;
-        return {
-          row: item,
-          canAfford: item.price <= $store.money,
-          buyClicked: () => {
-            const newBalance = $store.money - item.price;
-            store.changeMoney(newBalance);
-            store.toggleItem(block.id, item._id, true);
-          },
-          dropClicked: () => {
-            if (item._id === undefined) return;
-            store.toggleItem(block.id, item._id);
-          },
-        };
-      },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      renderComponent: ItemControls as any,
-    },
-  ]);
-  let paging = {
-    itemsPerPage: 9999,
-    currentPage: 1,
-  } as PagingData;
-
-  // for faster reactivity in Grid; does not derive correctly for other usage however
-  type IndexedRow = ItemEntry & { _id: number };
-  let _items = $derived(block.items.map((item, i): IndexedRow => ({ ...item, _id: i })));
+// for faster reactivity in Grid; does not derive correctly for other usage however
+let items = $derived(block.items);
 </script>
 
 <div>
-  <h2 class="text-center text-2xl font-bold text-white">{block.title}</h2>
-  <h3 class="text-center">{completedCount} / {block.items.length}</h3>
-  <h3 class="text-center"><span class="text-xs">Fergolyte:</span> {totalPrice}</h3>
-  <Grid bind:data={_items} {paging} bind:columns />
+  <BlockTitleArea block={block} />
+  <Grid bind:data={items} {paging} bind:columns />
 </div>

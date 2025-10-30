@@ -1,15 +1,3 @@
-<script lang="ts">
-  import { onMount } from 'svelte';
-  import { layout } from '$lib/layout.svelte';
-  layout({});
-
-  let x = $state(0);
-
-  onMount(() => {
-    console.log('Page mounted');
-  });
-</script>
-
-<h1>{x}</h1>
-
-<button onclick={() => x++}>Increment</button>
+<a class="border-white border-2 mx-1 p-2" href="nokko">nokko</a>
+<a class="border-white border-2 mx-1 p-2" href="koumei">koumei</a>
+<a class="border-white border-2 mx-1 p-2" href="citrine">citrine</a>

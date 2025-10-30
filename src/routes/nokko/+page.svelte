@@ -1,30 +1,26 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
-  import Paper from '@smui/paper';
-  // import Button from '@smui/button';
-  import TextField from '@smui/textfield';
-  import ItemChecklists from '$lib/components/ItemChecklists.svelte';
+import Paper from '@smui/paper';
+import TextField from '@smui/textfield';
+import ItemChecklists from '$lib/components/ItemChecklists.svelte';
+import ResetDataButton from '$lib/components/ResetDataButton.svelte';
+import checklistStore from '$lib/stores/NokkoStore';
+import { layout } from '$lib/layout.svelte';
+import { setChecklistContext } from '$lib/context/checklist';
+layout({ custom });
 
-  import { createChecklistStore } from '$lib/dataManager';
-  import { layout } from '$lib/layout.svelte';
-  layout({ custom });
-
-  const checklistStore = createChecklistStore('nokko');
-  setContext('checklist', checklistStore);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleMoneyChange = ({ target }: { target: any }) => {
-    checklistStore.changeMoney(Number((<HTMLInputElement>target)?.value));
-  };
+setChecklistContext(checklistStore);
 </script>
 
 {#snippet custom()}
   <!-- class="flex-col gap-2" -->
   <Paper>
-    <h1>Nightcap</h1>
+    <h1>Nokko</h1>
     <TextField
-      value={$checklistStore.money}
-      onchange={handleMoneyChange}
+      value={checklistStore.balance}
+      onchange={(e: Event) =>
+        checklistStore.setBalance(
+          Number((<HTMLInputElement>e?.target)?.value),
+        )}
       label="Owned Fergolite"
       type="number"
     >
@@ -32,7 +28,7 @@
             <HelperText>Helper Text</HelperText>
           {/snippet} -->
     </TextField>
-    <!-- <Button disabled>Field Guide</Button> -->
+    <!-- <ResetDataButton checklist={checklistStore} /> -->
   </Paper>
 {/snippet}
 

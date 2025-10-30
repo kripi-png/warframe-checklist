@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { Arcane } from '$lib/types/item';
+  import type { TArcane } from '$lib/types/data';
   import InputWithButtons from './InputWithButtons.svelte';
 
   interface Props {
-    arcane: Arcane;
+    arcane: TArcane;
   }
   let { arcane }: Props = $props();
 

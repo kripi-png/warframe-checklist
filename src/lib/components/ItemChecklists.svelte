@@ -1,15 +1,14 @@
 <script lang="ts">
-  import type { ChecklistStore } from '$lib/types/store';
-  import { getContext } from 'svelte';
-  import ItemBlock from '$lib/components/ItemBlock.svelte';
-  import Masonry from '$lib/components/Masonry.svelte';
+import ItemBlock from '$lib/components/ItemBlock.svelte';
+import Masonry from '$lib/components/Masonry.svelte';
+import { getChecklistContext } from '$lib/context/checklist';
 
-  const checklistStore = getContext<ChecklistStore>('checklist');
+const checklistStore = getChecklistContext();
 </script>
 
-{#if $checklistStore}
+{#if checklistStore.blocks}
   <Masonry>
-    {#each $checklistStore.blocks as block (block.title)}
+    {#each checklistStore.blocks as block (block.id)}
       <ItemBlock {block} />
     {/each}
   </Masonry>
