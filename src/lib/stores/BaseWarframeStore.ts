@@ -147,103 +147,14 @@ class BaseWarframeStore<
     }
   }
 
-  // private getBlock(blockIndexOrId: number | string): {
-  //   index: number;
-  //   block: TGeneralBlock<Money>;
-  // } {
-  //   let index: number;
-  //   if (typeof blockIndexOrId === 'number') {
-  //     index = blockIndexOrId;
-  //   } else {
-  //     index = this.blocks.findIndex((block) => block.id === blockIndexOrId);
-  //   }
-  //   if (index >= 0) return { index, block: this.blocks[index] };
-  //   throw new Error(`Block not found with id or index: ${blockIndexOrId}`);
-  // }
-
-  // ------ PUBLIC METHODS --------
-  // public chargeBalance(price: Money) {
-  //   this.balance = this.#removeMoney(this.balance, price);
-  // }
-
-  // public setBalance(newBalance: Money) {
-  //   this.balance = newBalance;
-  // }
-
-  // public setArcaneCount(itemId: ItemId, count: number) {
-  //   const [blockIndex, itemIndex] = this.#parseId(itemId);
-  //   this.#setItemCount(blockIndex, itemIndex, count);
-  // }
-
-  // public buyItem(itemId: ItemId) {
-  //   const [blockIndex, itemIndex] = this.#parseId(itemId);
-  //   const item = this.#getItemById(blockIndex, itemIndex);
-  //   if (!item || !this.canAfford(this.balance, item.price)) return;
-
-  //   this.chargeBalance(item.price);
-
-  //   if (isArcane(item)) {
-  //     const newCount = item.ownedCount + 1;
-  //     this.#setItemCount(blockIndex, itemIndex, newCount);
-  //   } else {
-  //     this.toggleItem(blockIndex, itemIndex, true);
-  //   }
-  // }
-
-  // public toggleItem(itemId: ItemId, checked?: boolean) {
-  //   const [blockIndex, itemIndex] = this.#parseId(itemId);
-  //   const item = this.#getItemById(blockIndex, itemIndex);
-  //   if (!item || isArcane(item)) return;
-
-  //   // convert status to a number (true = 1, false = 0)
-  //   this.#setChecked(blockIndex, itemIndex, checked ?? !item.checked);
-  // }
-
-  // public resetData() {
-  //   this.current = this.initialData;
-  // }
-
-  // ------ PRIVATE METHODS --------
-  // #setItemCount(blockIndex: number, itemIndex: number, newCount: number) {
-  //   const item = this.#getItemById(blockIndex, itemIndex);
-  //   if (!item) return;
-
-  //   if (isArcane(item)) {
-  //     item.ownedCount = newCount;
-  //     item.currentLevel = calculateArcaneLevel(newCount);
-  //     // if user has enough arcanes for max level, mark it checked
-  //     const countNeeded = getArcaneCountForMax(item.maxLevel);
-  //     if (countNeeded <= newCount) item.checked = true;
-  //     else item.checked = false;
-
-  //     // save changes
-  //     this.#replaceItemAt(blockIndex, itemIndex, item);
-  //   } else {
-  //     if (newCount > 0) this.#setChecked(blockIndex, itemIndex, true);
-  //     else this.#setChecked(blockIndex, itemIndex, false);
-  //   }
-  // }
-
-  // commented out for biome to stop crying
-  // #addMoney<M extends TGeneralMoney>(a: M, b: M): M {
-  //   if (Array.isArray(a) && Array.isArray(b)) {
-  //     return [a[0] + b[0], a[1] + b[1]] as M;
-  //   }
-  //   if (typeof a === 'number' && typeof b === 'number') {
-  //     return (a + b) as M;
-  //   }
-  //   throw new Error('Invalid money type');
-  // }
-
-  // #removeMoney<M extends TGeneralMoney>(a: M, b: M): M {
-  //   if (Array.isArray(a) && Array.isArray(b)) {
-  //     return [a[0] - b[0], a[1] - b[1]] as M;
-  //   }
-  //   if (typeof a === 'number' && typeof b === 'number') {
-  //     return (a - b) as M;
-  //   }
-  //   throw new Error('Invalid money type');
-  // }
+  public addItemCount(itemId: ItemId, count: number) {
+    const item = this._getItem(itemId);
+    if (isArcane(item)) {
+      this.setItemCount(itemId, item.ownedCount + count);
+    } else {
+      this.setItemCount(itemId, count);
+    }
+  }
 }
 
 export default BaseWarframeStore;

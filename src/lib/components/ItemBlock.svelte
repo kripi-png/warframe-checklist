@@ -73,17 +73,15 @@ let columns = $derived([
   {
     key: 'item_actions',
     title: 'Actions',
-    visible: block.type === 'item',
     accessor: (item: TGeneralItem) => {
-      if (isArcane(item)) return null;
       return {
-        row: item,
+        item: item,
         canAfford: checklist.canAfford(checklist.balance, item.price),
         buyClicked: () => {
           checklist.buyItem(item.id);
         },
         dropClicked: () => {
-          checklist.toggleItem(item.id);
+          checklist.addItemCount(item.id, 1);
         },
       };
     },

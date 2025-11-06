@@ -1,9 +1,10 @@
 <script lang="ts">
-import type { TItem } from '$lib/types/data';
+import type { TGeneralItem } from '$lib/types/data';
+import { isArcane } from '$lib/utils';
 import Button from '@smui/button';
 
 interface Props {
-  item: TItem;
+  item: TGeneralItem;
   canAfford: boolean;
   buyClicked: () => void;
   dropClicked: () => void;

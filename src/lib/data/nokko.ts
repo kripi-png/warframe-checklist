@@ -1,4 +1,4 @@
-import type { DatasetBase } from '$lib/types/data';
+import type { DatasetBase, TMoney } from '$lib/types/data';
 
 export default {
   money: 0,
@@ -124,6 +124,7 @@ export default {
           price: 150,
           wikiUrl: '',
           checked: false,
+          isDrop: true,
         },
         {
           id: '1_1',
@@ -134,6 +135,7 @@ export default {
           price: 150,
           wikiUrl: '',
           checked: false,
+          isDrop: true,
         },
         {
           id: '1_2',
@@ -144,6 +146,7 @@ export default {
           price: 150,
           wikiUrl: '',
           checked: false,
+          isDrop: true,
         },
         {
           id: '1_3',
@@ -154,6 +157,7 @@ export default {
           price: 150,
           wikiUrl: '',
           checked: false,
+          isDrop: true,
         },
         {
           id: '1_4',
@@ -164,6 +168,7 @@ export default {
           price: 150,
           wikiUrl: '',
           checked: false,
+          isDrop: true,
         },
       ],
     },
@@ -721,4 +726,4 @@ export default {
       ],
     },
   ],
-} satisfies DatasetBase;
+} satisfies DatasetBase<TMoney>;

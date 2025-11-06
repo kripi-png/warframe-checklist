@@ -1,4 +1,4 @@
-import type { DatasetBase } from '$lib/types/data';
+import type { DatasetBase, TMoney } from '$lib/types/data';
 
 export default {
   money: 0,
@@ -14,6 +14,7 @@ export default {
           price: 165,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_1',
@@ -21,6 +22,7 @@ export default {
           price: 55,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_2',
@@ -28,6 +30,7 @@ export default {
           price: 55,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_3',
@@ -35,6 +38,7 @@ export default {
           price: 55,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_4',
@@ -42,6 +46,7 @@ export default {
           price: 165,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
           forHelminth: true,
         },
         {
@@ -50,6 +55,7 @@ export default {
           price: 55,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
           forHelminth: true,
         },
         {
@@ -58,6 +64,7 @@ export default {
           price: 55,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
           forHelminth: true,
         },
         {
@@ -66,6 +73,7 @@ export default {
           price: 55,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
           forHelminth: true,
         },
         {
@@ -74,6 +82,7 @@ export default {
           price: 135,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_9',
@@ -81,6 +90,7 @@ export default {
           price: 45,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_10',
@@ -88,6 +98,7 @@ export default {
           price: 45,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_11',
@@ -95,6 +106,7 @@ export default {
           price: 45,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_12',
@@ -102,6 +114,7 @@ export default {
           price: 135,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_13',
@@ -109,6 +122,7 @@ export default {
           price: 45,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_14',
@@ -116,6 +130,7 @@ export default {
           price: 45,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_15',
@@ -123,6 +138,7 @@ export default {
           price: 45,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
       ],
     },
@@ -155,4 +171,4 @@ export default {
       ],
     },
   ],
-} satisfies DatasetBase;
+} satisfies DatasetBase<TMoney>;

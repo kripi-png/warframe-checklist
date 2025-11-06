@@ -16,6 +16,7 @@ export default {
           price: [500, 500],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_1',
@@ -23,6 +24,7 @@ export default {
           price: [350, 350],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_2',
@@ -30,6 +32,7 @@ export default {
           price: [350, 350],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_3',
@@ -37,6 +40,7 @@ export default {
           price: [350, 300],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_4',
@@ -44,6 +48,7 @@ export default {
           price: [500, 500],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_5',
@@ -51,6 +56,7 @@ export default {
           price: [350, 350],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
           forHelminth: true,
         },
         {
@@ -59,6 +65,7 @@ export default {
           price: [350, 350],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
           forHelminth: true,
         },
         {
@@ -67,6 +74,7 @@ export default {
           price: [350, 300],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
           forHelminth: true,
         },
         {
@@ -75,6 +83,7 @@ export default {
           price: [500, 300],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_9',
@@ -82,6 +91,7 @@ export default {
           price: [250, 150],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_10',
@@ -89,6 +99,7 @@ export default {
           price: [250, 150],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_11',
@@ -96,6 +107,7 @@ export default {
           price: [250, 150],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_12',
@@ -103,6 +115,7 @@ export default {
           price: [300, 500],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_13',
@@ -110,6 +123,7 @@ export default {
           price: [150, 250],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_14',
@@ -117,6 +131,7 @@ export default {
           price: [150, 250],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '0_15',
@@ -124,6 +139,7 @@ export default {
           price: [150, 250],
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
       ],
     },
@@ -169,6 +185,7 @@ export default {
           ownedCount: 0,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '2_1',
@@ -179,6 +196,7 @@ export default {
           ownedCount: 0,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '2_2',
@@ -189,6 +207,7 @@ export default {
           ownedCount: 0,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '2_3',
@@ -199,6 +218,7 @@ export default {
           ownedCount: 0,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
         {
           id: '2_4',
@@ -209,6 +229,7 @@ export default {
           ownedCount: 0,
           checked: false,
           wikiUrl: '',
+          isDrop: true,
         },
       ],
     },
