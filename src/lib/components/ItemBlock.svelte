@@ -1,10 +1,10 @@
 <script lang="ts">
-import { Grid, PagingData } from '@mediakular/gridcraft';
+import { DataTable } from '@careswitch/svelte-data-table';
 import ItemControls from './molecules/ItemControls.svelte';
 import InputWithButtons from './molecules/InputWithButtons.svelte';
 import { isArcane } from '$lib/utils';
 import { getChecklistContext } from '$lib/context/checklist';
-import type { TArcane, TGeneralItem, TGeneralMoney } from '$lib/types/data';
+import type { TGeneralItem } from '$lib/types/data';
 import BlockTitleArea from './BlockTitleArea.svelte';
 
 const checklist = getChecklistContext();
@@ -13,92 +13,85 @@ type Props = {
 };
 let { block }: Props = $props();
 
-let columns = $derived([
-  {
-    key: 'checked',
-    title: '',
-    width: 45,
-    accessor: (item: TGeneralItem) => {
-      return item.checked ? '✔️' : ' ';
-    },
-  },
-  {
-    key: 'name',
-    title: 'Name',
-    width: 150,
-    accessor: (item: TGeneralItem) => {
-      if (isArcane(item) || !item.forHelminth) return item.name;
-      return '(H) ' + item.name;
-    },
-  },
-  {
-    key: 'price',
-    title: 'Price',
-    accessor: (item: TGeneralItem) => {
-      if (Array.isArray(item.price)) {
-        return `${item.price[0]} | ${item.price[1]}`;
-      }
-      return item.price;
-    },
-  },
-  {
-    key: 'arcane_needed',
-    title: 'Needed',
-    visible: block.type === 'arcane',
-    accessor: (_item: TGeneralItem) => {
-      const item = <TArcane<TGeneralMoney>>_item;
-      const total = item.maxLevel === 5 ? 21 : 10;
-      return String(Math.max(0, total - item.ownedCount));
-    },
-  },
-  {
-    key: 'arcane_owned',
-    title: 'Owned',
-    visible: block.type === 'arcane',
-    accessor: (item: TGeneralItem) => {
-      if (!isArcane(item)) return null;
-      return {
-        value: item.ownedCount,
-        min: 0,
-        onChange: (value: number) => {
-          checklist.setItemCount(item.id, value);
-        },
-      };
-    },
-    sortValue: (row: TGeneralItem) =>
-      isArcane(row) ? row.ownedCount : undefined,
-    // biome-ignore lint/suspicious/noExplicitAny: <Grid> columns break without
-    renderComponent: InputWithButtons as any,
-  },
-  {
-    key: 'item_actions',
-    title: 'Actions',
-    accessor: (item: TGeneralItem) => {
-      return {
-        item: item,
-        canAfford: checklist.canAfford(checklist.balance, item.price),
-        buyClicked: () => {
-          checklist.buyItem(item.id);
-        },
-        dropClicked: () => {
-          checklist.addItemCount(item.id, 1);
-        },
-      };
-    },
-    // biome-ignore lint/suspicious/noExplicitAny: <Grid> columns break without
-    renderComponent: ItemControls as any,
-  },
-]);
-let paging = {
-  itemsPerPage: 9999,
-  currentPage: 1,
-} as PagingData;
+type DataListType = TGeneralItem & {
+  actions: string;
+  arcane_needed: string;
+  arcane_owned: string;
+};
 
-// for faster reactivity in Grid; does not derive correctly for other usage however
-let items = $derived(block.items);
+const table = new DataTable({
+  pageSize: 1000,
+  data: [...block.items] as DataListType[],
+  columns: [
+    { id: 'name', key: 'name', name: 'Name' },
+    { id: 'price', key: 'price', name: 'Price' },
+    // use isDrop key for rendering the buy and drop buttons
+    { id: 'needed', key: 'arcane_needed', name: 'Needed' },
+    { id: 'owned', key: 'arcane_owned', name: 'Owned' },
+    { id: 'actions', key: 'actions', name: 'Actions' },
+  ],
+});
+
+$effect(() => {
+  table.baseRows = [...block.items] as DataListType[];
+});
 </script>
 
-<div>
+<div class="checklist">
   <BlockTitleArea block={block} />
-  <Grid bind:data={items} {paging} bind:columns />
+  <table>
+	<tbody>
+		{#each table.rows as row (row.id)}
+			<tr>
+				{#each table.columns as column (column.id)}
+				    {@const canAfford = checklist.canAfford(checklist.balance, row.price)}
+				    {#if column.id === 'name'}
+						<td>
+						    {#if !isArcane(row) && row.forHelminth}(H){/if}
+							{row[column.key]}
+							{#if row.checked}
+							    <button onclick={() => checklist.setItemCount(row.id, 0)}>✔️</button>
+							{/if}
+						</td>
+					{:else if column.id === 'price'}
+						<td>
+							{row[column.key]}
+						</td>
+					{:else if column.id === 'needed' && isArcane(row)}
+						<td>
+                            {String(Math.max(0, row.maxLevel === 5 ? 21 : 10 - row.ownedCount))}
+						</td>
+					{:else if column.id === 'owned' && isArcane(row)}
+						<td>
+		                    <InputWithButtons
+								value={row.ownedCount}
+								min={0}
+								onChange={(value: number) => {
+									checklist.setItemCount(row.id, value);
+								}}
+							/>
+						</td>
+					{:else if column.id === 'actions'}
+						<td>
+						    <ItemControls
+								item={row}
+								canAfford={canAfford}
+								buyClicked={() => {
+									checklist.buyItem(row.id);
+								}}
+								dropClicked={() => {
+									checklist.addItemCount(row.id, 1);
+								}}
+							/>
+						</td>
+					{/if}
+				{/each}
+			</tr>
+		{/each}
+	</tbody>
+  </table>
 </div>
+
+<style>
+    td { padding: 2px; }
+</style>

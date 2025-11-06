@@ -11,9 +11,6 @@ importers:
       '@fortawesome/fontawesome-free':
         specifier: ^7.1.0
         version: 7.1.0
-      '@mediakular/gridcraft':
-        specifier: ^0.2.9
-        version: 0.2.9(svelte@5.41.1)
       svelte-material-ui:
         specifier: ^8.0.3
         version: 8.0.3
@@ -21,6 +18,9 @@ importers:
       '@biomejs/biome':
         specifier: 2.3.4
         version: 2.3.4
+      '@careswitch/svelte-data-table':
+        specifier: ^0.6.3
+        version: 0.6.3(svelte@5.41.1)
       '@smui/button':
         specifier: ^8.0.3
         version: 8.0.3
@@ -157,6 +157,11 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@careswitch/svelte-data-table@0.6.3':
+    resolution: {integrity: sha512-CJEMMfa/jhwt5DE/LpQ3FoBAPEqrOyi7Ky5LT/5tZz5hOIhaQicWVEVBtK2NYJkaKFYNnOCvtiCa4vlTyhP+pg==}
+    peerDependencies:
+      svelte: ^5.0.0-next.1
 
   '@esbuild/aix-ppc64@0.25.11':
     resolution: {integrity: sha512-Xt1dOL13m8u0WE8iplx9Ibbm+hFAO0GsU2P34UNoDGvZYkY8ifSiy6Zuc1lYxfG7svWE2fzqCUmFp5HCn51gJg==}
@@ -480,11 +485,6 @@ packages:
 
   '@material/typography@14.0.0':
     resolution: {integrity: sha512-/QtHBYiTR+TPMryM/CT386B2WlAQf/Ae32V324Z7P40gHLKY/YBXx7FDutAWZFeOerq/two4Nd2aAHBcMM2wMw==}
-
-  '@mediakular/gridcraft@0.2.9':
-    resolution: {integrity: sha512-vJH9saa2s3NBbyIxY+T+rutkedCh4XkTNl4Ha47KthEV489V0KHn5wkrgcxAm1YdILhGOv0pxK1CoVmGWp/CtQ==}
-    peerDependencies:
-      svelte: ^4.0.0
 
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
@@ -1476,6 +1476,10 @@ snapshots:
   '@biomejs/cli-win32-x64@2.3.4':
     optional: true
 
+  '@careswitch/svelte-data-table@0.6.3(svelte@5.41.1)':
+    dependencies:
+      svelte: 5.41.1
+
   '@esbuild/aix-ppc64@0.25.11':
     optional: true
 
@@ -2103,10 +2107,6 @@ snapshots:
       '@material/feature-targeting': 14.0.0
       '@material/theme': 14.0.0
       tslib: 2.8.1
-
-  '@mediakular/gridcraft@0.2.9(svelte@5.41.1)':
-    dependencies:
-      svelte: 5.41.1
 
   '@polka/url@1.0.0-next.29': {}
 

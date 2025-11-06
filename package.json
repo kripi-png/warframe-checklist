@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.4",
+    "@careswitch/svelte-data-table": "^0.6.3",
     "@smui/button": "^8.0.3",
     "@smui/checkbox": "^8.0.3",
     "@smui/common": "^8.0.3",
@@ -41,7 +42,6 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
-    "@mediakular/gridcraft": "^0.2.9",
     "svelte-material-ui": "^8.0.3"
   }
 }
