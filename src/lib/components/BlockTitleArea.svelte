@@ -5,8 +5,9 @@ import { isArcane } from '$lib/utils';
 
 type Props = {
   block: TArcaneBlock<TGeneralMoney> | TItemBlock<TGeneralMoney>;
+  isOpen: boolean;
 };
-let { block }: Props = $props();
+let { block, isOpen = $bindable() }: Props = $props();
 const checklist = getChecklistContext();
 
 let completedCount = $derived(
@@ -43,7 +44,10 @@ let totalPrice = $derived.by(() => {
 });
 </script>
 
-<h2 class="text-center text-2xl font-bold text-white">{block.title}</h2>
+<h2 class="text-center text-2xl font-bold text-white">
+    {block.title}
+    <button onclick={() => {isOpen = !isOpen}}>{isOpen? '⬆️' : '⬇️'}</button>
+</h2>
 <h3 class="text-center">{completedCount} / {block.items.length}</h3>
 <h3 class="text-center">
   <span class="text-xs">Fergolyte:</span>

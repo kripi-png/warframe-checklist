@@ -13,6 +13,8 @@ type Props = {
 };
 let { block }: Props = $props();
 
+let isOpen = $state(true);
+
 type DataListType = TGeneralItem & {
   actions: string;
   arcane_needed: string;
@@ -38,58 +40,60 @@ $effect(() => {
 </script>
 
 <div class="checklist">
-  <BlockTitleArea block={block} />
-  <table>
-	<tbody>
-		{#each table.rows as row (row.id)}
-			<tr>
-				{#each table.columns as column (column.id)}
-				    {@const canAfford = checklist.canAfford(checklist.balance, row.price)}
-				    {#if column.id === 'name'}
-						<td>
-						    {#if !isArcane(row) && row.forHelminth}(H){/if}
-							{row[column.key]}
-							{#if row.checked}
-							    <button onclick={() => checklist.setItemCount(row.id, 0)}>✔️</button>
-							{/if}
-						</td>
-					{:else if column.id === 'price'}
-						<td>
-							{row[column.key]}
-						</td>
-					{:else if column.id === 'needed' && isArcane(row)}
-						<td>
-                            {String(Math.max(0, row.maxLevel === 5 ? 21 : 10 - row.ownedCount))}
-						</td>
-					{:else if column.id === 'owned' && isArcane(row)}
-						<td>
-		                    <InputWithButtons
-								value={row.ownedCount}
-								min={0}
-								onChange={(value: number) => {
-									checklist.setItemCount(row.id, value);
-								}}
-							/>
-						</td>
-					{:else if column.id === 'actions'}
-						<td>
-						    <ItemControls
-								item={row}
-								canAfford={canAfford}
-								buyClicked={() => {
-									checklist.buyItem(row.id);
-								}}
-								dropClicked={() => {
-									checklist.addItemCount(row.id, 1);
-								}}
-							/>
-						</td>
-					{/if}
-				{/each}
-			</tr>
-		{/each}
-	</tbody>
-  </table>
+  <BlockTitleArea bind:isOpen={isOpen} block={block} />
+  {#if isOpen}
+    <table>
+        <tbody>
+    		{#each table.rows as row (row.id)}
+    			<tr>
+    				{#each table.columns as column (column.id)}
+    				    {@const canAfford = checklist.canAfford(checklist.balance, row.price)}
+    				    {#if column.id === 'name'}
+    						<td>
+    						    {#if !isArcane(row) && row.forHelminth}(H){/if}
+    							{row[column.key]}
+    							{#if row.checked}
+    							    <button onclick={() => checklist.setItemCount(row.id, 0)}>✔️</button>
+    							{/if}
+    						</td>
+    					{:else if column.id === 'price'}
+    						<td>
+    							{row[column.key]}
+    						</td>
+    					{:else if column.id === 'needed' && isArcane(row)}
+    						<td>
+                                {String(Math.max(0, row.maxLevel === 5 ? 21 : 10 - row.ownedCount))}
+    						</td>
+    					{:else if column.id === 'owned' && isArcane(row)}
+    						<td>
+    		                    <InputWithButtons
+    								value={row.ownedCount}
+    								min={0}
+    								onChange={(value: number) => {
+    									checklist.setItemCount(row.id, value);
+    								}}
+    							/>
+    						</td>
+    					{:else if column.id === 'actions'}
+    						<td>
+    						    <ItemControls
+    								item={row}
+    								canAfford={canAfford}
+    								buyClicked={() => {
+    									checklist.buyItem(row.id);
+    								}}
+    								dropClicked={() => {
+    									checklist.addItemCount(row.id, 1);
+    								}}
+    							/>
+    						</td>
+    					{/if}
+    				{/each}
+    			</tr>
+    		{/each}
+    	</tbody>
+    </table>
+  {/if}
 </div>
 
 <style>
