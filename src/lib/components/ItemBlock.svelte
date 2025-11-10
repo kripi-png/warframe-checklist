@@ -4,7 +4,7 @@ import ItemControls from './molecules/ItemControls.svelte';
 import InputWithButtons from './molecules/InputWithButtons.svelte';
 import { isArcane } from '$lib/utils';
 import { getChecklistContext } from '$lib/context/checklist';
-import type { TGeneralItem } from '$lib/types/data';
+import type { TDoubleMoney, TGeneralItem } from '$lib/types/data';
 import BlockTitleArea from './BlockTitleArea.svelte';
 
 const checklist = getChecklistContext();
@@ -58,7 +58,12 @@ $effect(() => {
     						</td>
     					{:else if column.id === 'price'}
     						<td>
-    							{row[column.key]}
+                                {#if Array.isArray(row[column.key])}
+                                    <span style="color: red;">{(<TDoubleMoney>row["price"])[0]}</span>
+                                    <span style="color: royalblue;">{(<TDoubleMoney>row["price"])[1]}</span>
+                                {:else}
+                                    {row[column.key]}
+                                {/if}
     						</td>
     					{:else if column.id === 'needed' && isArcane(row)}
     						<td>
