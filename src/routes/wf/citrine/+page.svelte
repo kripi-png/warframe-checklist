@@ -4,7 +4,6 @@ import TextField from '@smui/textfield';
 import { layout } from '$lib/layout.svelte';
 import checklistStore from '$lib/stores/CitrineStore';
 import ItemChecklists from '$lib/components/ItemChecklists.svelte';
-import ResetDataButton from '$lib/components/ResetDataButton.svelte';
 import { setChecklistContext } from '$lib/context/checklist';
 layout({ custom });
 
@@ -14,7 +13,6 @@ const [redMoney, blueMoney] = $derived(checklistStore.balance);
 
 {#snippet custom()}
     <Paper>
-    <!-- class="flex-col gap-2" -->
         <h1>Citrine</h1>
         <TextField
             value={redMoney}
@@ -39,7 +37,6 @@ const [redMoney, blueMoney] = $derived(checklistStore.balance);
             type="number"
         />
     </Paper>
-    <!-- <ResetDataButton checklist={checklistStore} /> -->
 {/snippet}
 
 <ItemChecklists />

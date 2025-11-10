@@ -2,33 +2,29 @@
 import Paper from '@smui/paper';
 import TextField from '@smui/textfield';
 import ItemChecklists from '$lib/components/ItemChecklists.svelte';
-import ResetDataButton from '$lib/components/ResetDataButton.svelte';
 import checklistStore from '$lib/stores/NokkoStore';
 import { layout } from '$lib/layout.svelte';
 import { setChecklistContext } from '$lib/context/checklist';
+import type { PageProps } from './$types';
 layout({ custom });
 
-setChecklistContext(checklistStore);
+let { data }: PageProps = $props();
+setChecklistContext(data.warframeStore);
 </script>
 
 {#snippet custom()}
-  <!-- class="flex-col gap-2" -->
   <Paper>
-    <h1>Nokko</h1>
+    <h1>&lt;WARFRAME NAME&gt;</h1>
     <TextField
       value={checklistStore.balance}
       onchange={(e: Event) =>
         checklistStore.setBalance(
           Number((<HTMLInputElement>e?.target)?.value),
         )}
-      label="Owned Fergolite"
+      label="Owned <MONEY NAME>"
       type="number"
     >
-      <!-- {#snippet helper()}
-            <HelperText>Helper Text</HelperText>
-          {/snippet} -->
     </TextField>
-    <!-- <ResetDataButton checklist={checklistStore} /> -->
   </Paper>
 {/snippet}
 
