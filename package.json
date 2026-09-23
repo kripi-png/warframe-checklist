@@ -14,7 +14,7 @@
     "test": "npm run test:unit -- --run"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.4",
+    "@biomejs/biome": "2.5.14",
     "@careswitch/svelte-data-table": "^0.6.3",
     "@smui/button": "^8.0.3",
     "@smui/checkbox": "^8.0.3",

@@ -1,10 +1,6 @@
-import type { TArcane, TGeneralItem, TGeneralMoney } from './types/data';
+import type { Item, PageSection } from "./data/types";
 
-export const getArcaneCountForMax = (maxLevel: number): number => {
-  return maxLevel === 5 ? 21 : 10;
-};
-
-export const calculateArcaneLevel = (count: number) => {
+export const getArcaneLevel = (count: number) => {
   if (count >= 21) return 5;
   else if (count >= 15) return 4;
   else if (count >= 10) return 3;
@@ -14,5 +10,4 @@ export const calculateArcaneLevel = (count: number) => {
   throw new Error('Invalid Arcane Count: ' + count);
 };
 
-export const isArcane = (item: TGeneralItem): item is TArcane<TGeneralMoney> =>
-  Object.hasOwn(item, 'maxLevel');
+export const isArcane = (item: Item | undefined): boolean => item?.type === 'arcane';

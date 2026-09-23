@@ -1,21 +1,23 @@
 <script lang="ts">
-import type { TGeneralItem } from '$lib/types/data';
+import type {  SectionItem } from '$lib/data/types';
 import Button from '@smui/button';
 
 interface Props {
-  item: TGeneralItem;
+  sectionItem: SectionItem;
   canAfford: boolean;
+  isCompleted: boolean;
+  isDrop: boolean;
   buyClicked: () => void;
   dropClicked: () => void;
 }
-let { item, canAfford, buyClicked, dropClicked }: Props = $props();
+let { sectionItem, canAfford, isCompleted, isDrop, buyClicked, dropClicked }: Props = $props();
 
-let canPurchase = $derived(canAfford && !item.checked);
+let canPurchase = $derived(canAfford && !isCompleted);
 </script>
 
 <Button color="primary" onclick={buyClicked} disabled={!canPurchase}>Buy</Button>
-{#if item?.isDrop}
-    <Button color="primary" onclick={dropClicked} disabled={item?.checked}>
+{#if isDrop}
+    <Button color="primary" onclick={dropClicked} disabled={isCompleted}>
     Drop
     </Button>
 {/if}

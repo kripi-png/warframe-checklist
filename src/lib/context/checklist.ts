@@ -1,8 +1,5 @@
-import BaseWarframeStore from '$lib/stores/BaseWarframeStore';
-import type { TGeneralMoney } from '$lib/types/data';
+import type { WarframeStore } from '$lib/stores/createWarframeStore';
 import { createContext } from 'svelte';
 
 export const checklistKey = Symbol('checklist');
-export type ChecklistContext = BaseWarframeStore<TGeneralMoney>;
-export const [getChecklistContext, setChecklistContext] =
-  createContext<ChecklistContext>();
+export const [getChecklistContext, setChecklistContext] =  createContext<WarframeStore>();

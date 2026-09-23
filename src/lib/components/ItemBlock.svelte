@@ -2,31 +2,24 @@
 import { DataTable } from '@careswitch/svelte-data-table';
 import ItemControls from './molecules/ItemControls.svelte';
 import InputWithButtons from './molecules/InputWithButtons.svelte';
-import { isArcane } from '$lib/utils';
 import { getChecklistContext } from '$lib/context/checklist';
-import type { TDoubleMoney, TGeneralItem } from '$lib/types/data';
+import type { PageSection, SectionItem } from '$lib/data/types';
 import BlockTitleArea from './BlockTitleArea.svelte';
 
 const checklist = getChecklistContext();
 type Props = {
-  block: (typeof checklist.blocks)[number];
+  section: PageSection;
 };
-let { block }: Props = $props();
+let { section }: Props = $props();
 
 let isOpen = $state(true);
 
-type DataListType = TGeneralItem & {
-  actions: string;
-  arcane_needed: string;
-  arcane_owned: string;
-};
-
 const table = new DataTable({
   pageSize: 1000,
-  data: [...block.items] as DataListType[],
+  data: [...section.items] as SectionItem[],
   columns: [
-    { id: 'name', key: 'name', name: 'Name' },
-    { id: 'price', key: 'price', name: 'Price' },
+    { id: 'name', key: 'itemId', name: 'Name' },
+    { id: 'price', key: 'cost', name: 'Price' },
     // use isDrop key for rendering the buy and drop buttons
     { id: 'needed', key: 'arcane_needed', name: 'Needed' },
     { id: 'owned', key: 'arcane_owned', name: 'Owned' },
@@ -35,63 +28,68 @@ const table = new DataTable({
 });
 
 $effect(() => {
-  table.baseRows = [...block.items] as DataListType[];
+  table.baseRows = [...section.items] as SectionItem[];
 });
 </script>
 
 <div class="checklist">
-  <BlockTitleArea bind:isOpen={isOpen} block={block} />
+  <BlockTitleArea bind:isOpen={isOpen} section={section} />
   {#if isOpen}
     <table>
         <tbody>
-    		{#each table.rows as row (row.id)}
+    		{#each table.rows as sectionItem (sectionItem.itemId)}
     			<tr>
     				{#each table.columns as column (column.id)}
-    				    {@const canAfford = checklist.canAfford(checklist.balance, row.price)}
-    				    {#if column.id === 'name'}
-    						<td>
-    						    {#if !isArcane(row) && row.forHelminth}(H){/if}
-    							{row[column.key]}
-    							{#if row.checked}
-    							    <button onclick={() => checklist.setItemCount(row.id, 0)}>✔️</button>
-    							{/if}
-    						</td>
-    					{:else if column.id === 'price'}
-    						<td>
-                                {#if Array.isArray(row[column.key])}
-                                    <span style="color: red;">{(<TDoubleMoney>row["price"])[0]}</span>
-                                    <span style="color: royalblue;">{(<TDoubleMoney>row["price"])[1]}</span>
-                                {:else}
-                                    {row[column.key]}
-                                {/if}
-    						</td>
-    					{:else if column.id === 'needed' && isArcane(row)}
-    						<td>
-                                {String(Math.max(0, row.maxLevel === 5 ? 21 : 10 - row.ownedCount))}
-    						</td>
-    					{:else if column.id === 'owned' && isArcane(row)}
-    						<td>
-    		                    <InputWithButtons
-    								value={row.ownedCount}
-    								min={0}
-    								onChange={(value: number) => {
-    									checklist.setItemCount(row.id, value);
-    								}}
-    							/>
-    						</td>
-    					{:else if column.id === 'actions'}
-    						<td>
-    						    <ItemControls
-    								item={row}
-    								canAfford={canAfford}
-    								buyClicked={() => {
-    									checklist.buyItem(row.id);
-    								}}
-    								dropClicked={() => {
-    									checklist.addItemCount(row.id, 1);
-    								}}
-    							/>
-    						</td>
+                        {@const item = checklist.getItem(sectionItem.itemId)}
+                        {#if item}
+        				    {@const canAfford = checklist.canAfford(sectionItem.itemId)}
+        				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId)}
+                            {#if column.id === 'name'}
+                                <td>
+                                    {item.name}
+                                    {#if isCompleted}
+                                        <button onclick={() => checklist.setAcquired(item.id, 0)}>✔️</button>
+                                    {/if}
+                                </td>
+                            {:else if column.id === 'price'}
+          						<td>
+                                    {#if sectionItem.cost?.length === 1}
+                                        {sectionItem.cost[0].quantity}
+                                    {:else if sectionItem.cost?.length === 2}
+                                        <span style="color: red;">{sectionItem.cost[0].quantity}</span>
+                                        <span style="color: royalblue;">{sectionItem?.cost[1].quantity}</span>
+                                    {/if}
+                                </td>
+                            {:else if column.id === 'needed' && checklist.getRequiredToComplete(sectionItem.itemId) > 1}
+                                <td>
+                                    {String(Math.max(0, item.amountNeeded ?? 1 - checklist.getAcquired(item.id)))}
+                                </td>
+                            {:else if column.id === 'owned' && checklist.getRequiredToComplete(sectionItem.itemId) > 1}
+                                <td>
+                                    <InputWithButtons
+                                        value={checklist.getAcquired(item.id)}
+                                        min={0}
+             							onChange={(value: number) => {
+                				            checklist.setAcquired(item.id, value);
+        								}}
+         							/>
+                                </td>
+                            {:else if column.id === 'actions'}
+                                <td>
+                                    <ItemControls
+                                        sectionItem={sectionItem}
+                                        canAfford={canAfford}
+                                        isCompleted={isCompleted}
+                                        isDrop={item.isDrop ?? false}
+                                        buyClicked={() => {
+                                          checklist.purchase(item.id);
+                                        }}
+                                        dropClicked={() => {
+                                          checklist.addAcquired(item.id, 1);
+                                        }}
+                                    />
+                                </td>
+                           	{/if}
     					{/if}
     				{/each}
     			</tr>

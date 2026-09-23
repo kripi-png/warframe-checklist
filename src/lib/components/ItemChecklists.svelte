@@ -6,10 +6,10 @@ import { getChecklistContext } from '$lib/context/checklist';
 const checklistStore = getChecklistContext();
 </script>
 
-{#if checklistStore.blocks}
+{#if checklistStore.data.sections}
   <Masonry>
-    {#each checklistStore.blocks as block (block.id)}
-      <ItemBlock {block} />
+    {#each checklistStore.data.sections as section (section.id)}
+      <ItemBlock {section} />
     {/each}
   </Masonry>
 {/if}

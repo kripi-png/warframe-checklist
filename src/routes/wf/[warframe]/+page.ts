@@ -1,13 +1,12 @@
 import type { PageLoad } from './$types';
-import KoumeiStore from '$lib/stores/KoumeiStore';
-import NokkoStore from '$lib/stores/NokkoStore';
 import { error } from '@sveltejs/kit';
-import type BaseWarframeStore from '$lib/stores/BaseWarframeStore';
-import type { TGeneralMoney } from '$lib/types/data';
+import { follieStore } from '$lib/stores/FollieStore';
+import type { WarframeStore } from '$lib/stores/createWarframeStore';
 
-const DATA: Record<string, BaseWarframeStore<TGeneralMoney>> = {
-  nokko: NokkoStore,
-  koumei: KoumeiStore,
+const DATA: Record<string, WarframeStore> = {
+  follie: follieStore,
+  // nokko: NokkoStore,
+  // koumei: KoumeiStore,
 };
 
 export const load: PageLoad = ({ params }) => {
