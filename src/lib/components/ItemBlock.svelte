@@ -16,14 +16,14 @@ let isOpen = $state(true);
 
 const table = new DataTable({
   pageSize: 1000,
-  data: [...section.items] as SectionItem[],
+  data: [...section.items],
   columns: [
     { id: 'name', key: 'itemId', name: 'Name' },
     { id: 'price', key: 'cost', name: 'Price' },
     // use isDrop key for rendering the buy and drop buttons
-    { id: 'needed', key: 'arcane_needed', name: 'Needed' },
-    { id: 'owned', key: 'arcane_owned', name: 'Owned' },
-    { id: 'actions', key: 'actions', name: 'Actions' },
+    { id: 'needed', key: 'amountNeeded', name: 'Needed' },
+    { id: 'owned', key: 'itemId', name: 'Owned' },
+    { id: 'actions', key: 'itemId', name: 'Actions' },
   ],
 });
 
@@ -62,7 +62,7 @@ $effect(() => {
                                 </td>
                             {:else if column.id === 'needed' && checklist.getRequiredToComplete(sectionItem.itemId) > 1}
                                 <td>
-                                    {String(Math.max(0, item.amountNeeded ?? 1 - checklist.getAcquired(item.id)))}
+                                    {checklist.getRequiredToComplete(item.id)}
                                 </td>
                             {:else if column.id === 'owned' && checklist.getRequiredToComplete(sectionItem.itemId) > 1}
                                 <td>
