@@ -5,10 +5,13 @@ import ItemChecklists from '$lib/components/ItemChecklists.svelte';
 import { layout } from '$lib/layout.svelte';
 import { setChecklistContext } from '$lib/context/checklist';
 import type { PageProps } from './$types';
+import ResetDataButton from '$lib/components/ResetDataButton.svelte';
+
 layout({ custom });
 
 let { data }: PageProps = $props();
-setChecklistContext(data.warframeStore);
+
+setChecklistContext((()=>data.warframeStore)());
 </script>
 
 {#snippet custom()}
@@ -28,6 +31,7 @@ setChecklistContext(data.warframeStore);
         }}
       >
       </TextField>
+      <ResetDataButton checklist={data.warframeStore}/>
     {/each}
   </Paper>
 {/snippet}

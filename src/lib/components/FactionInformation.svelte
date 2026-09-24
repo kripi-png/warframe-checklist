@@ -1,7 +1,6 @@
 <script lang="ts">
-  import Block from '$lib/components/atoms/Block.svelte';
 </script>
 
-<Block>
+<div>
   <h1>Nightcap</h1>
-</Block>
+</div>

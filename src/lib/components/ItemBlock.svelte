@@ -3,7 +3,7 @@ import { DataTable } from '@careswitch/svelte-data-table';
 import ItemControls from './molecules/ItemControls.svelte';
 import InputWithButtons from './molecules/InputWithButtons.svelte';
 import { getChecklistContext } from '$lib/context/checklist';
-import type { PageSection, SectionItem } from '$lib/data/types';
+import type { PageSection } from '$lib/data/types';
 import BlockTitleArea from './BlockTitleArea.svelte';
 
 const checklist = getChecklistContext();
@@ -14,7 +14,7 @@ let { section }: Props = $props();
 
 let isOpen = $state(true);
 
-const table = new DataTable({
+const table = $derived(new DataTable({
   pageSize: 1000,
   data: [...section.items],
   columns: [
@@ -25,10 +25,10 @@ const table = new DataTable({
     { id: 'owned', key: 'itemId', name: 'Owned' },
     { id: 'actions', key: 'itemId', name: 'Actions' },
   ],
-});
+}));
 
 $effect(() => {
-  table.baseRows = [...section.items] as SectionItem[];
+  table.baseRows = [...section.items];
 });
 </script>
 

@@ -16,13 +16,13 @@ const DATA: Record<string, WarframeStore> = {
 };
 
 export const load: PageLoad = ({ params }) => {
-  const { warframe } = params;
+  const warframeStore = DATA[params.warframe];
 
-  if (Object.hasOwn(DATA, warframe)) {
-    return {
-      warframeStore: DATA[warframe],
-    };
+  if (!warframeStore) {
+    error(404, 'Not found');
   }
 
-  error(404, 'Not found');
+  return {
+    warframeStore
+  };
 };
