@@ -220,44 +220,52 @@ export const nokkoItems: Item[] = [
   {
     id: 'nokko-blueprint',
     name: 'Nokko Blueprint',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
   {
     id: 'nokko-chassis',
     name: 'Nokko Chassis',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
   {
     id: 'nokko-neuro',
     name: 'Nokko Neuro',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
   {
     id: 'nokko-systems',
     name: 'Nokko Systems',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
 
   // Arbucep
   {
     id: 'arbucep-blueprint',
     name: 'Arbucep Blueprint',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
   {
     id: 'arbucep-barrel',
     name: 'Arbucep Barrel',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
   {
     id: 'arbucep-receiver',
     name: 'Arbucep Receiver',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
   {
     id: 'arbucep-stock',
     name: 'Arbucep Stock',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
 
   // Arcanes
@@ -265,31 +273,36 @@ export const nokkoItems: Item[] = [
     id: 'primary-frostbite',
     name: 'Primary Frostbite',
     type: 'arcane',
-    amountNeeded: 21
+    amountNeeded: 21,
+    isDrop: true
   },
   {
     id: 'primary-blight',
     name: 'Primary Blight',
     type: 'arcane',
-    amountNeeded: 21
+    amountNeeded: 21,
+    isDrop: true
   },
   {
     id: 'conjunction-voltage',
     name: 'Conjunction Voltage',
     type: 'arcane',
-    amountNeeded: 21
+    amountNeeded: 21,
+    isDrop: true
   },
   {
     id: 'secondary-encumber',
     name: 'Secondary Encumber',
     type: 'arcane',
-    amountNeeded: 21
+    amountNeeded: 21,
+    isDrop: true
   },
   {
     id: 'secondary-fortifier',
     name: 'Secondary Fortifier',
     type: 'arcane',
-    amountNeeded: 21
+    amountNeeded: 21,
+    isDrop: true
   },
 
   // The Prince
@@ -684,62 +697,73 @@ export const koumeiItems: Item[] = [
   {
     id: 'koumei-blueprint',
     name: 'Koumei Blueprint',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
   {
     id: 'koumei-chassis',
     name: 'Koumei Chassis',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
   {
     id: 'koumei-neuroptics',
     name: 'Koumei Neuroptics',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
   {
     id: 'koumei-systems',
     name: 'Koumei Systems',
-    type: 'warframe-part'
+    type: 'warframe-part',
+    isDrop: true
   },
 
   // Higasa
   {
     id: 'higasa-blueprint',
     name: 'Higasa Blueprint',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
   {
     id: 'higasa-barrel',
     name: 'Higasa Barrel',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
   {
     id: 'higasa-receiver',
     name: 'Higasa Receiver',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
   {
     id: 'higasa-stock',
     name: 'Higasa Stock',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
 
   // Amanata
   {
     id: 'amanata-blueprint',
     name: 'Amanata Blueprint',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
   {
     id: 'amanata-blade',
     name: 'Amanata Blade',
     type: 'weapon-part',
-    amountNeeded: 2
+    amountNeeded: 2,
+    isDrop: true
   },
   {
     id: 'amanata-handle',
     name: 'Amanata Handle',
-    type: 'weapon-part'
+    type: 'weapon-part',
+    isDrop: true
   },
 
   // Mods & Prex
