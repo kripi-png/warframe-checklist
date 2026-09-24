@@ -5,12 +5,14 @@ import { follieStore } from '$lib/stores/FollieStore';
 import { citrineStore } from '$lib/stores/CitrineStore';
 import { nokkoStore } from '$lib/stores/NokkoStore';
 import { koumeiStore } from '$lib/stores/KoumeiStore';
+import { narinStore } from '$lib/stores/NarinStore';
 
 const DATA: Record<string, WarframeStore> = {
   follie: follieStore,
   citrine: citrineStore,
   nokko: nokkoStore,
   koumei: koumeiStore,
+  narin: narinStore,
 };
 
 export const load: PageLoad = ({ params }) => {

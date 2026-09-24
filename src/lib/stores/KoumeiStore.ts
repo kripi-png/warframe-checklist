@@ -6,5 +6,5 @@ export const koumeiStore = createWarframeStore(
 	'koumei',
 	koumeiPage,
 	koumeiItems,
-  [{resourceId: "fergolyte", quantity: 0}]
+  [{resourceId: "fate-pearl", quantity: 0}]
 );

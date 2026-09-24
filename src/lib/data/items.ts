@@ -783,3 +783,47 @@ export const koumeiItems: Item[] = [
     type: 'other'
   }
 ];
+
+export const narinItems: Item[] = [
+  // Narin
+  { id: "narin-blueprint", name: "Narin Blueprint", type: "warframe-part", isDrop: true },
+  { id: "narin-chassis", name: "Narin Chassis", type: "warframe-part", isDrop: true },
+  { id: "narin-neuroptics", name: "Narin Neuroptics", type: "warframe-part", isDrop: true },
+  { id: "narin-systems", name: "Narin Systems", type: "warframe-part", isDrop: true },
+
+  // Nunchasa
+  { id: "nunchasa-blueprint", name: "Nunchasa Blueprint", type: "weapon-part" },
+  { id: "nunchasa-upper-limb", name: "Nunchasa Upper Limb", type: "weapon-part" },
+  { id: "nunchasa-string", name: "Nunchasa String", type: "weapon-part" },
+  { id: "nunchasa-grip", name: "Nunchasa Grip", type: "weapon-part" },
+  { id: "nunchasa-lower-limb", name: "Nunchasa Lower Limb", type: "weapon-part" },
+
+  // Aksondol
+  { id: "aksondol-blueprint", name: "Aksondol Blueprint", type: "weapon-part" },
+  { id: "aksondol-barrel", name: "Aksondol Barrel", type: "weapon-part", amountNeeded: 2 },
+  { id: "aksondol-receiver", name: "Aksondol Receiver", type: "weapon-part", amountNeeded: 2 },
+  { id: "aksondol-link", name: "Aksondol Link", type: "weapon-part" },
+
+  // Other
+  { id: "on-wings-of-ice-honoria", name: "On Wings Of Ice Honoria", type: "other" },
+  { id: "glacium-sigil", name: "Glacium Sigil", type: "cosmetic" },
+  { id: "seonang-ephemera", name: "Seonang Ephemera", type: "cosmetic" },
+  { id: "narin-prex", name: "Narin Prex", type: "other" },
+  { id: "niveus-sumdali", name: "Niveus Sumdali", type: "cosmetic" },
+  { id: "yuvan-peak-scene", name: "Yuvan Peak Scene", type: "other" },
+  { id: "melicas-laboratory-scene", name: "Melica's Laboratory Scene", type: "other" },
+  { id: "neotes-dance", name: "Neote's Dance", type: "other" },
+  { id: "ice-speaker", name: "Ice Speaker", type: "other" },
+  { id: "tidon-shoulder-medallion", name: "Tidon Shoulder Medallion", type: "cosmetic" },
+  { id: "tidon-chest-medallion", name: "Tidon Chest Medallion", type: "cosmetic" },
+  { id: "tidon-leg-medallion", name: "Tidon Leg Medallion", type: "cosmetic" },
+  { id: "niveus-nepheri-skin", name: "Niveus Nepheri Skin", type: "cosmetic" },
+  { id: "niveus-dark-split-sword-skin", name: "Niveus Dark Split-Sword Skin", type: "cosmetic" },
+  { id: "niveus-dark-dagger-skin", name: "Niveus Dark Dagger Skin", type: "cosmetic" },
+  { id: "niveus-dark-sword-skin", name: "Niveus Dark Sword Skin", type: "cosmetic" },
+  { id: "niveus-paracesis-skin", name: "Niveus Paracesis Skin", type: "cosmetic" },
+  { id: "niveus-orvius-skin", name: "Niveus Orvius Skin", type: "cosmetic" },
+  { id: "niveus-glaxion-skin", name: "Niveus Glaxion Skin", type: "cosmetic" },
+  { id: "niveus-quellor-skin", name: "Niveus Quellor Skin", type: "cosmetic" },
+  { id: "niveus-liset-skin", name: "Niveus Liset Skin", type: "cosmetic" }
+];
