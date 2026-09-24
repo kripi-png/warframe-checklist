@@ -1,7 +1,5 @@
 export type ItemType =
-  | 'warframe'
 	| 'warframe-part'
-	| 'weapon'
 	| 'weapon-part'
 	| 'resource'
 	| 'mod'

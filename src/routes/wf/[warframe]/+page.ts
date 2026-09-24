@@ -3,11 +3,12 @@ import type { WarframeStore } from '$lib/stores/createWarframeStore';
 import { error } from '@sveltejs/kit';
 import { follieStore } from '$lib/stores/FollieStore';
 import { citrineStore } from '$lib/stores/CitrineStore';
+import { nokkoStore } from '$lib/stores/NokkoStore';
 
 const DATA: Record<string, WarframeStore> = {
   follie: follieStore,
   citrine: citrineStore,
-  // nokko: NokkoStore,
+  nokko: nokkoStore,
   // koumei: KoumeiStore,
 };
 

@@ -1,7 +1,10 @@
-import nokkoData from '$lib/data/nokko';
-import BaseWarframeStore from '$lib/stores/BaseWarframeStore';
-import type { TMoney } from '$lib/types/data';
+import { nokkoPage } from "$lib/data/nokko";
+import { nokkoItems } from "$lib/data/items";
+import { createWarframeStore } from "./createWarframeStore";
 
-const NokkoStore = new BaseWarframeStore<TMoney>('nokko', nokkoData);
-
-export default NokkoStore;
+export const nokkoStore = createWarframeStore(
+	'nokko',
+	nokkoPage,
+	nokkoItems,
+  [{resourceId: "fergolyte", quantity: 0}]
+);

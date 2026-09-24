@@ -1,729 +1,428 @@
-import type { DatasetBase, TMoney } from '$lib/types/data';
+import type {
+  AcquisitionPage,
+  Cost,
+  PageSection
+} from '$lib/data/types';
 
-export default {
-  money: 0,
-  blocks: [
+const fergolyte = (quantity: number): Cost[] => [
+  {
+    resourceId: 'fergolyte',
+    quantity
+  }
+];
+
+const nokkoSection: PageSection = {
+  id: 'nokko',
+  name: 'Nokko',
+  items: [
     {
-      title: 'Nokko & Weapons',
-      id: 'nokko_weapons',
-      type: 'item',
-      items: [
-        {
-          id: '0_0',
-          name: 'Nokko Blueprint',
-          price: 240,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_1',
-          name: 'Nokko Chassis',
-          price: 160,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_2',
-          name: 'Nokko Neuro',
-          price: 160,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_3',
-          name: 'Nokko Systems',
-          price: 160,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_4',
-          name: 'Nokko Blueprint',
-          price: 240,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_5',
-          name: 'Nokko Chassis',
-          price: 160,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_6',
-          name: 'Nokko Neuro',
-          price: 160,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_7',
-          name: 'Nokko Systems',
-          price: 160,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_8',
-          name: 'Arbucep Blueprint',
-          price: 220,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_9',
-          name: 'Arbucep Barrel',
-          price: 150,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_10',
-          name: 'Arbucep Receiver',
-          price: 150,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_11',
-          name: 'Arbucep Stock',
-          price: 150,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-      ],
+      itemId: 'nokko-blueprint',
+      cost: fergolyte(240),
+      amountNeeded: 2
     },
     {
-      title: 'Arcanes',
-      id: 'arcanes',
-      type: 'arcane',
-      items: [
-        {
-          id: '1_0',
-          name: 'Primary Frostbite',
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          price: 150,
-          wikiUrl: '',
-          checked: false,
-          isDrop: true,
-        },
-        {
-          id: '1_1',
-          name: 'Primary Blight',
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          price: 150,
-          wikiUrl: '',
-          checked: false,
-          isDrop: true,
-        },
-        {
-          id: '1_2',
-          name: 'Conjunction Voltage',
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          price: 150,
-          wikiUrl: '',
-          checked: false,
-          isDrop: true,
-        },
-        {
-          id: '1_3',
-          name: 'Secondary Encumber',
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          price: 150,
-          wikiUrl: '',
-          checked: false,
-          isDrop: true,
-        },
-        {
-          id: '1_4',
-          name: 'Secondary Fortifier',
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          price: 150,
-          wikiUrl: '',
-          checked: false,
-          isDrop: true,
-        },
-      ],
+      itemId: 'nokko-chassis',
+      cost: fergolyte(160),
+      amountNeeded: 2
     },
     {
-      title: 'The Prince',
-      id: 'prince_levels',
-      type: 'item',
-      items: [
-        {
-          id: '2_0',
-          name: 'Level 1',
-          price: 20,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '2_1',
-          name: 'Level 2',
-          price: 40,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '2_2',
-          name: 'Level 3',
-          price: 60,
-          wikiUrl: '',
-          checked: false,
-        },
-      ],
+      itemId: 'nokko-neuro',
+      cost: fergolyte(160),
+      amountNeeded: 2
     },
     {
-      title: 'Misc',
-      id: 'misc_items',
-      type: 'item',
-      items: [
-        {
-          id: '3_0',
-          name: 'Rizoma Ephemera',
-          price: 150,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_1',
-          name: 'Ayatan Chattraka Sculpture',
-          price: 75,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_2',
-          name: "Roots N' Fruits",
-          price: 25,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_3',
-          name: "Roots N' Fruits Poster",
-          price: 25,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_4',
-          name: 'Onemind',
-          price: 25,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_5',
-          name: 'Onemind Poster',
-          price: 25,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_6',
-          name: 'Shooms',
-          price: 25,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_7',
-          name: 'Shooms Poster',
-          price: 25,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_8',
-          name: 'Deepmines Caves Scene',
-          price: 60,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_9',
-          name: 'Deepmines Scene',
-          price: 60,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_10',
-          name: 'Deepmines Lab Scene',
-          price: 60,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_11',
-          name: 'Deepmines Forward Base Scene',
-          price: 60,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '3_12',
-          name: 'Deepmine Nutrient Plant Scene',
-          price: 60,
-          wikiUrl: '',
-          checked: false,
-        },
-      ],
+      itemId: 'nokko-systems',
+      cost: fergolyte(160),
+      amountNeeded: 2
+    },
+  ]
+};
+
+const arbucepSection: PageSection = {
+  id: 'arbucep',
+  name: 'Arbucep',
+  items: [
+    {
+      itemId: 'arbucep-blueprint',
+      cost: fergolyte(220)
     },
     {
-      title: 'Nursery',
-      id: 'plant_decorations',
-      type: 'item',
-      items: [
-        {
-          id: '4_0',
-          name: 'Autumnal Bonsai',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_1',
-          name: 'Lanceleaf Plant',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_2',
-          name: 'Monstera Plant',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_3',
-          name: 'Mushroom Clump',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_4',
-          name: 'Yellow Daisy Cluster',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_5',
-          name: 'Rho Plant',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_6',
-          name: 'Filter Flower',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_7',
-          name: 'Grossa Fern',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_8',
-          name: "Bird's Nest Gern (Narrowly Opened)",
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_9',
-          name: 'Mocfi Fern',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_10',
-          name: 'Sunlight Dragonlily Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_11',
-          name: 'Moonlight Dragonlily Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_12',
-          name: "Ruk's Claw Decoration",
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_13',
-          name: 'Moonlight Threshcone Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_14',
-          name: 'Sunlight Threshcone Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_15',
-          name: 'Moonlight Jadeleaf Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_16',
-          name: 'Sunlight Jadeleaf Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_17',
-          name: 'Silver Lady Fern',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_18',
-          name: 'Fern (Healthy)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_19',
-          name: 'Fern (Brown)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_20',
-          name: 'Boxwood Hedge (1x1m)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_21',
-          name: 'Infested Flower (Single)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_22',
-          name: 'Infested Flower (Pair)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_23',
-          name: 'Croton Plant (Green, Single)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_24',
-          name: 'Croton Plant (Green, Cluster)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_25',
-          name: 'Croton Plant (Yellow, Single)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_26',
-          name: 'Croton Plant (Yellow, Cluster)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_27',
-          name: 'Palm Shrum (Small)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_28',
-          name: 'Palm Shrum (Medium)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_29',
-          name: 'Ficus Tree (Single)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_30',
-          name: 'Ficus Tree (Cluster)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_31',
-          name: 'Hanging Ivy (Narrow)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_32',
-          name: 'Hanging Ivy (Wide)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_33',
-          name: 'Ivy Tendrils',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_34',
-          name: 'Ivy Vine',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_35',
-          name: 'Ivy Patch',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_36',
-          name: 'Vestan Moss Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_37',
-          name: 'Ghost Bush (Sickly)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_38',
-          name: 'Orokin Bush (Small)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_39',
-          name: 'Geisang Reeds',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_40',
-          name: 'Glow Plants (Dense)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_41',
-          name: 'Glow Plants (Sparse)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_42',
-          name: 'Vallis Fern',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_43',
-          name: 'Vallis Mushrooms (Small Group)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_44',
-          name: 'Bush Cluster (Dense)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_45',
-          name: 'Autumn Tuvul Sapling',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_46',
-          name: 'Dusklight Sarracenia Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_47',
-          name: 'Frostleaf Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_48',
-          name: 'Grass Tuft (Short)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_49',
-          name: 'Lunar Pitcher Decoration',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_50',
-          name: 'Grass Tuft (Tall)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_51',
-          name: 'Planter (Small, Wood)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_52',
-          name: 'Planter Box Foliage (Small)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_53',
-          name: 'Planter (Large, Wood)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_54',
-          name: 'Planter (Small, Stone)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_55',
-          name: 'Hanging Flowerpot (Wide)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_56',
-          name: 'Assorted Flowers (Red And White)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_57',
-          name: 'Assorted Flowers (Blue And White)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_58',
-          name: 'Hanging Flowerpot (Narrow)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-        {
-          id: '4_59',
-          name: 'Planter (Clay)',
-          price: 10,
-          wikiUrl: '',
-          checked: false,
-        },
-      ],
+      itemId: 'arbucep-barrel',
+      cost: fergolyte(150)
     },
-  ],
-} satisfies DatasetBase<TMoney>;
+    {
+      itemId: 'arbucep-receiver',
+      cost: fergolyte(150)
+    },
+    {
+      itemId: 'arbucep-stock',
+      cost: fergolyte(150)
+    }
+  ]
+};
+
+const arcanesSection: PageSection = {
+  id: 'arcanes',
+  name: 'Arcanes',
+  items: [
+    {
+      itemId: 'primary-frostbite',
+      cost: fergolyte(150)
+    },
+    {
+      itemId: 'primary-blight',
+      cost: fergolyte(150)
+    },
+    {
+      itemId: 'conjunction-voltage',
+      cost: fergolyte(150)
+    },
+    {
+      itemId: 'secondary-encumber',
+      cost: fergolyte(150)
+    },
+    {
+      itemId: 'secondary-fortifier',
+      cost: fergolyte(150)
+    }
+  ]
+};
+
+const princeSection: PageSection = {
+  id: 'prince-levels',
+  name: 'The Prince',
+  items: [
+    {
+      itemId: 'the-prince-level-1',
+      cost: fergolyte(20)
+    },
+    {
+      itemId: 'the-prince-level-2',
+      cost: fergolyte(40)
+    },
+    {
+      itemId: 'the-prince-level-3',
+      cost: fergolyte(60)
+    }
+  ]
+};
+
+const miscSection: PageSection = {
+  id: 'misc',
+  name: 'Misc',
+  items: [
+    {
+      itemId: 'rizoma-ephemera',
+      cost: fergolyte(150)
+    },
+    {
+      itemId: 'ayatan-chattraka-sculpture',
+      cost: fergolyte(75)
+    },
+    {
+      itemId: 'roots-n-fruits',
+      cost: fergolyte(25)
+    },
+    {
+      itemId: 'roots-n-fruits-poster',
+      cost: fergolyte(25)
+    },
+    {
+      itemId: 'onemind',
+      cost: fergolyte(25)
+    },
+    {
+      itemId: 'onemind-poster',
+      cost: fergolyte(25)
+    },
+    {
+      itemId: 'shooms',
+      cost: fergolyte(25)
+    },
+    {
+      itemId: 'shooms-poster',
+      cost: fergolyte(25)
+    },
+    {
+      itemId: 'deepmines-caves-scene',
+      cost: fergolyte(60)
+    },
+    {
+      itemId: 'deepmines-scene',
+      cost: fergolyte(60)
+    },
+    {
+      itemId: 'deepmines-lab-scene',
+      cost: fergolyte(60)
+    },
+    {
+      itemId: 'deepmines-forward-base-scene',
+      cost: fergolyte(60)
+    },
+    {
+      itemId: 'deepmine-nutrient-plant-scene',
+      cost: fergolyte(60)
+    }
+  ]
+};
+
+const nurserySection: PageSection = {
+  id: 'nursery',
+  name: 'Nursery',
+  items: [
+    {
+      itemId: 'autumnal-bonsai',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'lanceleaf-plant',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'monstera-plant',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'mushroom-clump',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'yellow-daisy-cluster',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'rho-plant',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'filter-flower',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'grossa-fern',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'birds-nest-gern-narrowly-opened',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'mocfi-fern',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'sunlight-dragonlily-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'moonlight-dragonlily-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'ruks-claw-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'moonlight-threshcone-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'sunlight-threshcone-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'moonlight-jadeleaf-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'sunlight-jadeleaf-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'silver-lady-fern',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'fern-healthy',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'fern-brown',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'boxwood-hedge-1x1m',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'infested-flower-single',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'infested-flower-pair',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'croton-plant-green-single',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'croton-plant-green-cluster',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'croton-plant-yellow-single',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'croton-plant-yellow-cluster',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'palm-shrum-small',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'palm-shrum-medium',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'ficus-tree-single',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'ficus-tree-cluster',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'hanging-ivy-narrow',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'hanging-ivy-wide',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'ivy-tendrils',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'ivy-vine',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'ivy-patch',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'vestan-moss-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'ghost-bush-sickly',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'orokin-bush-small',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'geisang-reeds',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'glow-plants-dense',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'glow-plants-sparse',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'vallis-fern',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'vallis-mushrooms-small-group',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'bush-cluster-dense',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'autumn-tuvul-sapling',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'dusklight-sarracenia-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'frostleaf-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'grass-tuft-short',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'lunar-pitcher-decoration',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'grass-tuft-tall',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'planter-small-wood',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'planter-box-foliage-small',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'planter-large-wood',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'planter-small-stone',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'hanging-flowerpot-wide',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'assorted-flowers-red-and-white',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'assorted-flowers-blue-and-white',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'hanging-flowerpot-narrow',
+      cost: fergolyte(10)
+    },
+    {
+      itemId: 'planter-clay',
+      cost: fergolyte(10)
+    }
+  ]
+};
+
+export const nokkoPage: AcquisitionPage = {
+  id: 'nokko',
+  name: 'Nokko',
+
+  sections: [
+    nokkoSection,
+    arbucepSection,
+    arcanesSection,
+    princeSection,
+    miscSection,
+    nurserySection
+  ]
+};
