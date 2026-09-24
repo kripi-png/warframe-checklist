@@ -1,6 +1,7 @@
 <script lang="ts">
 import '../app.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'svelte-material-ui/themes/svelte-dark.css';
 import favicon from '$lib/assets/favicon.svg';
 // import Paper from '@smui/paper';
 import LayoutGrid, { Cell } from '@smui/layout-grid';
