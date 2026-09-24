@@ -1,237 +1,148 @@
-import type { DatasetBase, TDoubleMoney } from '$lib/types/data';
+import type { AcquisitionPage, Cost, PageSection } from './types';
 
-export type TCitrineDataset = DatasetBase<TDoubleMoney>;
+const crystals = (blue: number, red: number): Cost[] => [
+  { resourceId: 'blue', quantity: blue },
+	{ resourceId: 'red', quantity: red },
+];
 
-export default {
-  money: [0, 0],
-  blocks: [
+const citrineSection: PageSection = {
+  id: 'citrine',
+  name: 'Citrine',
+
+  items: [
     {
-      title: 'Citrine & Weapons',
-      id: 'citrine_weapons',
-      type: 'item',
-      items: [
-        {
-          id: '0_0',
-          name: 'Citrine Blueprint',
-          price: [500, 500],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_1',
-          name: 'Citrine Chassis',
-          price: [350, 350],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_2',
-          name: 'Citrine Neuro',
-          price: [350, 350],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_3',
-          name: 'Citrine Systems',
-          price: [350, 300],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_4',
-          name: 'Citrine Blueprint',
-          price: [500, 500],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_5',
-          name: 'Citrine Chassis',
-          price: [350, 350],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_6',
-          name: 'Citrine Neuro',
-          price: [350, 350],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_7',
-          name: 'Citrine Systems',
-          price: [350, 300],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_8',
-          name: 'Corufell BP',
-          price: [500, 300],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_9',
-          name: 'Corufell Barrel',
-          price: [250, 150],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_10',
-          name: 'Corufell Rec',
-          price: [250, 150],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_11',
-          name: 'Corufell Handle',
-          price: [250, 150],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_12',
-          name: 'Steflos BP',
-          price: [300, 500],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_13',
-          name: 'Steflos Barrel',
-          price: [150, 250],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_14',
-          name: 'Steflos Rec',
-          price: [150, 250],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_15',
-          name: 'Steflos Stock',
-          price: [150, 250],
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-      ],
+      itemId: 'citrine-blueprint',
+      cost: crystals(500, 500),
+      amountNeeded: 2,
     },
     {
-      title: 'Misc',
-      id: 'misc',
-      type: 'item',
-      items: [
-        {
-          id: '1_0',
-          name: 'Citrine Prex Card',
-          price: [100, 100],
-          checked: false,
-          wikiUrl: '',
-        },
-        {
-          id: '1_1',
-          name: 'Citrine In Action Glyph',
-          price: [100, 100],
-          checked: false,
-          wikiUrl: '',
-        },
-        {
-          id: '1_2',
-          name: "Citrine's Last Wish Factory Scene",
-          price: [1000, 1000],
-          checked: false,
-          wikiUrl: '',
-        },
-      ],
+      itemId: 'citrine-chassis',
+      cost: crystals(350, 350),
+      amountNeeded: 2,
     },
     {
-      title: 'Arcanes',
-      id: 'arcanes',
-      type: 'arcane',
-      items: [
-        {
-          id: '2_0',
-          name: 'Arcane Steadfast',
-          price: [60, 60],
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '2_1',
-          name: 'Primary Plated Round',
-          price: [60, 60],
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '2_2',
-          name: 'Arcane Double Back',
-          price: [60, 60],
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '2_3',
-          name: 'Secondary Encumber',
-          price: [60, 60],
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '2_4',
-          name: 'Secondary Kinship',
-          price: [60, 60],
-          maxLevel: 5,
-          currentLevel: 0,
-          ownedCount: 0,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-      ],
+      itemId: 'citrine-neuro',
+      cost: crystals(350, 350),
+      amountNeeded: 2,
+    },
+    {
+      itemId: 'citrine-systems',
+      cost: crystals(350, 300),
+      amountNeeded: 2,
     },
   ],
-} satisfies TCitrineDataset;
+};
+
+const corufellSection: PageSection = {
+  id: 'corufell',
+  name: 'Corufell',
+
+  items: [
+    {
+      itemId: 'corufell-blueprint',
+      cost: crystals(500, 300),
+    },
+    {
+      itemId: 'corufell-barrell',
+      cost: crystals(250, 150),
+    },
+    {
+      itemId: 'corufell-receiver',
+      cost: crystals(250, 150),
+    },
+    {
+      itemId: 'corufell-handle',
+      cost: crystals(250, 150),
+    },
+  ],
+};
+
+const steflosSection: PageSection = {
+  id: 'steflos',
+  name: 'Steflos',
+
+  items: [
+    {
+      itemId: 'steflos-blueprint',
+      cost: crystals(300, 500),
+    },
+    {
+      itemId: 'steflos-barrell',
+      cost: crystals(150, 250),
+    },
+    {
+      itemId: 'steflos-receiver',
+      cost: crystals(150, 250),
+    },
+    {
+      itemId: 'steflos-stock',
+      cost: crystals(150, 250),
+    },
+  ],
+};
+
+const otherRewardsSection: PageSection = {
+	id: 'other-rewards',
+	name: 'Other Rewards',
+
+	items: [
+    {
+      itemId: 'citrine-prex',
+      cost: crystals(100, 100)
+    },
+    {
+      itemId: 'citrine-in-action-glyph',
+      cost: crystals(100, 100),
+    },
+    {
+      itemId: 'citrine-last-wish-factory-scene',
+      cost: crystals(1000, 1000),
+    },
+	]
+};
+
+const arcanesSection: PageSection = {
+  id: 'arcanes',
+  name: 'Arcanes',
+
+  items: [
+    {
+      itemId: 'arcane-steadfast',
+      cost: crystals(60, 60),
+      amountNeeded: 21,
+    },
+    {
+      itemId: 'primary-plated-round',
+      cost: crystals(60, 60),
+      amountNeeded: 21,
+    },
+    {
+      itemId: 'arcane-double-back',
+      cost: crystals(60, 60),
+      amountNeeded: 21,
+    },
+    {
+      itemId: 'secondary-encumber',
+      cost: crystals(60, 60),
+      amountNeeded: 21,
+    },
+    {
+      itemId: 'secondary-kinship',
+      cost: crystals(60, 60),
+      amountNeeded: 21,
+    },
+  ],
+};
+
+export const citrinePage: AcquisitionPage = {
+	id: 'citrine',
+  name: 'Citrine',
+
+	sections: [
+    citrineSection,
+    corufellSection,
+    steflosSection,
+    otherRewardsSection,
+    arcanesSection
+	]
+};

@@ -1,10 +1,13 @@
-import citrineData from '$lib/data/citrine';
-import BaseWarframeStore from '$lib/stores/BaseWarframeStore';
-import type { TDoubleMoney } from '$lib/types/data';
+import { citrinePage } from "$lib/data/citrine";
+import { citrineItems } from "$lib/data/items";
+import { createWarframeStore } from "./createWarframeStore";
 
-const CitrineStore = new BaseWarframeStore<TDoubleMoney>(
-  'citrine',
-  citrineData,
+export const citrineStore = createWarframeStore(
+	'citrine',
+	citrinePage,
+	citrineItems,
+  [
+    { resourceId: "blue", quantity: 0 },
+    { resourceId: "red", quantity: 0 },
+  ]
 );
-
-export default CitrineStore;

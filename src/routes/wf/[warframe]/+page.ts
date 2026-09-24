@@ -1,10 +1,12 @@
 import type { PageLoad } from './$types';
+import type { WarframeStore } from '$lib/stores/createWarframeStore';
 import { error } from '@sveltejs/kit';
 import { follieStore } from '$lib/stores/FollieStore';
-import type { WarframeStore } from '$lib/stores/createWarframeStore';
+import { citrineStore } from '$lib/stores/CitrineStore';
 
 const DATA: Record<string, WarframeStore> = {
   follie: follieStore,
+  citrine: citrineStore,
   // nokko: NokkoStore,
   // koumei: KoumeiStore,
 };
