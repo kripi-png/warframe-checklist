@@ -1,7 +1,10 @@
-import koumeiData from '$lib/data/koumei';
-import BaseWarframeStore from '$lib/stores/BaseWarframeStore';
-import type { TMoney } from '$lib/types/data';
+import { koumeiPage } from "$lib/data/koumei";
+import { koumeiItems } from "$lib/data/items";
+import { createWarframeStore } from "./createWarframeStore";
 
-const KoumeiStore = new BaseWarframeStore<TMoney>('koumei', koumeiData);
-
-export default KoumeiStore;
+export const koumeiStore = createWarframeStore(
+	'koumei',
+	koumeiPage,
+	koumeiItems,
+  [{resourceId: "fergolyte", quantity: 0}]
+);

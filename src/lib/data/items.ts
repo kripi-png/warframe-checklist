@@ -678,3 +678,84 @@ export const nokkoItems: Item[] = [
     type: 'other'
   }
 ];
+
+export const koumeiItems: Item[] = [
+  // Koumei
+  {
+    id: 'koumei-blueprint',
+    name: 'Koumei Blueprint',
+    type: 'warframe-part'
+  },
+  {
+    id: 'koumei-chassis',
+    name: 'Koumei Chassis',
+    type: 'warframe-part'
+  },
+  {
+    id: 'koumei-neuroptics',
+    name: 'Koumei Neuroptics',
+    type: 'warframe-part'
+  },
+  {
+    id: 'koumei-systems',
+    name: 'Koumei Systems',
+    type: 'warframe-part'
+  },
+
+  // Higasa
+  {
+    id: 'higasa-blueprint',
+    name: 'Higasa Blueprint',
+    type: 'weapon-part'
+  },
+  {
+    id: 'higasa-barrel',
+    name: 'Higasa Barrel',
+    type: 'weapon-part'
+  },
+  {
+    id: 'higasa-receiver',
+    name: 'Higasa Receiver',
+    type: 'weapon-part'
+  },
+  {
+    id: 'higasa-stock',
+    name: 'Higasa Stock',
+    type: 'weapon-part'
+  },
+
+  // Amanata
+  {
+    id: 'amanata-blueprint',
+    name: 'Amanata Blueprint',
+    type: 'weapon-part'
+  },
+  {
+    id: 'amanata-blade',
+    name: 'Amanata Blade',
+    type: 'weapon-part',
+    amountNeeded: 2
+  },
+  {
+    id: 'amanata-handle',
+    name: 'Amanata Handle',
+    type: 'weapon-part'
+  },
+
+  // Mods & Prex
+  {
+    id: 'amanata-pressure',
+    name: 'Amanata Pressure',
+    type: 'mod'
+  },
+  {
+    id: 'higasa-serration',
+    name: 'Higasa Serration',
+    type: 'mod'
+  },
+  {
+    id: 'koumei-prex-card',
+    name: 'Koumei Prex Card',
+    type: 'other'
+  }
+];

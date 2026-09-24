@@ -1,174 +1,108 @@
-import type { DatasetBase, TMoney } from '$lib/types/data';
+import type { AcquisitionPage, Cost, PageSection } from "./types";
 
-export default {
-  money: 0,
-  blocks: [
+const fatePearl = (quantity: number): Cost[] => [
+  {
+    resourceId: 'fate-pearl',
+    quantity
+  }
+];
+
+const koumeiSection: PageSection = {
+  id: 'koumei',
+  name: 'Koumei',
+  items: [
     {
-      title: 'Koumei & Weapons',
-      id: 'koumei_weapons',
-      type: 'item',
-      items: [
-        {
-          id: '0_0',
-          name: 'Koumei Blueprint',
-          price: 165,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_1',
-          name: 'Koumei Chassis',
-          price: 55,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_2',
-          name: 'Koumei Neuroptics',
-          price: 55,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_3',
-          name: 'Koumei Systems',
-          price: 55,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_4',
-          name: 'Koumei Blueprint',
-          price: 165,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_5',
-          name: 'Koumei Chassis',
-          price: 55,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_6',
-          name: 'Koumei Neuroptics',
-          price: 55,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_7',
-          name: 'Koumei Systems',
-          price: 55,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-          forHelminth: true,
-        },
-        {
-          id: '0_8',
-          name: 'Higasa Blueprint',
-          price: 135,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_9',
-          name: 'Higasa Barrel',
-          price: 45,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_10',
-          name: 'Higasa Receiver',
-          price: 45,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_11',
-          name: 'Higasa Stock',
-          price: 45,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_12',
-          name: 'Amanata Blueprint',
-          price: 135,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_13',
-          name: 'Amanata Blade',
-          price: 45,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_14',
-          name: 'Amanata Blade',
-          price: 45,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-        {
-          id: '0_15',
-          name: 'Amanata Handle',
-          price: 45,
-          checked: false,
-          wikiUrl: '',
-          isDrop: true,
-        },
-      ],
+      itemId: 'koumei-blueprint',
+      amountNeeded: 2,
+      cost: fatePearl(165)
     },
     {
-      title: 'Mods & Prex',
-      id: 'misc',
-      type: 'item',
-      items: [
-        {
-          id: '1_0',
-          name: 'Amanata Pressure',
-          price: 150,
-          checked: false,
-          wikiUrl: '',
-        },
-        {
-          id: '1_1',
-          name: 'Higasa Serration',
-          price: 150,
-          checked: false,
-          wikiUrl: '',
-        },
-        {
-          id: '1_2',
-          name: 'Koumei Prex Card',
-          price: 200,
-          checked: false,
-          wikiUrl: '',
-        },
-      ],
+      itemId: 'koumei-chassis',
+      amountNeeded: 2,
+      cost: fatePearl(55)
     },
-  ],
-} satisfies DatasetBase<TMoney>;
+    {
+      itemId: 'koumei-neuroptics',
+      amountNeeded: 2,
+      cost: fatePearl(55)
+    },
+    {
+      itemId: 'koumei-systems',
+      amountNeeded: 2,
+      cost: fatePearl(55)
+    }
+  ]
+};
+
+const higasaSection: PageSection = {
+  id: 'Higasa',
+  name: 'Higasa',
+  items: [
+    {
+      itemId: 'higasa-blueprint',
+      cost: fatePearl(135)
+    },
+    {
+      itemId: 'higasa-barrel',
+      cost: fatePearl(45)
+    },
+    {
+      itemId: 'higasa-receiver',
+      cost: fatePearl(45)
+    },
+    {
+      itemId: 'higasa-stock',
+      cost: fatePearl(45)
+    }
+  ]
+}
+
+const amanataSection: PageSection = {
+  id: 'amanata',
+  name: 'Amanata',
+  items: [
+    {
+      itemId: 'amanata-blueprint',
+      cost: fatePearl(135)
+    },
+    {
+      itemId: 'amanata-blade',
+      cost: fatePearl(45)
+    },
+    {
+      itemId: 'amanata-handle',
+      cost: fatePearl(45)
+    }
+  ]
+}
+
+const koumeiMiscSection: PageSection = {
+  id: 'misc',
+  name: 'Mods & Prex',
+  items: [
+    {
+      itemId: 'amanata-pressure',
+      cost: fatePearl(150)
+    },
+    {
+      itemId: 'higasa-serration',
+      cost: fatePearl(150)
+    },
+    {
+      itemId: 'koumei-prex-card',
+      cost: fatePearl(200)
+    }
+  ]
+};
+
+export const koumeiPage: AcquisitionPage = {
+	id: 'koumei',
+  name: 'Koumei',
+
+  sections: [
+    koumeiSection,
+    higasaSection,
+    amanataSection,
+    koumeiMiscSection
+	]
+};
