@@ -6,6 +6,7 @@ import { layout } from '$lib/layout.svelte';
 import { setChecklistContext } from '$lib/context/checklist';
 import type { PageProps } from './$types';
 import ResetDataButton from '$lib/components/ResetDataButton.svelte';
+import Calculations from '$lib/components/Calculations.svelte';
 
 layout({ custom });
 
@@ -34,6 +35,8 @@ setChecklistContext((()=>data.warframeStore)());
     {/each}
     <ResetDataButton checklist={data.warframeStore} />
   </Paper>
+
+  <Calculations warframeStore={data.warframeStore} />
 {/snippet}
 
 <ItemChecklists />

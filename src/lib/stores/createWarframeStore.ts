@@ -30,7 +30,10 @@ export function createWarframeStore(
       return this.items.find((item) => item.id === itemId);
     },
 
-    getSectionItem(itemId: string, section?: PageSection): SectionItem | undefined {
+    getSectionItem(
+      itemId: string,
+      section?: PageSection,
+    ): SectionItem | undefined {
       // if section is defined, search for the item in that section
       // otherwise loop through all sections to find the item
       if (section) {
@@ -50,14 +53,17 @@ export function createWarframeStore(
     },
 
     setAcquired(itemId: string, count: number) {
-      if (count < 0) throw new Error("Cannot set acquired count to a negative value: " + itemId);
+      if (count < 0)
+        throw new Error(
+          'Cannot set acquired count to a negative value: ' + itemId,
+        );
 
       state.current = {
         ...state.current,
         acquired: {
           ...state.current.acquired,
-          [itemId]: count
-        }
+          [itemId]: count,
+        },
       };
     },
 
@@ -68,8 +74,8 @@ export function createWarframeStore(
         ...state.current,
         acquired: {
           ...state.current.acquired,
-          [itemId]: acquired + count
-        }
+          [itemId]: acquired + count,
+        },
       };
     },
 
@@ -87,7 +93,7 @@ export function createWarframeStore(
       // get the higher of the two possible requirements
       return Math.max(
         this.getItem(itemId)?.amountNeeded ?? 1,
-        this.getSectionItem(itemId)?.amountNeeded ?? 1
+        this.getSectionItem(itemId)?.amountNeeded ?? 1,
       );
     },
 
@@ -97,19 +103,17 @@ export function createWarframeStore(
         balance: state.current.balance.map((prevBalance) =>
           prevBalance.resourceId === balance.resourceId
             ? { ...balance, quantity: balance.quantity }
-            : prevBalance
-        )
+            : prevBalance,
+        ),
       };
-		},
+    },
 
     reset() {
-        state.current = {
-				acquired: {},
-				balance: initialBalance
-			};
-		},
-
-    /* --------------------------- */
+      state.current = {
+        acquired: {},
+        balance: initialBalance,
+      };
+    },
 
     canAfford(itemId: string) {
       const costs = this.getSectionItem(itemId)?.cost;
@@ -117,7 +121,9 @@ export function createWarframeStore(
 
       // loop through user's balance and compare the items to item cost object
       for (const balance of state.current.balance) {
-        const _cost = costs.find((cost) => cost.resourceId === balance.resourceId);
+        const _cost = costs.find(
+          (cost) => cost.resourceId === balance.resourceId,
+        );
         if (!_cost) return false;
         if (_cost.quantity > balance.quantity) return false;
       }
@@ -133,12 +139,14 @@ export function createWarframeStore(
       const acquired = state.current.acquired[itemId] ?? 0;
 
       const balance = state.current.balance.map((balance) => {
-        const cost = item.cost!.find((cost) => cost.resourceId === balance.resourceId);
+        const cost = item.cost!.find(
+          (cost) => cost.resourceId === balance.resourceId,
+        );
         return cost
           ? {
-            ...balance,
-            quantity: balance.quantity - cost.quantity
-          }
+              ...balance,
+              quantity: balance.quantity - cost.quantity,
+            }
           : balance;
       });
 
@@ -147,25 +155,28 @@ export function createWarframeStore(
         balance,
         acquired: {
           ...state.current.acquired,
-          [itemId]: acquired + count
-        }
+          [itemId]: acquired + count,
+        },
       };
 
       return true;
     },
 
-    unpurchase(itemId: string, count: number = 1) {
-      const oldAmount = state.current.acquired[itemId] ?? 0;
+    getTotalNeeded(): Record<string, number> {
+      /* Return total costs of all INCOMPLETE items in the store */
+      return this.data.sections.reduce((acc, section) => {
+        for (const item of section.items) {
+          if (!item.cost || this.isCompleted(item.itemId)) continue;
 
-      if (oldAmount - count < 0) return;
-
-  		state.current = {
-  			...state.current,
-  			acquired: {
-  				...state.current.acquired,
-  				[itemId]: oldAmount - count
-  			}
-  		};
+          for (const cost of item.cost) {
+            if (!Object.hasOwn(acc, cost.resourceId)) {
+              acc[cost.resourceId] = 0;
+            }
+            acc[cost.resourceId] += cost.quantity * this.getRequiredToComplete(item.itemId);
+          }
+        }
+        return acc;
+      }, {} as Record<string, number>);
     },
   };
 }
