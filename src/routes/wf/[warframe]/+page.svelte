@@ -31,8 +31,8 @@ setChecklistContext((()=>data.warframeStore)());
         }}
       >
       </TextField>
-      <ResetDataButton checklist={data.warframeStore}/>
     {/each}
+    <ResetDataButton checklist={data.warframeStore} />
   </Paper>
 {/snippet}
 
