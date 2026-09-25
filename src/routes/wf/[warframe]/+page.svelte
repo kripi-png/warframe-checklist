@@ -7,6 +7,7 @@ import { setChecklistContext } from '$lib/context/checklist';
 import type { PageProps } from './$types';
 import ResetDataButton from '$lib/components/ResetDataButton.svelte';
 import Calculations from '$lib/components/Calculations.svelte';
+import { itemName } from '$lib/utils';
 
 layout({ custom });
 
@@ -22,7 +23,7 @@ setChecklistContext((()=>data.warframeStore)());
     {#each data.warframeStore.balance as resource (resource.resourceId)}
       <TextField
         value={resource.quantity}
-        label={`Owned ${resource.resourceId}`}
+        label={`Owned ${itemName(resource.resourceId)}`}
         type="number"
         onchange={(e: Event) => {
           data.warframeStore.setBalance({

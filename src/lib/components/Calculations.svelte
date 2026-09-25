@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { WarframeStore } from '$lib/stores/createWarframeStore';
+import { itemName } from '$lib/utils';
 import Paper from '@smui/paper';
 
 type Props = {
@@ -21,6 +22,6 @@ const totalNeeded = $derived.by(() => {
 <Paper>
     <h2>Total:</h2>
     {#each Object.entries(totalNeeded) as [name, quantity]}
-        <p>{name}: {quantity}</p>
+        <p>{itemName(name)}: {quantity}</p>
     {/each}
 </Paper>

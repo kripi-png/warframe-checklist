@@ -9,7 +9,6 @@ export type ItemType =
 
 export interface Item {
   id: string;
-  name: string;
   type: ItemType;
   amountNeeded?: number; // e.g. for arcanes
   isDrop?: boolean;

@@ -1,6 +1,7 @@
 <script lang="ts">
 import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
+import { itemName } from '$lib/utils';
 
 type Props = {
   section: PageSection;
@@ -39,6 +40,6 @@ let totalCost = $derived.by(() => {
 <h3 class="text-center">{completedCount} / {section.items.length}</h3>
 <h3 class="text-center">
   {#each Object.entries(totalCost) as cost}
-    {cost[1]} {cost[0]}
+    {cost[1]} {itemName(cost[0])}
   {/each}
 </h3>

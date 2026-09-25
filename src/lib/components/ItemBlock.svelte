@@ -5,6 +5,7 @@ import InputWithButtons from './molecules/InputWithButtons.svelte';
 import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
 import BlockTitleArea from './BlockTitleArea.svelte';
+import { itemName } from '$lib/utils';
 
 const checklist = getChecklistContext();
 type Props = {
@@ -46,7 +47,7 @@ $effect(() => {
         				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId)}
                             {#if column.id === 'name'}
                                 <td>
-                                    {item.name}
+                                    {itemName(sectionItem.itemId)}
                                     {#if isCompleted}
                                         <button onclick={() => checklist.setAcquired(item.id, 0)}>✔️</button>
                                     {/if}

@@ -1,4 +1,5 @@
-import type { Item, PageSection } from "./data/types";
+import type { Item,  } from "./data/types";
+import { m } from '$lib/paraglide/messages';
 
 export const getArcaneLevel = (count: number) => {
   if (count >= 21) return 5;
@@ -11,3 +12,9 @@ export const getArcaneLevel = (count: number) => {
 };
 
 export const isArcane = (item: Item | undefined): boolean => item?.type === 'arcane';
+
+export function itemName(key: string) {
+  const message = m[key as keyof typeof m];
+
+  return typeof message === 'function' ? message() : key;
+}
