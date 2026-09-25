@@ -42,7 +42,6 @@
     "vitest-browser-svelte": "^3.1.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.3.1",
-    "svelte-material-ui": "^9.0.4"
+    "@fortawesome/fontawesome-free": "^7.3.1"
   }
 }
