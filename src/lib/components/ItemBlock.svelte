@@ -45,11 +45,14 @@ $effect(() => {
                         {#if item}
         				    {@const canAfford = checklist.canAfford(sectionItem.itemId)}
         				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId)}
+                            {@const requiredToComplete = checklist.getRequiredToComplete(sectionItem.itemId)}
                             {#if column.id === 'name'}
                                 <td>
                                     {itemName(sectionItem.itemId)}
                                     {#if isCompleted}
-                                        <button onclick={() => checklist.setAcquired(item.id, 0)}>✔️</button>
+                                        <button style="cursor: pointer;" onclick={() => checklist.setAcquired(item.id, 0)}>✔️</button>
+                                    {:else}
+                                        <button style="cursor: pointer;" onclick={() => checklist.setAcquired(item.id, requiredToComplete)}>❌</button>
                                     {/if}
                                 </td>
                             {:else if column.id === 'price'}
@@ -61,11 +64,11 @@ $effect(() => {
                                         <span style="color: royalblue;">{sectionItem?.cost[1].quantity}</span>
                                     {/if}
                                 </td>
-                            {:else if column.id === 'needed' && checklist.getRequiredToComplete(sectionItem.itemId) > 1}
+                            {:else if column.id === 'needed' && requiredToComplete > 1}
                                 <td>
                                     {checklist.getRequiredToComplete(item.id)}
                                 </td>
-                            {:else if column.id === 'owned' && checklist.getRequiredToComplete(sectionItem.itemId) > 1}
+                            {:else if column.id === 'owned' && requiredToComplete > 1}
                                 <td>
                                     <InputWithButtons
                                         value={checklist.getAcquired(item.id)}
