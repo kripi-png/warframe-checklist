@@ -1,4 +1,3 @@
 ### TODO
-- total calculations
-- show ❌ for unobtained items. clicking toggles completion.
 - better columns & column headers
+- run history to get average resources / hour to estimate needed runs and time
