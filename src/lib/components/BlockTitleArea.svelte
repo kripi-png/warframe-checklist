@@ -14,23 +14,7 @@ let completedCount = $derived(
   section.items.filter((sItem) => checklist.isCompleted(sItem.itemId)).length,
 );
 
-let totalCost = $derived.by(() => {
-  return section.items.reduce<Record<string, number>>((acc, sItem) => {
-    const required = checklist.getRequiredToComplete(sItem.itemId);
-    const acquired = checklist.getAcquired(sItem.itemId);
-    const moreNeeded = Math.max(0, required - acquired);
-    if (!sItem.cost?.length) return acc;
-
-    for (const cost of sItem.cost) {
-      if (!Object.hasOwn(acc, cost.resourceId)) {
-        acc[cost.resourceId] = 0;
-      }
-     acc[cost.resourceId] += cost.quantity * moreNeeded;
-    }
-
-    return acc;
-  }, {});
-});
+let totalCost = $derived(checklist.getTotalNeeded(section));
 </script>
 
 <h2 class="text-center text-2xl font-bold text-white">

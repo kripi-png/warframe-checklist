@@ -162,17 +162,23 @@ export function createWarframeStore(
       return true;
     },
 
-    getTotalNeeded(): Record<string, number> {
+    getTotalNeeded(section?: PageSection): Record<string, number> {
       /* Return total costs of all INCOMPLETE items in the store */
-      return this.data.sections.reduce((acc, section) => {
+      const sections = section ? [section] : this.data.sections;
+
+      return sections.reduce((acc, section) => {
         for (const item of section.items) {
           if (!item.cost || this.isCompleted(item.itemId)) continue;
+
+          const required = this.getRequiredToComplete(item.itemId);
+          const acquired = this.getAcquired(item.itemId);
+          const moreNeeded = Math.max(0, required - acquired);
 
           for (const cost of item.cost) {
             if (!Object.hasOwn(acc, cost.resourceId)) {
               acc[cost.resourceId] = 0;
             }
-            acc[cost.resourceId] += cost.quantity * this.getRequiredToComplete(item.itemId);
+            acc[cost.resourceId] += cost.quantity * moreNeeded;
           }
         }
         return acc;
