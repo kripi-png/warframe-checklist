@@ -1,4 +1,6 @@
 <script lang="ts">
+import Button, { Group } from '@smui/button';
+
 interface Props {
   value: number;
   min?: number | string;
@@ -6,7 +8,7 @@ interface Props {
   onChange?: (value: number) => void;
 }
 
-let { value = $bindable(0), onChange = () => {}, ...rest }: Props = $props();
+let { value = $bindable(0), onChange = () => null, ...rest }: Props = $props();
 
 const increment = () => {
   // if max is not specified OR value is low enough
@@ -36,29 +38,32 @@ const _onChange = (newValue: number) => {
 };
 </script>
 
-<div class="flex w-max">
+<Group class="flex basis-full justify-center">
   <!-- decrement button -->
-  <button onclick={decrement} aria-label="decrement" class="">
+  <Button class="compact-item" onclick={decrement} aria-label="decrement">
     <i class="fa-solid fa-minus"></i>
-  </button>
+  </Button>
 
   <!-- count -->
   <input
     onchange={(e) => _onChange(Number(e.currentTarget.value))}
     {...rest}
-    class="w-10 text-center"
+    class="w-10 text-center compact-item"
     bind:value
     type="number"
   />
 
   <!-- increment button -->
-  <button onclick={increment} aria-label="increment" class="">
+  <Button class="compact-item" onclick={increment} aria-label="increment">
     <i class="fa-solid fa-plus"></i>
-  </button>
-</div>
+  </Button>
+</Group>
 
 <style>
-  div {
-    margin: 0 auto;
+  :global(.compact-item) {
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
   }
 </style>

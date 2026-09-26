@@ -17,10 +17,12 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
-    "@careswitch/svelte-data-table": "^0.6.3",
+    "@inlang/paraglide-js": "^2.25.4",
+    "@masonry-grid/svelte": "^1.1.1",
     "@smui/button": "^9.0.2",
     "@smui/checkbox": "^9.0.2",
     "@smui/common": "^9.0.2",
+    "@smui/data-table": "^9.0.2",
     "@smui/layout-grid": "^9.0.2",
     "@smui/paper": "^9.0.2",
     "@smui/textfield": "^9.0.2",
@@ -40,8 +42,7 @@
     "typescript": "^6.0.0",
     "vite": "^8.3.1",
     "vitest": "^5.0.1",
-    "vitest-browser-svelte": "^3.1.0",
-    "@inlang/paraglide-js": "^2.25.4"
+    "vitest-browser-svelte": "^3.1.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.3.1"
