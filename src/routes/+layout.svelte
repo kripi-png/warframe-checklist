@@ -2,12 +2,17 @@
 import '../app.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import favicon from '$lib/assets/favicon.svg';
-// import Paper from '@smui/paper';
 import LayoutGrid, { Cell } from '@smui/layout-grid';
 import { initLayout } from '$lib/layout.svelte';
+import Button from '@smui/button';
+import { goto } from '$app/navigation';
 
 let { children } = $props();
 const slots = initLayout();
+
+const goHome = () => {
+  goto('/');
+};
 </script>
 
 <svelte:head>
@@ -15,24 +20,12 @@ const slots = initLayout();
 </svelte:head>
 
 <LayoutGrid>
-  <Cell span={2}>
-    {#if slots.custom}
+  {#if slots.custom}
+    <Cell span={2}>
+      <Button onclick={goHome} class="text-white text-3xl"><i class="fa-solid fa-arrow-left"></i> Back</Button>
       {@render slots.custom()}
-    {/if}
-
-    <!-- <Paper> -->
-      <!-- <nav>
-        <h1>Warframes</h1>
-        <h2>- Citrine</h2>
-        <h2>- Temple</h2>
-        <h2>- Oraxia</h2>
-
-        <h1>Factions</h1>
-        <h2>- The Hex</h2>
-        <h2>- Nightcap</h2>
-      </nav> -->
-    <!-- </Paper> -->
-  </Cell>
+    </Cell>
+  {/if}
   <Cell spanDevices={{ desktop: 10, tablet: 6, phone: 12 }}>
     <main>
       {@render children?.()}
