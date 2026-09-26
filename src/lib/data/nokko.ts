@@ -93,15 +93,15 @@ const princeSection: PageSection = {
   name: 'The Prince',
   items: [
     {
-      itemId: 'the-prince-level-1',
+      itemId: 'the-prince-level1',
       cost: fergolyte(20)
     },
     {
-      itemId: 'the-prince-level-2',
+      itemId: 'the-prince-level2',
       cost: fergolyte(40)
     },
     {
-      itemId: 'the-prince-level-3',
+      itemId: 'the-prince-level3',
       cost: fergolyte(60)
     }
   ]
