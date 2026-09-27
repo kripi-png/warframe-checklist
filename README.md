@@ -4,6 +4,5 @@
 - tooltip functionality (notes for parts, custom resources for Honoria)
 - wiki links (maybe ctrl-click)
 
-- voruna
 - temple
 - oraxia

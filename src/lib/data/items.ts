@@ -758,3 +758,22 @@ export const orionSiriusItems: Item[] = [
   // { id: 'plague-bearer-honoria', type: 'other' },
   // { id: 'strikes-twice-honoria', type: 'other' },
 ];
+
+export const vorunaItems: Item[] = [
+  { id: "voruna-blueprint", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
+  { id: "voruna-chassis", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
+  { id: "voruna-neuroptics", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
+  { id: "voruna-systems", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
+  { id: "sarofang-blueprint", type: 'weapon-part', isDrop: true },
+  { id: "sarofang-blade", type: 'weapon-part', isDrop: true },
+  { id: "sarofang-handle", type: 'weapon-part', isDrop: true },
+  { id: "perigale-blueprint", type: 'weapon-part', isDrop: true },
+  { id: "perigale-barrel", type: 'weapon-part', isDrop: true },
+  { id: "perigale-receiver", type: 'weapon-part', isDrop: true },
+  { id: "perigale-stock", type: 'weapon-part', isDrop: true },
+  { id: "arcame-blessing", type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: "arcame-rise", type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: "arcame-frostbite", type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: "arcame-voltage", type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: "lua-circulus-scene", type: 'other' },
+];

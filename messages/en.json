@@ -9,6 +9,7 @@
   "fergolite": "Fergolite",
   "emerald": "Emerald Talent",
   "crimson": "Crimson Talent",
+  "lua-thrax-plasma": "lua Thrax Plasma",
 
 
   "follie-blueprint": "Follie Blueprint",
@@ -232,5 +233,23 @@
   "arcane-sculptor": "Arcane Sculptor",
   "secondary-cryogenic": "Secondary Cryogenic",
   "melee-assimilation": "Melee Assimilation",
-  "hunhows-trinket-blueprint": "Hunhow's Trinket Blueprint"
+  "hunhows-trinket-blueprint": "Hunhow's Trinket Blueprint",
+
+
+  "voruna-blueprint": "Voruna Blueprint",
+  "voruna-chassis": "Voruna Chassis",
+  "voruna-neuroptics": "Voruna Neuroptics",
+  "voruna-systems": "Voruna Systems",
+  "sarofang-blueprint": "Sarofang Blueprint",
+  "sarofang-blade": "Sarofang Blade",
+  "sarofang-handle": "Sarofang Handle",
+  "perigale-blueprint": "Perigale Blueprint",
+  "perigale-barrel": "Perigale Barrel",
+  "perigale-receiver": "Perigale Receiver",
+  "perigale-stock": "Perigale Stock",
+  "arcame-blessing": "Arcame Blessing",
+  "arcame-rise": "Arcame Rise",
+  "arcame-frostbite": "Arcame Frostbite",
+  "arcame-voltage": "Arcame Voltage",
+  "lua-circulus-scene": "Lua Circulus Scene"
 }
