@@ -35,7 +35,7 @@ const koumeiSection: PageSection = {
 };
 
 const higasaSection: PageSection = {
-  id: 'Higasa',
+  id: 'higasa',
   name: 'Higasa',
   items: [
     {
