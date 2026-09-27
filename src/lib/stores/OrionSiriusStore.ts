@@ -7,7 +7,7 @@ export const orionSiriusStore = createWarframeStore(
 	orionSiriusPage,
 	orionSiriusItems,
   [
-    { resourceId: 'emerald', quantity: 0 },
     { resourceId: 'crimson', quantity: 0 },
+    { resourceId: 'emerald', quantity: 0 },
   ]
 );
