@@ -1,11 +1,5 @@
 <script lang="ts">
-import DataTable, {
-  Head,
-  Body,
-  Row,
-  Cell,
-  Label
-} from '@smui/data-table';
+import DataTable, { Head, Body, Row, Cell, Label } from '@smui/data-table';
 import ItemControls from './molecules/ItemControls.svelte';
 import InputWithButtons from './molecules/InputWithButtons.svelte';
 import { getChecklistContext } from '$lib/context/checklist';
@@ -20,6 +14,21 @@ type Props = {
 let { section }: Props = $props();
 
 let isOpen = $state(true);
+
+function getCostColor(itemId: string): string | null {
+  switch (itemId) {
+    case 'emerald':
+      return 'greenyellow';
+    case 'crimson':
+      return 'crimson';
+    case 'red':
+      return 'red';
+    case 'blue':
+      return 'blue';
+    default:
+      return null;
+  }
+}
 </script>
 
 <div class="checklist">
@@ -46,7 +55,7 @@ let isOpen = $state(true);
         </Row>
       </Head>
       <Body>
-        {#each section.items as sectionItem (sectionItem.itemId)}
+        {#each section.items as sectionItem, i (sectionItem.itemId + '_' + i)}
           {@const item = checklist.getItem(sectionItem.itemId)}
           {#if item}
             {@const canAfford = checklist.canAfford(sectionItem.itemId)}
@@ -71,10 +80,10 @@ let isOpen = $state(true);
               <!-- PRICE -->
               <Cell numeric>
                 {#if sectionItem.cost?.length === 1}
-                    {sectionItem.cost[0].quantity}
+                  <span style={`color: ${getCostColor(sectionItem.cost[0].resourceId)};`}>{sectionItem.cost[0].quantity}</span>
                 {:else if sectionItem.cost?.length === 2}
-                    <span style="color: red;">{sectionItem.cost[0].quantity}</span>
-                    <span style="color: royalblue;">{sectionItem?.cost[1].quantity}</span>
+                  <span style={`color: ${getCostColor(sectionItem.cost[0].resourceId)};`}>{sectionItem.cost[0].quantity}</span>
+                  <span style={`color: ${getCostColor(sectionItem.cost[1].resourceId)};`}>{sectionItem?.cost[1].quantity}</span>
                 {/if}
               </Cell>
               <!-- ACTIONS -->

@@ -690,3 +690,71 @@ export const narinItems: Item[] = [
   { id: 'niveus-quellor-skin', type: 'cosmetic' },
   { id: 'niveus-liset-skin', type: 'cosmetic' }
 ];
+
+export const orionSiriusItems: Item[] = [
+  // Sirius & Orion
+  { id: 'sirius-orion-blueprint', type: 'warframe-part', isDrop: true },
+  { id: 'sirius-orion-chassis', type: 'warframe-part', isDrop: true },
+  { id: 'sirius-orion-neuroptics', type: 'warframe-part', isDrop: true },
+  { id: 'sirius-orion-systems', type: 'warframe-part', isDrop: true },
+
+  // Pride
+  { id: 'pride-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'pride-handle', type: 'weapon-part', isDrop: true },
+  { id: 'pride-blade', type: 'weapon-part', isDrop: true },
+
+  // Wrath
+  { id: 'wrath-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'wrath-handle', type: 'weapon-part', isDrop: true },
+  { id: 'wrath-blade', type: 'weapon-part', isDrop: true },
+
+  // Misc
+  { id: 'bladeswarm-liset-skin', type: 'cosmetic' },
+  { id: 'sacred-light', type: 'other' },
+  { id: 'bloodfrenzy-liset-skin', type: 'cosmetic' },
+  { id: 'celestial-clash', type: 'other' },
+  { id: 'scorias-angel-scene', type: 'other' },
+  { id: 'kuva-wytch-scene', type: 'other' },
+  { id: 'pontis-tower-scene', type: 'other' },
+  { id: 'hunhows-trinket-blueprint', type: 'other' },
+
+  // Railjack
+  { id: 'ryoku', type: 'other' },
+  { id: 'vena', type: 'other' },
+  { id: 'latrox-une', type: 'other' },
+  { id: 'jarka-lar', type: 'other' },
+
+  // Appearance
+  { id: 'jades-victory-syandana-blueprint', type: 'cosmetic' },
+  { id: 'syndir-ephemera', type: 'cosmetic' },
+  { id: 'bladeswarm-vectis-skin', type: 'cosmetic' },
+  { id: 'bladeswarm-kunai-skin', type: 'cosmetic' },
+  { id: 'bladeswarm-karyst-skin', type: 'cosmetic' },
+  { id: 'bladeswarm-braton-skin', type: 'cosmetic' },
+  { id: 'viserakta-ephemera', type: 'cosmetic' },
+  { id: 'bloodfrenzy-nagantaka-skin', type: 'cosmetic' },
+  { id: 'bloodfrenzy-ballistica-skin', type: 'cosmetic' },
+  { id: 'bloodfrenzy-venka-skin', type: 'cosmetic' },
+
+  // Arcanes
+  { id: 'primary-compression', type: 'arcane', amountNeeded: 21, isDrop: true },
+  { id: 'arcane-sculptor', type: 'arcane', amountNeeded: 21, isDrop: true },
+  { id: 'secondary-cryogenic', type: 'arcane', amountNeeded: 21, isDrop: true },
+  { id: 'melee-assimilation', type: 'arcane', amountNeeded: 21, isDrop: true },
+
+  // Decoration
+  { id: 'bladeswarm-domestik-drone', type: 'cosmetic' },
+  { id: 'cloning-101-poster', type: 'other' },
+  { id: 'bloodfrenzy-domestik-drone', type: 'cosmetic' },
+  { id: 'relationship-goals-poster', type: 'other' },
+
+  // Honoria
+  // { id: 'as-one-honoria', type: 'other' },
+  // { id: 'scorias-saint-honoria', type: 'other' },
+  // { id: 'keeper-of-secrets-honoria', type: 'other' },
+  // { id: 'the-awoken-sword-honoria', type: 'other' },
+  // { id: 'force-of-nature-honoria', type: 'other' },
+  // { id: 'feelin-lucky-honoria', type: 'other' },
+  // { id: 'plague-bearer-honoria', type: 'other' },
+  // { id: 'strikes-twice-honoria', type: 'other' },
+];

@@ -6,6 +6,7 @@ import { citrineStore } from '$lib/stores/CitrineStore';
 import { nokkoStore } from '$lib/stores/NokkoStore';
 import { koumeiStore } from '$lib/stores/KoumeiStore';
 import { narinStore } from '$lib/stores/NarinStore';
+import { orionSiriusStore } from '$lib/stores/OrionSiriusStore';
 
 const DATA: Record<string, WarframeStore> = {
   follie: follieStore,
@@ -13,6 +14,7 @@ const DATA: Record<string, WarframeStore> = {
   nokko: nokkoStore,
   koumei: koumeiStore,
   narin: narinStore,
+  'orion-sirius': orionSiriusStore,
 };
 
 export const load: PageLoad = ({ params }) => {

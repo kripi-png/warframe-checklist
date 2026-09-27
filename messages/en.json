@@ -1,12 +1,15 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
 
-  "blue": "Blue",
-  "red": "Red",
+  "red": "Rania Crystal Fragment",
+  "blue": "Belric Crystal Fragment",
   "atramentum": "Atramentum",
   "fate-pearl": "Fate Pearl",
   "entropic-kuva": "Entropic Kuva",
   "fergolite": "Fergolite",
+  "emerald": "Emerald Talent",
+  "crimson": "Crimson Talent",
+
 
   "follie-blueprint": "Follie Blueprint",
   "follie-chassis": "Follie Chassis",
@@ -22,6 +25,7 @@
   "follie-prex": "Follie Prex",
   "haunted-vesper-relay-scene": "Haunted Vesper Relay Scene",
   "truths-hammer": "Truth's Hammer",
+
 
   "citrine-blueprint": "Citrine Blueprint",
   "citrine-chassis": "Citrine Chassis",
@@ -136,6 +140,7 @@
   "hanging-flowerpot-narrow": "Hanging Flowerpot (Narrow)",
   "planter-clay": "Planter (Clay)",
 
+
   "koumei-blueprint": "Koumei Blueprint",
   "koumei-chassis": "Koumei Chassis",
   "koumei-neuroptics": "Koumei Neuroptics",
@@ -150,6 +155,7 @@
   "amanata-pressure": "Amanata Pressure",
   "higasa-serration": "Higasa Serration",
   "koumei-prex-card": "Koumei Prex Card",
+
 
   "narin-blueprint": "Narin Blueprint",
   "narin-chassis": "Narin Chassis",
@@ -184,5 +190,47 @@
   "niveus-orvius-skin": "Niveus Orvius Skin",
   "niveus-glaxion-skin": "Niveus Glaxion Skin",
   "niveus-quellor-skin": "Niveus Quellor Skin",
-  "niveus-liset-skin": "Niveus Liset Skin"
+  "niveus-liset-skin": "Niveus Liset Skin",
+
+
+  "jades-victory-syandana-blueprint": "Jade's Victory Syandana Blueprint",
+  "ryoku": "Ryoku",
+  "vena": "Vena",
+  "latrox-une": "Latrox Une",
+  "jarka-lar": "Jarka Lar",
+  "sirius-orion-blueprint": "Sirius & Orion Blueprint",
+  "sirius-orion-chassis": "Sirius & Orion Chassis Blueprint",
+  "sirius-orion-neuroptics": "Sirius & Orion Neuroptics Blueprint",
+  "sirius-orion-systems": "Sirius & Orion Systems Blueprint",
+  "pride-blueprint": "Pride Blueprint",
+  "pride-handle": "Pride Handle Blueprint",
+  "pride-blade": "Pride Blade Blueprint",
+  "wrath-blueprint": "Wrath Blueprint",
+  "wrath-handle": "Wrath Handle Blueprint",
+  "wrath-blade": "Wrath Blade Blueprint",
+  "bladeswarm-liset-skin": "Bladeswarm Liset Skin",
+  "bladeswarm-domestik-drone": "Bladeswarm Domestik Drone",
+  "syndir-ephemera": "Syndir Ephemera",
+  "bladeswarm-vectis-skin": "Bladeswarm Vectis Skin",
+  "bladeswarm-kunai-skin": "Bladeswarm Kunai Skin",
+  "bladeswarm-karyst-skin": "Bladeswarm Karyst Skin",
+  "bladeswarm-braton-skin": "Bladeswarm Braton Skin",
+  "cloning-101-poster": "Cloning 101 Poster",
+  "sacred-light": "Sacred Light",
+  "bloodfrenzy-domestik-drone": "Bloodfrenzy Domestik Drone",
+  "bloodfrenzy-liset-skin": "Bloodfrenzy Liset Skin",
+  "viserakta-ephemera": "Viserakta Ephemera",
+  "bloodfrenzy-nagantaka-skin": "Bloodfrenzy Nagantaka Skin",
+  "bloodfrenzy-ballistica-skin": "Bloodfrenzy Ballistica Skin",
+  "bloodfrenzy-venka-skin": "Bloodfrenzy Venka Skin",
+  "relationship-goals-poster": "Relationship Goals Poster",
+  "celestial-clash": "Celestial Clash",
+  "scorias-angel-scene": "Scoria's Angel Scene",
+  "kuva-wytch-scene": "Kuva Wytch Scene",
+  "pontis-tower-scene": "Pontis Tower Scene",
+  "primary-compression": "Primary Compression",
+  "arcane-sculptor": "Arcane Sculptor",
+  "secondary-cryogenic": "Secondary Cryogenic",
+  "melee-assimilation": "Melee Assimilation",
+  "hunhows-trinket-blueprint": "Hunhow's Trinket Blueprint"
 }

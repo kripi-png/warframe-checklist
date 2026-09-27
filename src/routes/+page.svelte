@@ -24,6 +24,7 @@ layout({});
   <div>
     |
     <a class="text-xl" href="/wf/narin">Narin</a> |
+    <a class="text-xl" href="/wf/orion-sirius">Orion & Sirius</a> |
     <a class="text-xl" href="/wf/follie">Follie</a> |
     <a class="text-xl" href="/wf/nokko">Nokko</a> |
     <a class="text-xl" href="/wf/koumei">Koumei</a> |

@@ -24,6 +24,6 @@ let totalCost = $derived(checklist.getTotalNeeded(section));
 <h3 class="text-center">{completedCount} / {section.items.length}</h3>
 <h3 class="text-center">
   {#each Object.entries(totalCost) as cost}
-    {cost[1]} {itemName(cost[0])}
+    <p>{cost[1]} {itemName(cost[0])}</p>
   {/each}
 </h3>
