@@ -777,3 +777,29 @@ export const vorunaItems: Item[] = [
   { id: "arcame-voltage", type: 'arcane', isDrop: true, amountNeeded: 21 },
   { id: "lua-circulus-scene", type: 'other' },
 ];
+
+export const templeItems: Item[] = [
+  { id: "temple-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
+  { id: "temple-chassis-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
+  { id: "temple-neuroptics-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
+  { id: "temple-systems-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
+
+  { id: "riot-848-blueprint", type: "weapon-part", isDrop: true },
+  { id: "riot-848-barrel" , type: "weapon-part", isDrop: true },
+  { id: "riot-848-receiver", type: "weapon-part", isDrop: true },
+  { id: "riot-848-stock", type: "weapon-part", isDrop: true },
+
+  { id: "temple-and-the-rippers-poster", type: "other" },
+  { id: "drum-kit", type: "other" },
+  { id: "drum-cymbal", type: "other" },
+  { id: "tom-drum", type: "other" },
+  { id: "snare-drum", type: "other" },
+  { id: "musical-equipment-standard", type: "other" },
+  { id: "musical-equipment-large", type: "other" },
+  { id: "musical-equipment-drawers", type: "other" },
+  { id: "musical-equipment-small-long)", type: "other" },
+  { id: "musical-equipment-small-square)", type: "other" },
+  { id: "musical-equipment-cabinet", type: "other" },
+  { id: "electric-keyboard", type: "other" },
+  { id: "solstice-square-stage-scene", type: "other" },
+];

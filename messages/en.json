@@ -9,7 +9,8 @@
   "fergolite": "Fergolite",
   "emerald": "Emerald Talent",
   "crimson": "Crimson Talent",
-  "lua-thrax-plasma": "lua Thrax Plasma",
+  "lua-thrax-plasma": "Lua Thrax Plasma",
+  "beating-heartstrings": "Beating HeartStrings",
 
 
   "follie-blueprint": "Follie Blueprint",
@@ -251,5 +252,28 @@
   "arcame-rise": "Arcame Rise",
   "arcame-frostbite": "Arcame Frostbite",
   "arcame-voltage": "Arcame Voltage",
-  "lua-circulus-scene": "Lua Circulus Scene"
+  "lua-circulus-scene": "Lua Circulus Scene",
+
+
+  "temple-blueprint": "Temple Blueprint",
+  "temple-chassis-blueprint": "Temple Chassis Blueprint",
+  "temple-neuroptics-blueprint": "Temple Neuroptics Blueprint",
+  "temple-systems-blueprint": "Temple Systems Blueprint",
+  "riot-848-blueprint": "Riot-848 Blueprint",
+  "riot-848-barrel": "Riot-848 Barrel",
+  "riot-848-receiver": "Riot-848 Receiver",
+  "riot-848-stock": "Riot-848 Stock",
+  "temple-and-the-rippers-poster": "Temple and the Rippers Poster",
+  "drum-kit": "Drum Kit",
+  "drum-cymbal": "Drum Cymbal",
+  "tom-drum": "Tom Drum",
+  "snare-drum": "Snare Drum",
+  "musical-equipment-standard": "Musical Equipment (Standard)",
+  "musical-equipment-large": "Musical Equipment (Large)",
+  "musical-equipment-drawers": "Musical Equipment (Drawers)",
+  "musical-equipment-small-long)": "Musical Equipment (Small, Long)",
+  "musical-equipment-small-square)": "Musical Equipment (Small, Square)",
+  "musical-equipment-cabinet": "Musical Equipment (Cabinet)",
+  "electric-keyboard": "Electric Keyboard",
+  "solstice-square-stage-scene": "Solstice Square Stage Scene"
 }
