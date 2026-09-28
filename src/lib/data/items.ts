@@ -803,3 +803,27 @@ export const templeItems: Item[] = [
   { id: "electric-keyboard", type: "other" },
   { id: "solstice-square-stage-scene", type: "other" },
 ];
+
+export const oraxiaItems: Item[] = [
+  { id: 'oraxia-blueprint', type: "warframe-part", isDrop: true },
+  { id: 'oraxia-chassis-blueprint', type: "warframe-part", isDrop: true },
+  { id: 'oraxia-neuroptics-blueprint', type: "warframe-part", isDrop: true },
+  { id: 'oraxia-systems-blueprint', type: "warframe-part", isDrop: true },
+
+  { id: 'scyotid-blueprint', type: "weapon-part", isDrop: true },
+  { id: 'scyotid-barrel-blueprint', type: "weapon-part", amountNeeded: 2, isDrop: true },
+  { id: 'scyotid-gauntlet-blueprint', type: "weapon-part", amountNeeded: 2, isDrop: true },
+
+  { id: 'spinnerex-blueprint', type: "weapon-part", isDrop: true },
+  { id: 'spinnerex-blade-blueprint', type: "weapon-part", isDrop: true },
+  { id: 'spinnerex-handle-blueprint', type: "weapon-part", isDrop: true },
+  { id: 'spinnerex-string-blueprint', type: "weapon-part", isDrop: true },
+
+  { id: 'thalys-blueprint', type: "weapon-part" },
+
+  { id: 'octopede-arena-scene', type: "other" },
+  { id: 'isleweaver-cloud-islet-scene', type: "other" },
+  { id: 'isleweaver-drift-atoll-scene', type: "other" },
+  { id: 'scholars-landing-scene', type: "other" },
+  { id: 'duviri-throne-room-scene', type: "other" },
+];

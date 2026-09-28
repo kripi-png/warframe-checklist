@@ -9,6 +9,7 @@ import { narinStore } from '$lib/stores/NarinStore';
 import { orionSiriusStore } from '$lib/stores/OrionSiriusStore';
 import { vorunaStore } from '$lib/stores/VorunaStore';
 import { templeStore } from '$lib/stores/TempleStore';
+import { oraxiaStore } from '$lib/stores/OraxiaStore';
 
 const DATA: Record<string, WarframeStore> = {
   follie: follieStore,
@@ -19,6 +20,7 @@ const DATA: Record<string, WarframeStore> = {
   'orion-sirius': orionSiriusStore,
   voruna: vorunaStore,
   temple: templeStore,
+  oraxia: oraxiaStore,
 };
 
 export const load: PageLoad = ({ params }) => {

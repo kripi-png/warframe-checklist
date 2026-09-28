@@ -11,6 +11,7 @@
   "crimson": "Crimson Talent",
   "lua-thrax-plasma": "Lua Thrax Plasma",
   "beating-heartstrings": "Beating HeartStrings",
+  "scuttler-husks": "Scuttler Husks",
 
 
   "follie-blueprint": "Follie Blueprint",
@@ -275,5 +276,24 @@
   "musical-equipment-small-square)": "Musical Equipment (Small, Square)",
   "musical-equipment-cabinet": "Musical Equipment (Cabinet)",
   "electric-keyboard": "Electric Keyboard",
-  "solstice-square-stage-scene": "Solstice Square Stage Scene"
+  "solstice-square-stage-scene": "Solstice Square Stage Scene",
+
+
+  "oraxia-blueprint": "Oraxia Blueprint",
+  "oraxia-chassis-blueprint": "Oraxia Chassis Blueprint",
+  "oraxia-neuroptics-blueprint": "Oraxia Neuroptics Blueprint",
+  "oraxia-systems-blueprint": "Oraxia Systems Blueprint",
+  "scyotid-blueprint": "Scyotid Blueprint",
+  "scyotid-barrel-blueprint": "Scyotid Barrel Blueprint",
+  "scyotid-gauntlet-blueprint": "Scyotid Gauntlet Blueprint",
+  "spinnerex-blueprint": "Spinnerex Blueprint",
+  "spinnerex-blade-blueprint": "Spinnerex Blade Blueprint",
+  "spinnerex-handle-blueprint": "Spinnerex Handle Blueprint",
+  "spinnerex-string-blueprint": "Spinnerex String Blueprint",
+  "thalys-blueprint": "Thalys Blueprint",
+  "octopede-arena-scene": "Octopede Arena Scene",
+  "isleweaver-cloud-islet-scene": "Isleweaver Cloud Islet Scene",
+  "isleweaver-drift-atoll-scene": "Isleweaver Drift Atoll Scene",
+  "scholars-landing-scene": "Scholar's Landing Scene",
+  "duviri-throne-room-scene": "Duviri Throne Room Scene"
 }

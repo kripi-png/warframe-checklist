@@ -31,5 +31,6 @@ layout({});
     <a class="text-xl" href="/wf/citrine">Citrine</a> |
     <a class="text-xl" href="/wf/voruna">Voruna</a> |
     <a class="text-xl" href="/wf/temple">Temple</a> |
+    <a class="text-xl" href="/wf/oraxia">Oraxia</a> |
   </div>
 </Paper>
