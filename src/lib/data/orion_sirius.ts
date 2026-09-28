@@ -162,10 +162,10 @@ export const orionSiriusPage: AcquisitionPage = {
   sections: [
     siriusOrionSection,
     weaponSection,
+    arcaneSection,
     railjackSection,
     appearanceSection,
     decorationSection,
-    arcaneSection,
     miscSection,
   ],
 };
