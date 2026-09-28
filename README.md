@@ -5,3 +5,9 @@
 - wiki links (maybe ctrl-click)
 
 - kullervo
+- uriel
+- jade
+- dante
+- qorvex
+- dagath
+- kullervo

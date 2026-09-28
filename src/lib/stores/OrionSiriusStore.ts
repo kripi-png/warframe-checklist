@@ -1,4 +1,4 @@
-import { orionSiriusPage } from "$lib/data/orion_sirius";
+import { orionSiriusPage } from "$lib/data/sirius_orion";
 import { orionSiriusItems } from "$lib/data/items";
 import { createWarframeStore } from "./createWarframeStore";
 

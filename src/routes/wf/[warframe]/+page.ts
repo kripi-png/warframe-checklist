@@ -17,7 +17,7 @@ const DATA: Record<string, WarframeStore> = {
   nokko: nokkoStore,
   koumei: koumeiStore,
   narin: narinStore,
-  'orion-sirius': orionSiriusStore,
+  'sirius-orion': orionSiriusStore,
   voruna: vorunaStore,
   temple: templeStore,
   oraxia: oraxiaStore,

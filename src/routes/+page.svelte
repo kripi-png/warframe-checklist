@@ -2,6 +2,24 @@
 import { layout } from '$lib/layout.svelte';
 import Paper from '@smui/paper';
 layout({});
+
+const warframeLinks = [
+  ["narin", "Narin"],
+  ["sirius-orion", "Sirius & Orion"],
+  ["follie", "Follie"],
+  // ["uriel", "Uriel"],
+  ["nokko", "Nokko"],
+  ["oraxia", "Oraxia"],
+  ["temple", "Temple"],
+  ["koumei", "Koumei"],
+  // ["jade", "Jade"],
+  // ["dante", "Dante"],
+  // ["qorvex", "Qorvex"],
+  // ["dagath", "Dagath"],
+  // ["kullervo", "Kullervo"],
+  ["citrine", "Citrine"],
+  ["voruna", "Voruna"],
+];
 </script>
 
 <Paper>
@@ -22,15 +40,9 @@ layout({});
 
   <div class="text-2xl">Available Warframes</div>
   <div>
+    {#each warframeLinks as [path, name]}
+      | <a class="text-xl" href={`/wf/${path}`}>{name}</a>&nbsp;
+    {/each}
     |
-    <a class="text-xl" href="/wf/narin">Narin</a> |
-    <a class="text-xl" href="/wf/orion-sirius">Orion & Sirius</a> |
-    <a class="text-xl" href="/wf/follie">Follie</a> |
-    <a class="text-xl" href="/wf/nokko">Nokko</a> |
-    <a class="text-xl" href="/wf/koumei">Koumei</a> |
-    <a class="text-xl" href="/wf/citrine">Citrine</a> |
-    <a class="text-xl" href="/wf/voruna">Voruna</a> |
-    <a class="text-xl" href="/wf/temple">Temple</a> |
-    <a class="text-xl" href="/wf/oraxia">Oraxia</a> |
   </div>
 </Paper>
