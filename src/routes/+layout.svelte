@@ -17,6 +17,7 @@ const goHome = () => {
 
 <svelte:head>
   <link rel="icon" href={favicon} />
+  <title>Checklist - Frontpage</title>
 </svelte:head>
 
 <LayoutGrid>

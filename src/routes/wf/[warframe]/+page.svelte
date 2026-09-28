@@ -16,6 +16,10 @@ let { data }: PageProps = $props();
 setChecklistContext((() => data.warframeStore)());
 </script>
 
+<svelte:head>
+  <title>Checklist - {data.warframeStore.data.name}</title>
+</svelte:head>
+
 {#snippet custom()}
   {#if data.warframeStore}
     <Paper>
