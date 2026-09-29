@@ -44,6 +44,7 @@ export interface AcquisitionPage {
 }
 
 export interface AcquisitionState {
+  version: number;
   balance: Cost[];
   acquired: Record<string, number>;
   history: HistoryEntry[];

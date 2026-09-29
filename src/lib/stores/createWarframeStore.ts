@@ -1,4 +1,3 @@
-import { PersistedState } from 'runed';
 import type {
   AcquisitionPage,
   AcquisitionState,
@@ -8,6 +7,8 @@ import type {
   PageSection,
   SectionItem,
 } from '$lib/data/types';
+import { PersistedState } from 'runed';
+import { CURRENT_VERSION, migrate } from '$lib/migrations';
 
 export function createWarframeStore(
   key: string,
@@ -15,11 +16,16 @@ export function createWarframeStore(
   items: Item[],
   initialBalance: Cost[] = [],
 ) {
-  const state = new PersistedState<AcquisitionState>(key, {
+  const initialState = {
+    version: CURRENT_VERSION,
     balance: initialBalance,
     acquired: {},
     history: [],
-  });
+  };
+
+  const state = new PersistedState<AcquisitionState>(key, initialState);
+
+  state.current = migrate(state.current);
 
   return {
     get data() {
@@ -121,11 +127,7 @@ export function createWarframeStore(
     },
 
     reset() {
-      state.current = {
-        acquired: {},
-        balance: initialBalance,
-        history: [],
-      };
+      state.current = { ...initialState };
     },
 
     canAfford(itemId: string) {
