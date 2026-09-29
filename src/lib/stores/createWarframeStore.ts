@@ -1,16 +1,24 @@
 import { PersistedState } from 'runed';
-import type { AcquisitionPage, AcquisitionState, Cost, Item, PageSection, SectionItem } from '$lib/data/types';
-
+import type {
+  AcquisitionPage,
+  AcquisitionState,
+  Cost,
+  HistoryEntry,
+  Item,
+  PageSection,
+  SectionItem,
+} from '$lib/data/types';
 
 export function createWarframeStore(
   key: string,
   data: AcquisitionPage,
   items: Item[],
-  initialBalance: Cost[] = []
+  initialBalance: Cost[] = [],
 ) {
   const state = new PersistedState<AcquisitionState>(key, {
     balance: initialBalance,
     acquired: {},
+    history: [],
   });
 
   return {
@@ -20,6 +28,10 @@ export function createWarframeStore(
 
     get items() {
       return items;
+    },
+
+    get history() {
+      return state.current.history;
     },
 
     get balance() {
@@ -112,6 +124,7 @@ export function createWarframeStore(
       state.current = {
         acquired: {},
         balance: initialBalance,
+        history: [],
       };
     },
 
@@ -166,23 +179,40 @@ export function createWarframeStore(
       /* Return total costs of all INCOMPLETE items in the store */
       const sections = section ? [section] : this.data.sections;
 
-      return sections.reduce((acc, section) => {
-        for (const item of section.items) {
-          if (!item.cost || this.isCompleted(item.itemId)) continue;
+      return sections.reduce(
+        (acc, section) => {
+          for (const item of section.items) {
+            if (!item.cost || this.isCompleted(item.itemId)) continue;
 
-          const required = this.getRequiredToComplete(item.itemId);
-          const acquired = this.getAcquired(item.itemId);
-          const moreNeeded = Math.max(0, required - acquired);
+            const required = this.getRequiredToComplete(item.itemId);
+            const acquired = this.getAcquired(item.itemId);
+            const moreNeeded = Math.max(0, required - acquired);
 
-          for (const cost of item.cost) {
-            if (!Object.hasOwn(acc, cost.resourceId)) {
-              acc[cost.resourceId] = 0;
+            for (const cost of item.cost) {
+              if (!Object.hasOwn(acc, cost.resourceId)) {
+                acc[cost.resourceId] = 0;
+              }
+              acc[cost.resourceId] += cost.quantity * moreNeeded;
             }
-            acc[cost.resourceId] += cost.quantity * moreNeeded;
           }
-        }
-        return acc;
-      }, {} as Record<string, number>);
+          return acc;
+        },
+        {} as Record<string, number>,
+      );
+    },
+
+    addHistory(entry: HistoryEntry) {
+      state.current = {
+        ...state.current,
+        history: [entry, ...state.current.history.splice(0, 18)], // new entry + 19 previous
+      };
+    },
+
+    removeHistory(entryId: string) {
+      state.current = {
+        ...state.current,
+        history: this.history.filter((entry) => entry.id !== entryId),
+      };
     },
   };
 }

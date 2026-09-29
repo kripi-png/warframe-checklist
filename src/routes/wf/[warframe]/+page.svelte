@@ -8,12 +8,16 @@ import type { PageProps } from './$types';
 import ResetDataButton from '$lib/components/ResetDataButton.svelte';
 import Calculations from '$lib/components/Calculations.svelte';
 import { itemName } from '$lib/utils';
+import Button from '@smui/button';
+import HistoryModal from '$lib/components/HistoryModal.svelte';
 
 layout({ custom });
 
 let { data }: PageProps = $props();
 
 setChecklistContext((() => data.warframeStore)());
+
+let isHistoryOpen = $state(false);
 </script>
 
 <svelte:head>
@@ -40,6 +44,7 @@ setChecklistContext((() => data.warframeStore)());
       {/each}
 
       <ResetDataButton checklist={data.warframeStore} />
+      <Button onclick={() => isHistoryOpen=true}>History</Button>
     </Paper>
 
     <Calculations warframeStore={data.warframeStore} />
@@ -47,3 +52,4 @@ setChecklistContext((() => data.warframeStore)());
 {/snippet}
 
 <ItemChecklists />
+<HistoryModal bind:open={isHistoryOpen} store={data.warframeStore} />
