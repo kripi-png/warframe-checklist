@@ -44,6 +44,10 @@ export function createWarframeStore(
       return state.current.balance;
     },
 
+    get version() {
+      return state.current.version;
+    },
+
     getItem(itemId: string): Item | undefined {
       return this.items.find((item) => item.id === itemId);
     },
@@ -206,7 +210,7 @@ export function createWarframeStore(
     addHistory(entry: HistoryEntry) {
       state.current = {
         ...state.current,
-        history: [entry, ...state.current.history.splice(0, 18)], // new entry + 19 previous
+        history: [entry, ...state.current.history.slice(0, 19)], // new entry + 19 previous
       };
     },
 
@@ -218,27 +222,25 @@ export function createWarframeStore(
     },
 
     getTotalAveragePerMinute(resourceId: string): Cost | false {
-      const rawHistory = this.history.map((entry) => ({
-        duration: entry.duration,
-        reward: entry.rewards.find(
-          (reward) => reward.resourceId === resourceId,
-        ),
-      }));
+      let totalQuantity = 0;
+      let totalDuration = 0;
 
-      if (rawHistory.length === 0) return false;
+      for (const entry of this.history) {
+        const cost = entry.rewards.find(
+          (cost) => cost.resourceId === resourceId,
+        );
 
-      const totalReward = rawHistory.reduce(
-        (acc, entry) => (acc += entry.reward?.quantity ?? 0),
-        0,
-      );
-      const totalSeconds = rawHistory.reduce(
-        (acc, entry) => (acc += entry.duration),
-        0,
-      );
+        if (cost === undefined) continue;
+
+        totalDuration += entry.duration;
+        totalQuantity += cost.quantity;
+      }
+
+      if (totalDuration === 0) return false;
 
       return {
         resourceId: resourceId,
-        quantity: totalReward / (totalSeconds / 60),
+        quantity: totalQuantity / (totalDuration / 60),
       };
     },
   };
