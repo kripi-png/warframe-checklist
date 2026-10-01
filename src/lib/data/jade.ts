@@ -9,8 +9,8 @@ const vestigialMotes = (quantity: number): Cost[] => [
 ];
 
 const jadeSection: PageSection = {
-  id: 'excalibur',
-  name: 'Excalibur',
+  id: 'jade',
+  name: 'Jade',
   items: [
     { itemId: 'jade-blueprint', cost: vestigialMotes(450), amountNeeded: 2 },
     {
