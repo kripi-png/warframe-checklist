@@ -10,6 +10,7 @@ import { orionSiriusStore } from '$lib/stores/OrionSiriusStore';
 import { vorunaStore } from '$lib/stores/VorunaStore';
 import { templeStore } from '$lib/stores/TempleStore';
 import { oraxiaStore } from '$lib/stores/OraxiaStore';
+import { jadeStore } from '$lib/stores/JadeStore';
 
 const DATA: Record<string, WarframeStore> = {
   follie: follieStore,
@@ -21,6 +22,7 @@ const DATA: Record<string, WarframeStore> = {
   voruna: vorunaStore,
   temple: templeStore,
   oraxia: oraxiaStore,
+  jade: jadeStore,
 };
 
 export const load: PageLoad = ({ params }) => {

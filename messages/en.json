@@ -12,6 +12,7 @@
   "lua-thrax-plasma": "Lua Thrax Plasma",
   "beating-heartstrings": "Beating HeartStrings",
   "scuttler-husks": "Scuttler Husks",
+  "vestigial-motes": "Vestigial Motes",
 
 
   "follie-blueprint": "Follie Blueprint",
@@ -295,5 +296,18 @@
   "isleweaver-cloud-islet-scene": "Isleweaver Cloud Islet Scene",
   "isleweaver-drift-atoll-scene": "Isleweaver Drift Atoll Scene",
   "scholars-landing-scene": "Scholar's Landing Scene",
-  "duviri-throne-room-scene": "Duviri Throne Room Scene"
+  "duviri-throne-room-scene": "Duviri Throne Room Scene",
+
+
+  "jade-blueprint": "Jade Blueprint",
+  "jade-chassis-blueprint": "Jade Chassis Blueprint",
+  "jade-neuroptics-blueprint": "Jade Neuroptics Blueprint",
+  "jade-systems-blueprint": "Jade Systems Blueprint",
+  "evensong-blueprint": "Evensong Blueprint",
+  "cantare-blueprint": "Cantare Blueprint",
+  "harmony-blueprint": "Harmony Blueprint",
+  "arcane-ice-storm": "Arcane Ice Storm",
+  "secondary-surge": "Secondary Surge",
+  "arcane-battery": "Arcane Battery",
+  "melee-afflictions": "Melee Afflictions"
 }
