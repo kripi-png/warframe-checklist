@@ -32,7 +32,7 @@ const addRun = () => {
     .filter(([_, quantity]) => quantity > 0)
     .map(([resourceId, quantity]) => ({
       resourceId,
-      quantity,
+      quantity: Number(quantity),
     }));
 
   const duration = minutesToSeconds(durationValue);
