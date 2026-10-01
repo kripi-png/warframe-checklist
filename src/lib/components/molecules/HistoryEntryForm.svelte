@@ -13,11 +13,21 @@ type Props = {
 let { costResourceIds, store }: Props = $props();
 
 let durationValue = $state('');
-let rewardValues = $derived<Record<string, number>>(
-  Object.fromEntries(costResourceIds.map((id) => [id, 0])),
+let rewardValues = $state<Record<string, number>>(
+  Object.fromEntries((() => costResourceIds)().map((id) => [id, 0])),
 );
 
+$effect(() => {
+  for (const id of costResourceIds) {
+    if (rewardValues[id] === undefined) {
+      rewardValues[id] = 0;
+    }
+  }
+});
+
 const addRun = () => {
+  if (Object.values(rewardValues).every((val) => !val)) return;
+
   const rewards: Cost[] = Object.entries(rewardValues)
     .filter(([_, quantity]) => quantity > 0)
     .map(([resourceId, quantity]) => ({
@@ -34,7 +44,17 @@ const addRun = () => {
     duration,
     rewards,
   });
+
+  resetForm();
 };
+
+function resetForm() {
+  durationValue = '';
+
+  for (const id of costResourceIds) {
+    rewardValues[id] = 0;
+  }
+}
 </script>
 
 <form onsubmit={(event) => {

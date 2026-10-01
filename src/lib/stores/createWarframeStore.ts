@@ -216,6 +216,31 @@ export function createWarframeStore(
         history: this.history.filter((entry) => entry.id !== entryId),
       };
     },
+
+    getTotalAveragePerMinute(resourceId: string): Cost | false {
+      const rawHistory = this.history.map((entry) => ({
+        duration: entry.duration,
+        reward: entry.rewards.find(
+          (reward) => reward.resourceId === resourceId,
+        ),
+      }));
+
+      if (rawHistory.length === 0) return false;
+
+      const totalReward = rawHistory.reduce(
+        (acc, entry) => (acc += entry.reward?.quantity ?? 0),
+        0,
+      );
+      const totalSeconds = rawHistory.reduce(
+        (acc, entry) => (acc += entry.duration),
+        0,
+      );
+
+      return {
+        resourceId: resourceId,
+        quantity: totalReward / (totalSeconds / 60),
+      };
+    },
   };
 }
 
