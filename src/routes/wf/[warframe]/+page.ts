@@ -1,16 +1,18 @@
 import type { PageLoad } from './$types';
 import type { WarframeStore } from '$lib/stores/createWarframeStore';
 import { error } from '@sveltejs/kit';
-import { follieStore } from '$lib/stores/FollieStore';
-import { citrineStore } from '$lib/stores/CitrineStore';
-import { nokkoStore } from '$lib/stores/NokkoStore';
-import { koumeiStore } from '$lib/stores/KoumeiStore';
-import { narinStore } from '$lib/stores/NarinStore';
-import { orionSiriusStore } from '$lib/stores/OrionSiriusStore';
-import { vorunaStore } from '$lib/stores/VorunaStore';
-import { templeStore } from '$lib/stores/TempleStore';
-import { oraxiaStore } from '$lib/stores/OraxiaStore';
-import { jadeStore } from '$lib/stores/JadeStore';
+import {
+  citrineStore,
+  follieStore,
+  jadeStore,
+  koumeiStore,
+  narinStore,
+  nokkoStore,
+  oraxiaStore,
+  orionSiriusStore,
+  templeStore,
+  vorunaStore,
+} from '$lib/stores/WarframeStores';
 
 const DATA: Record<string, WarframeStore> = {
   follie: follieStore,
@@ -33,6 +35,6 @@ export const load: PageLoad = ({ params }) => {
   }
 
   return {
-    warframeStore
+    warframeStore,
   };
 };
