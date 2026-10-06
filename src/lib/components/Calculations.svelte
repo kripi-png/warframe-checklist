@@ -18,6 +18,30 @@ const totalNeeded = $derived.by(() => {
   }
   return needed;
 });
+
+const averagePerMinutes = $derived.by(() => {
+  return Object.keys(totalNeeded).reduce<Record<string, number>>(
+    (averages, resourceId) => {
+      const avg = warframeStore.getTotalAveragePerMinute(resourceId);
+      if (avg) {
+        averages[resourceId] = avg.quantity;
+      }
+
+      return averages;
+    },
+    {},
+  );
+});
+
+const estimatedTimes = $derived.by(() => {
+  return Object.entries(totalNeeded).reduce<Record<string, number>>(
+    (times, [resourceId, total]) => {
+      times[resourceId] = total / averagePerMinutes[resourceId];
+      return times;
+    },
+    {},
+  );
+});
 </script>
 
 
@@ -29,28 +53,21 @@ const totalNeeded = $derived.by(() => {
 
   <br>
   <h2 class="text-center text-lg capitalize">Average per minute:</h2>
-  {#each Object.keys(totalNeeded) as resourceId}
-    {@const avgPerMin = warframeStore.getTotalAveragePerMinute(resourceId)}
+  {#each Object.entries(averagePerMinutes) as [resourceId, value]}
     <p style={`color: ${getCostColor(resourceId)}`}>
-      {#if avgPerMin}
-        {itemName(resourceId)}: {avgPerMin.quantity.toFixed(2)}
-      {:else}
-        Unknown
-      {/if}
+      {itemName(resourceId)}: {value.toFixed(2)} / min
     </p>
   {/each}
 
   <br>
   <h2 class="text-center text-lg capitalize">Required time:</h2>
-  <h3 class="text-center text-sm capitalize">Hours (minutes)</h3>
-  {#each Object.entries(totalNeeded) as [resourceId, totalAmount]}
-    {@const avgPerMin = warframeStore.getTotalAveragePerMinute(resourceId)}
+  <h3 class="text-center text-sm capitalize">Hours / minutes</h3>
+  {#each Object.entries(estimatedTimes) as [resourceId, value]}
     <p style={`color: ${getCostColor(resourceId)}`}>
-      {#if avgPerMin}
-        {@const minuteEstimation = totalAmount / avgPerMin.quantity}
-        {itemName(resourceId)}: {(minuteEstimation / 60).toFixed(2)} ({minuteEstimation.toFixed(2)})
+      {#if value > 60}
+        {itemName(resourceId)}: {(value / 60).toFixed(2)} h
       {:else}
-        Unknown
+        {itemName(resourceId)}: {value.toFixed(2)} min
       {/if}
     </p>
   {/each}
