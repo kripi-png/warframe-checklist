@@ -34,7 +34,7 @@ const calculateAverages = (duration: number, rewards: Cost[]): Cost[] => {
 >
   <Title id="form-title">Add Run</Title>
   <Content id="form-content">
-    Add results of past runs to calculate average rewards over time as well as an estimation of duration and required runs.
+    Add results of past runs to calculate average rewards over time as well as an estimation of total duration and required runs.
 
     <HistoryEntryForm
       store={store}

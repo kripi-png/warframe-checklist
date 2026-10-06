@@ -22,17 +22,33 @@ const totalNeeded = $derived.by(() => {
 
 
 <Paper>
-  <h2>Total:</h2>
+  <h2 class="text-center text-lg capitalize">Total:</h2>
   {#each Object.entries(totalNeeded) as [resourceId, quantity]}
     <p style={`color: ${getCostColor(resourceId)}`}>{itemName(resourceId)}: {quantity}</p>
   {/each}
 
-  <h2>Average per minute:</h2>
+  <br>
+  <h2 class="text-center text-lg capitalize">Average per minute:</h2>
   {#each Object.keys(totalNeeded) as resourceId}
     {@const avgPerMin = warframeStore.getTotalAveragePerMinute(resourceId)}
     <p style={`color: ${getCostColor(resourceId)}`}>
       {#if avgPerMin}
         {itemName(resourceId)}: {avgPerMin.quantity.toFixed(2)}
+      {:else}
+        Unknown
+      {/if}
+    </p>
+  {/each}
+
+  <br>
+  <h2 class="text-center text-lg capitalize">Required time:</h2>
+  <h3 class="text-center text-sm capitalize">Hours (minutes)</h3>
+  {#each Object.entries(totalNeeded) as [resourceId, totalAmount]}
+    {@const avgPerMin = warframeStore.getTotalAveragePerMinute(resourceId)}
+    <p style={`color: ${getCostColor(resourceId)}`}>
+      {#if avgPerMin}
+        {@const minuteEstimation = totalAmount / avgPerMin.quantity}
+        {itemName(resourceId)}: {(minuteEstimation / 60).toFixed(2)} ({minuteEstimation.toFixed(2)})
       {:else}
         Unknown
       {/if}
