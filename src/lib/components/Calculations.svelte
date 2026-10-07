@@ -36,7 +36,10 @@ const averagePerMinutes = $derived.by(() => {
 const estimatedTimes = $derived.by(() => {
   return Object.entries(totalNeeded).reduce<Record<string, number>>(
     (times, [resourceId, total]) => {
-      times[resourceId] = total / averagePerMinutes[resourceId];
+      const avg  = averagePerMinutes[resourceId];
+      if (!avg) return times;
+
+      times[resourceId] = total / avg;
       return times;
     },
     {},
@@ -51,24 +54,28 @@ const estimatedTimes = $derived.by(() => {
     <p style={`color: ${getCostColor(resourceId)}`}>{itemName(resourceId)}: {quantity}</p>
   {/each}
 
-  <br>
-  <h2 class="text-center text-lg capitalize">Average per minute:</h2>
-  {#each Object.entries(averagePerMinutes) as [resourceId, value]}
-    <p style={`color: ${getCostColor(resourceId)}`}>
-      {itemName(resourceId)}: {value.toFixed(2)} / min
-    </p>
-  {/each}
+  {#if Object.keys(averagePerMinutes).length}
+    <br>
+    <h2 class="text-center text-lg capitalize">Average per minute:</h2>
+    {#each Object.entries(averagePerMinutes) as [resourceId, value]}
+      <p style={`color: ${getCostColor(resourceId)}`}>
+        {itemName(resourceId)}: {value.toFixed(2)} / min
+      </p>
+    {/each}
+  {/if}
 
-  <br>
-  <h2 class="text-center text-lg capitalize">Required time:</h2>
-  <h3 class="text-center text-sm capitalize">Hours / minutes</h3>
-  {#each Object.entries(estimatedTimes) as [resourceId, value]}
-    <p style={`color: ${getCostColor(resourceId)}`}>
-      {#if value > 60}
-        {itemName(resourceId)}: {(value / 60).toFixed(2)} h
-      {:else}
-        {itemName(resourceId)}: {value.toFixed(2)} min
-      {/if}
-    </p>
-  {/each}
+  {#if Object.keys(estimatedTimes).length}
+    <br>
+    <h2 class="text-center text-lg capitalize">Required time:</h2>
+    <h3 class="text-center text-sm capitalize">Hours / minutes</h3>
+    {#each Object.entries(estimatedTimes) as [resourceId, value]}
+      <p style={`color: ${getCostColor(resourceId)}`}>
+        {#if value > 60}
+          {itemName(resourceId)}: {(value / 60).toFixed(2)} h
+        {:else}
+          {itemName(resourceId)}: {value.toFixed(2)} min
+        {/if}
+      </p>
+    {/each}
+  {/if}
 </Paper>
