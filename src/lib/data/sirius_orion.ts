@@ -157,7 +157,7 @@ const decorationSection: PageSection = {
 
 export const orionSiriusPage: AcquisitionPage = {
   id: 'sirius-orion',
-  name: 'Orion & Sirius',
+  name: 'Sirius & Orion',
 
   sections: [
     siriusOrionSection,

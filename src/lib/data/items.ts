@@ -1,75 +1,92 @@
 import type { Item } from './types';
 
+export const jadeItems: Item[] = [
+  { id: 'jade-blueprint', type: 'warframe-part', isDrop: true },
+  { id: 'jade-chassis-blueprint', type: 'warframe-part', isDrop: true },
+  { id: 'jade-neuroptics-blueprint', type: 'warframe-part', isDrop: true },
+  { id: 'jade-systems-blueprint', type: 'warframe-part', isDrop: true },
+
+  { id: 'evensong-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'cantare-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'harmony-blueprint', type: 'weapon-part', isDrop: true },
+
+  { id: 'arcane-ice-storm', type: 'arcane', amountNeeded: 21, isDrop: true },
+  { id: 'secondary-surge', type: 'arcane', amountNeeded: 21, isDrop: true },
+  { id: 'arcane-battery', type: 'arcane', amountNeeded: 21, isDrop: true },
+  { id: 'secondary-fortifier', type: 'arcane', amountNeeded: 21, isDrop: true },
+  { id: 'melee-afflictions', type: 'arcane', amountNeeded: 21, isDrop: true },
+];
+
 export const follieItems: Item[] = [
   // Follie
   {
     id: 'follie-blueprint',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'follie-chassis',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'follie-neuroptics',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'follie-systems',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
 
   // Enkaus
   {
     id: 'enkaus-blueprint',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'enkaus-barrel',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'enkaus-receiver',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'enkaus-stock',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
 
   // Other
   {
     id: 'drip',
-    type: 'cosmetic'
+    type: 'cosmetic',
   },
   {
     id: 'stained-vespers',
-    type: 'cosmetic'
+    type: 'cosmetic',
   },
   {
     id: 'deadnaught',
-    type: 'cosmetic'
+    type: 'cosmetic',
   },
   {
     id: 'follie-prex',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'haunted-vesper-relay-scene',
-    type: 'cosmetic'
+    type: 'cosmetic',
   },
   {
     id: 'truths-hammer',
-    type: 'other'
-  }
+    type: 'other',
+  },
 ];
 
 export const citrineItems: Item[] = [
@@ -142,15 +159,15 @@ export const citrineItems: Item[] = [
   // Other
   {
     id: 'citrine-prex',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'citrine-in-action-glyph',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'citrine-last-wish-factory-scene',
-    type: 'other'
+    type: 'other',
   },
 
   // Arcanes
@@ -186,44 +203,44 @@ export const nokkoItems: Item[] = [
   {
     id: 'nokko-blueprint',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'nokko-chassis',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'nokko-neuro',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'nokko-systems',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
 
   // Arbucep
   {
     id: 'arbucep-blueprint',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'arbucep-barrel',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'arbucep-receiver',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'arbucep-stock',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
 
   // Arcanes
@@ -231,342 +248,342 @@ export const nokkoItems: Item[] = [
     id: 'primary-frostbite',
     type: 'arcane',
     amountNeeded: 21,
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'primary-blight',
     type: 'arcane',
     amountNeeded: 21,
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'conjunction-voltage',
     type: 'arcane',
     amountNeeded: 21,
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'secondary-encumber',
     type: 'arcane',
     amountNeeded: 21,
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'secondary-fortifier',
     type: 'arcane',
     amountNeeded: 21,
-    isDrop: true
+    isDrop: true,
   },
 
   // The Prince
   {
     id: 'the-prince-level1',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'the-prince-level2',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'the-prince-level3',
-    type: 'other'
+    type: 'other',
   },
 
   // Misc
   {
     id: 'rizoma-ephemera',
-    type: 'cosmetic'
+    type: 'cosmetic',
   },
   {
     id: 'ayatan-chattraka-sculpture',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'roots-n-fruits',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'roots-n-fruits-poster',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'onemind',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'onemind-poster',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'shooms',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'shooms-poster',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'deepmines-caves-scene',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'deepmines-scene',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'deepmines-lab-scene',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'deepmines-forward-base-scene',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'deepmine-nutrient-plant-scene',
-    type: 'other'
+    type: 'other',
   },
 
   // Nursery
   {
     id: 'autumnal-bonsai',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'lanceleaf-plant',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'monstera-plant',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'mushroom-clump',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'yellow-daisy-cluster',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'rho-plant',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'filter-flower',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'grossa-fern',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'birds-nest-gern-narrowly-opened',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'mocfi-fern',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'sunlight-dragonlily-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'moonlight-dragonlily-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'ruks-claw-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'moonlight-threshcone-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'sunlight-threshcone-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'moonlight-jadeleaf-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'sunlight-jadeleaf-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'silver-lady-fern',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'fern-healthy',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'fern-brown',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'boxwood-hedge1x1m',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'infested-flower-single',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'infested-flower-pair',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'croton-plant-green-single',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'croton-plant-green-cluster',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'croton-plant-yellow-single',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'croton-plant-yellow-cluster',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'palm-shrum-small',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'palm-shrum-medium',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'ficus-tree-single',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'ficus-tree-cluster',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'hanging-ivy-narrow',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'hanging-ivy-wide',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'ivy-tendrils',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'ivy-vine',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'ivy-patch',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'vestan-moss-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'ghost-bush-sickly',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'orokin-bush-small',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'geisang-reeds',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'glow-plants-dense',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'glow-plants-sparse',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'vallis-fern',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'vallis-mushrooms-small-group',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'bush-cluster-dense',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'autumn-tuvul-sapling',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'dusklight-sarracenia-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'frostleaf-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'grass-tuft-short',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'lunar-pitcher-decoration',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'grass-tuft-tall',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'planter-small-wood',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'planter-box-foliage-small',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'planter-large-wood',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'planter-small-stone',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'hanging-flowerpot-wide',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'assorted-flowers-red-and-white',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'assorted-flowers-blue-and-white',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'hanging-flowerpot-narrow',
-    type: 'other'
+    type: 'other',
   },
   {
     id: 'planter-clay',
-    type: 'other'
-  }
+    type: 'other',
+  },
 ];
 
 export const koumeiItems: Item[] = [
@@ -574,77 +591,77 @@ export const koumeiItems: Item[] = [
   {
     id: 'koumei-blueprint',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'koumei-chassis',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'koumei-neuroptics',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'koumei-systems',
     type: 'warframe-part',
-    isDrop: true
+    isDrop: true,
   },
 
   // Higasa
   {
     id: 'higasa-blueprint',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'higasa-barrel',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'higasa-receiver',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'higasa-stock',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
 
   // Amanata
   {
     id: 'amanata-blueprint',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'amanata-blade',
     type: 'weapon-part',
     amountNeeded: 2,
-    isDrop: true
+    isDrop: true,
   },
   {
     id: 'amanata-handle',
     type: 'weapon-part',
-    isDrop: true
+    isDrop: true,
   },
 
   // Mods & Prex
   {
     id: 'amanata-pressure',
-    type: 'mod'
+    type: 'mod',
   },
   {
     id: 'higasa-serration',
-    type: 'mod'
+    type: 'mod',
   },
   {
     id: 'koumei-prex-card',
-    type: 'other'
-  }
+    type: 'other',
+  },
 ];
 
 export const narinItems: Item[] = [
@@ -688,7 +705,7 @@ export const narinItems: Item[] = [
   { id: 'niveus-orvius-skin', type: 'cosmetic' },
   { id: 'niveus-glaxion-skin', type: 'cosmetic' },
   { id: 'niveus-quellor-skin', type: 'cosmetic' },
-  { id: 'niveus-liset-skin', type: 'cosmetic' }
+  { id: 'niveus-liset-skin', type: 'cosmetic' },
 ];
 
 export const orionSiriusItems: Item[] = [
@@ -760,70 +777,120 @@ export const orionSiriusItems: Item[] = [
 ];
 
 export const vorunaItems: Item[] = [
-  { id: "voruna-blueprint", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
-  { id: "voruna-chassis", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
-  { id: "voruna-neuroptics", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
-  { id: "voruna-systems", type: 'warframe-part', isDrop: true, amountNeeded: 2 },
-  { id: "sarofang-blueprint", type: 'weapon-part', isDrop: true },
-  { id: "sarofang-blade", type: 'weapon-part', isDrop: true },
-  { id: "sarofang-handle", type: 'weapon-part', isDrop: true },
-  { id: "perigale-blueprint", type: 'weapon-part', isDrop: true },
-  { id: "perigale-barrel", type: 'weapon-part', isDrop: true },
-  { id: "perigale-receiver", type: 'weapon-part', isDrop: true },
-  { id: "perigale-stock", type: 'weapon-part', isDrop: true },
-  { id: "arcame-blessing", type: 'arcane', isDrop: true, amountNeeded: 21 },
-  { id: "arcame-rise", type: 'arcane', isDrop: true, amountNeeded: 21 },
-  { id: "arcame-frostbite", type: 'arcane', isDrop: true, amountNeeded: 21 },
-  { id: "arcame-voltage", type: 'arcane', isDrop: true, amountNeeded: 21 },
-  { id: "lua-circulus-scene", type: 'other' },
+  {
+    id: 'voruna-blueprint',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
+  {
+    id: 'voruna-chassis',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
+  {
+    id: 'voruna-neuroptics',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
+  {
+    id: 'voruna-systems',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
+  { id: 'sarofang-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'sarofang-blade', type: 'weapon-part', isDrop: true },
+  { id: 'sarofang-handle', type: 'weapon-part', isDrop: true },
+  { id: 'perigale-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'perigale-barrel', type: 'weapon-part', isDrop: true },
+  { id: 'perigale-receiver', type: 'weapon-part', isDrop: true },
+  { id: 'perigale-stock', type: 'weapon-part', isDrop: true },
+  { id: 'arcame-blessing', type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: 'arcame-rise', type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: 'arcame-frostbite', type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: 'arcame-voltage', type: 'arcane', isDrop: true, amountNeeded: 21 },
+  { id: 'lua-circulus-scene', type: 'other' },
 ];
 
 export const templeItems: Item[] = [
-  { id: "temple-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
-  { id: "temple-chassis-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
-  { id: "temple-neuroptics-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
-  { id: "temple-systems-blueprint", type: "warframe-part", isDrop: true, amountNeeded: 2 },
+  {
+    id: 'temple-blueprint',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
+  {
+    id: 'temple-chassis-blueprint',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
+  {
+    id: 'temple-neuroptics-blueprint',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
+  {
+    id: 'temple-systems-blueprint',
+    type: 'warframe-part',
+    isDrop: true,
+    amountNeeded: 2,
+  },
 
-  { id: "riot-848-blueprint", type: "weapon-part", isDrop: true },
-  { id: "riot-848-barrel" , type: "weapon-part", isDrop: true },
-  { id: "riot-848-receiver", type: "weapon-part", isDrop: true },
-  { id: "riot-848-stock", type: "weapon-part", isDrop: true },
+  { id: 'riot-848-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'riot-848-barrel', type: 'weapon-part', isDrop: true },
+  { id: 'riot-848-receiver', type: 'weapon-part', isDrop: true },
+  { id: 'riot-848-stock', type: 'weapon-part', isDrop: true },
 
-  { id: "temple-and-the-rippers-poster", type: "other" },
-  { id: "drum-kit", type: "other" },
-  { id: "drum-cymbal", type: "other" },
-  { id: "tom-drum", type: "other" },
-  { id: "snare-drum", type: "other" },
-  { id: "musical-equipment-standard", type: "other" },
-  { id: "musical-equipment-large", type: "other" },
-  { id: "musical-equipment-drawers", type: "other" },
-  { id: "musical-equipment-small-long)", type: "other" },
-  { id: "musical-equipment-small-square)", type: "other" },
-  { id: "musical-equipment-cabinet", type: "other" },
-  { id: "electric-keyboard", type: "other" },
-  { id: "solstice-square-stage-scene", type: "other" },
+  { id: 'temple-and-the-rippers-poster', type: 'other' },
+  { id: 'drum-kit', type: 'other' },
+  { id: 'drum-cymbal', type: 'other' },
+  { id: 'tom-drum', type: 'other' },
+  { id: 'snare-drum', type: 'other' },
+  { id: 'musical-equipment-standard', type: 'other' },
+  { id: 'musical-equipment-large', type: 'other' },
+  { id: 'musical-equipment-drawers', type: 'other' },
+  { id: 'musical-equipment-small-long)', type: 'other' },
+  { id: 'musical-equipment-small-square)', type: 'other' },
+  { id: 'musical-equipment-cabinet', type: 'other' },
+  { id: 'electric-keyboard', type: 'other' },
+  { id: 'solstice-square-stage-scene', type: 'other' },
 ];
 
 export const oraxiaItems: Item[] = [
-  { id: 'oraxia-blueprint', type: "warframe-part", isDrop: true },
-  { id: 'oraxia-chassis-blueprint', type: "warframe-part", isDrop: true },
-  { id: 'oraxia-neuroptics-blueprint', type: "warframe-part", isDrop: true },
-  { id: 'oraxia-systems-blueprint', type: "warframe-part", isDrop: true },
+  { id: 'oraxia-blueprint', type: 'warframe-part', isDrop: true },
+  { id: 'oraxia-chassis-blueprint', type: 'warframe-part', isDrop: true },
+  { id: 'oraxia-neuroptics-blueprint', type: 'warframe-part', isDrop: true },
+  { id: 'oraxia-systems-blueprint', type: 'warframe-part', isDrop: true },
 
-  { id: 'scyotid-blueprint', type: "weapon-part", isDrop: true },
-  { id: 'scyotid-barrel-blueprint', type: "weapon-part", amountNeeded: 2, isDrop: true },
-  { id: 'scyotid-gauntlet-blueprint', type: "weapon-part", amountNeeded: 2, isDrop: true },
+  { id: 'scyotid-blueprint', type: 'weapon-part', isDrop: true },
+  {
+    id: 'scyotid-barrel-blueprint',
+    type: 'weapon-part',
+    amountNeeded: 2,
+    isDrop: true,
+  },
+  {
+    id: 'scyotid-gauntlet-blueprint',
+    type: 'weapon-part',
+    amountNeeded: 2,
+    isDrop: true,
+  },
 
-  { id: 'spinnerex-blueprint', type: "weapon-part", isDrop: true },
-  { id: 'spinnerex-blade-blueprint', type: "weapon-part", isDrop: true },
-  { id: 'spinnerex-handle-blueprint', type: "weapon-part", isDrop: true },
-  { id: 'spinnerex-string-blueprint', type: "weapon-part", isDrop: true },
+  { id: 'spinnerex-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'spinnerex-blade-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'spinnerex-handle-blueprint', type: 'weapon-part', isDrop: true },
+  { id: 'spinnerex-string-blueprint', type: 'weapon-part', isDrop: true },
 
-  { id: 'thalys-blueprint', type: "weapon-part" },
+  { id: 'thalys-blueprint', type: 'weapon-part' },
 
-  { id: 'octopede-arena-scene', type: "other" },
-  { id: 'isleweaver-cloud-islet-scene', type: "other" },
-  { id: 'isleweaver-drift-atoll-scene', type: "other" },
-  { id: 'scholars-landing-scene', type: "other" },
-  { id: 'duviri-throne-room-scene', type: "other" },
+  { id: 'octopede-arena-scene', type: 'other' },
+  { id: 'isleweaver-cloud-islet-scene', type: 'other' },
+  { id: 'isleweaver-drift-atoll-scene', type: 'other' },
+  { id: 'scholars-landing-scene', type: 'other' },
+  { id: 'duviri-throne-room-scene', type: 'other' },
 ];

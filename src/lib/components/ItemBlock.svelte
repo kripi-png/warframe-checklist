@@ -5,7 +5,7 @@ import InputWithButtons from './molecules/InputWithButtons.svelte';
 import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
 import BlockTitleArea from './BlockTitleArea.svelte';
-import { itemName } from '$lib/utils';
+import { getCostColor, itemName } from '$lib/utils';
 
 const checklist = getChecklistContext();
 type Props = {
@@ -14,21 +14,6 @@ type Props = {
 let { section }: Props = $props();
 
 let isOpen = $state(true);
-
-function getCostColor(itemId: string): string | null {
-  switch (itemId) {
-    case 'emerald':
-      return 'greenyellow';
-    case 'crimson':
-      return 'crimson';
-    case 'red':
-      return 'red';
-    case 'blue':
-      return 'blue';
-    default:
-      return null;
-  }
-}
 </script>
 
 <div class="checklist">

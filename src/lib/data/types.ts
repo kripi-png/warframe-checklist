@@ -1,11 +1,11 @@
 export type ItemType =
-	| 'warframe-part'
-	| 'weapon-part'
-	| 'resource'
-	| 'mod'
-	| 'arcane'
+  | 'warframe-part'
+  | 'weapon-part'
+  | 'resource'
+  | 'mod'
+  | 'arcane'
   | 'cosmetic'
-	| 'other';
+  | 'other';
 
 export interface Item {
   id: string;
@@ -44,73 +44,14 @@ export interface AcquisitionPage {
 }
 
 export interface AcquisitionState {
+  version: number;
   balance: Cost[];
   acquired: Record<string, number>;
+  history: HistoryEntry[];
 }
 
-// interface RecipeComponent {
-//   itemId: string;
-//   quantity: number;
-// }
-
-// interface Recipe {
-//   productId: string;
-//   components: RecipeComponent[];
-// }
-
-
-// type AcquisitionType =
-//   | 'drop'
-// 	| 'vendor'
-// 	| 'mission'
-//   | 'other';
-
-// interface Acquisition {
-//   id: string;
-//   itemId: string;
-//   type: AcquisitionType;
-//   sourceId: string;
-
-//   reward?: {
-//     quantity: number
-//   }
-
-//   cost?: Cost[];
-// }
-
-// interface VendorItem {
-//   itemId: string;
-//   cost: Cost[];
-// }
-
-// interface Vendor {
-//   id: string;
-//   name: string;
-//   location?: string;
-//   items: VendorItem[];
-// }
-
-// type SourceType =
-//   | 'mission'
-// 	| 'vendor'
-// 	| 'event'
-//   | 'other';
-
-// interface Source {
-//   id: string;
-//   name: string;
-//   type: SourceType;
-// }
-
-// interface Requirement {
-//   itemId: string;
-//   required: number;
-//   owned: number;
-//   missing: number;
-// }
-
-// interface AcquisitionOption {
-//   acquisitionId: string;
-//   itemId: string;
-//   cost: Cost[];
-// }
+export interface HistoryEntry {
+  id: string;
+  duration: number; // seconds
+  rewards: Cost[];
+}

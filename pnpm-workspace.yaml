@@ -2,4 +2,5 @@ allowBuilds:
   '@parcel/watcher': true
   esbuild: true
 minimumReleaseAgeExclude:
-  - vite@8.3.1
+  - vite@8.3.1 || 8.3.2
+  - globals@17.13.0

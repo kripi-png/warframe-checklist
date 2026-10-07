@@ -1,17 +1,31 @@
+import type {
+  AcquisitionPage,
+  AcquisitionState,
+  Cost,
+  HistoryEntry,
+  Item,
+  PageSection,
+  SectionItem,
+} from '$lib/data/types';
 import { PersistedState } from 'runed';
-import type { AcquisitionPage, AcquisitionState, Cost, Item, PageSection, SectionItem } from '$lib/data/types';
-
+import { CURRENT_VERSION, migrate } from '$lib/migrations';
 
 export function createWarframeStore(
   key: string,
   data: AcquisitionPage,
   items: Item[],
-  initialBalance: Cost[] = []
+  initialBalance: Cost[] = [],
 ) {
-  const state = new PersistedState<AcquisitionState>(key, {
+  const initialState = {
+    version: CURRENT_VERSION,
     balance: initialBalance,
     acquired: {},
-  });
+    history: [],
+  };
+
+  const state = new PersistedState<AcquisitionState>(key, initialState);
+
+  state.current = migrate(state.current);
 
   return {
     get data() {
@@ -22,8 +36,16 @@ export function createWarframeStore(
       return items;
     },
 
+    get history() {
+      return state.current.history;
+    },
+
     get balance() {
       return state.current.balance;
+    },
+
+    get version() {
+      return state.current.version;
     },
 
     getItem(itemId: string): Item | undefined {
@@ -109,10 +131,7 @@ export function createWarframeStore(
     },
 
     reset() {
-      state.current = {
-        acquired: {},
-        balance: initialBalance,
-      };
+      state.current = { ...initialState };
     },
 
     canAfford(itemId: string) {
@@ -166,23 +185,63 @@ export function createWarframeStore(
       /* Return total costs of all INCOMPLETE items in the store */
       const sections = section ? [section] : this.data.sections;
 
-      return sections.reduce((acc, section) => {
-        for (const item of section.items) {
-          if (!item.cost || this.isCompleted(item.itemId)) continue;
+      return sections.reduce(
+        (acc, section) => {
+          for (const item of section.items) {
+            if (!item.cost || this.isCompleted(item.itemId)) continue;
 
-          const required = this.getRequiredToComplete(item.itemId);
-          const acquired = this.getAcquired(item.itemId);
-          const moreNeeded = Math.max(0, required - acquired);
+            const required = this.getRequiredToComplete(item.itemId);
+            const acquired = this.getAcquired(item.itemId);
+            const moreNeeded = Math.max(0, required - acquired);
 
-          for (const cost of item.cost) {
-            if (!Object.hasOwn(acc, cost.resourceId)) {
-              acc[cost.resourceId] = 0;
+            for (const cost of item.cost) {
+              if (!Object.hasOwn(acc, cost.resourceId)) {
+                acc[cost.resourceId] = 0;
+              }
+              acc[cost.resourceId] += cost.quantity * moreNeeded;
             }
-            acc[cost.resourceId] += cost.quantity * moreNeeded;
           }
-        }
-        return acc;
-      }, {} as Record<string, number>);
+          return acc;
+        },
+        {} as Record<string, number>,
+      );
+    },
+
+    addHistory(entry: HistoryEntry) {
+      state.current = {
+        ...state.current,
+        history: [entry, ...state.current.history.slice(0, 19)], // new entry + 19 previous
+      };
+    },
+
+    removeHistory(entryId: string) {
+      state.current = {
+        ...state.current,
+        history: this.history.filter((entry) => entry.id !== entryId),
+      };
+    },
+
+    getTotalAveragePerMinute(resourceId: string): Cost | false {
+      let totalQuantity = 0;
+      let totalDuration = 0;
+
+      for (const entry of this.history) {
+        const cost = entry.rewards.find(
+          (cost) => cost.resourceId === resourceId,
+        );
+
+        if (cost === undefined) continue;
+
+        totalDuration += entry.duration;
+        totalQuantity += cost.quantity;
+      }
+
+      if (totalDuration === 0) return false;
+
+      return {
+        resourceId: resourceId,
+        quantity: totalQuantity / (totalDuration / 60),
+      };
     },
   };
 }
