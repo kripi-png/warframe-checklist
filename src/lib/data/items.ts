@@ -1,5 +1,20 @@
 import type { Item } from './types';
 
+export const kullervoItems: Item[] = [
+  { id: 'kullervo-blueprint', type: 'warframe-part' },
+  { id: 'kullervo-chassis-blueprint', type: 'warframe-part' },
+  { id: 'kullervo-neuroptics-blueprint', type: 'warframe-part' },
+  { id: 'kullervo-systems-blueprint', type: 'warframe-part' },
+
+  { id: 'rauta-blueprint', type: 'weapon-part' },
+  { id: 'rauta-barrel', type: 'weapon-part' },
+  { id: 'rauta-receiver', type: 'weapon-part' },
+  { id: 'rauta-stock', type: 'weapon-part' },
+
+  { id: 'kullervo-in-action-glyph', type: 'other' },
+  { id: 'kullervos-hold-scene', type: 'other' },
+];
+
 export const jadeItems: Item[] = [
   { id: 'jade-blueprint', type: 'warframe-part', isDrop: true },
   { id: 'jade-chassis-blueprint', type: 'warframe-part', isDrop: true },

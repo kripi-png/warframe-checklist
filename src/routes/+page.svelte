@@ -16,7 +16,7 @@ const warframeLinks = [
   // ["dante", "Dante"],
   // ["qorvex", "Qorvex"],
   // ["dagath", "Dagath"],
-  // ["kullervo", "Kullervo"],
+  ["kullervo", "Kullervo"],
   ["citrine", "Citrine"],
   ["voruna", "Voruna"],
 ];

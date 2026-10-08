@@ -6,6 +6,7 @@ import {
   follieStore,
   jadeStore,
   koumeiStore,
+  kullervoStore,
   narinStore,
   nokkoStore,
   oraxiaStore,
@@ -25,6 +26,7 @@ const DATA: Record<string, WarframeStore> = {
   temple: templeStore,
   oraxia: oraxiaStore,
   jade: jadeStore,
+  kullervo: kullervoStore,
 };
 
 export const load: PageLoad = ({ params }) => {

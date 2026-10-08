@@ -3,6 +3,7 @@ import {
   follieItems,
   jadeItems,
   koumeiItems,
+  kullervoItems,
   narinItems,
   nokkoItems,
   oraxiaItems,
@@ -21,6 +22,7 @@ import { oraxiaPage } from '$lib/data/oraxia';
 import { orionSiriusPage } from '$lib/data/sirius_orion';
 import { templePage } from '$lib/data/temple';
 import { vorunaPage } from '$lib/data/voruna';
+import { kullervoPage } from '$lib/data/kullervo';
 
 export const citrineStore = createWarframeStore(
   'citrine',
@@ -86,4 +88,11 @@ export const vorunaStore = createWarframeStore(
   vorunaPage,
   vorunaItems,
   [{ resourceId: 'lua-thrax-plasma', quantity: 0 }],
+);
+
+export const kullervoStore = createWarframeStore(
+  'kullervo',
+  kullervoPage,
+  kullervoItems,
+  [{ resourceId: 'kullervos-bane', quantity: 0 }],
 );
