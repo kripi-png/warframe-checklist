@@ -1,7 +1,9 @@
 <script lang="ts">
 import type { WarframeStore } from '$lib/stores/createWarframeStore';
 import { getCostColor, itemName } from '$lib/utils';
+import { Label } from '@smui/common';
 import Paper from '@smui/paper';
+import Tooltip, { Wrapper } from '@smui/tooltip';
 
 type Props = {
   warframeStore: WarframeStore;
@@ -36,7 +38,7 @@ const averagePerMinutes = $derived.by(() => {
 const estimatedTimes = $derived.by(() => {
   return Object.entries(totalNeeded).reduce<Record<string, number>>(
     (times, [resourceId, total]) => {
-      const avg  = averagePerMinutes[resourceId];
+      const avg = averagePerMinutes[resourceId];
       if (!avg) return times;
 
       times[resourceId] = total / avg;
@@ -69,13 +71,21 @@ const estimatedTimes = $derived.by(() => {
     <h2 class="text-center text-lg capitalize">Required time:</h2>
     <h3 class="text-center text-sm capitalize">Hours / minutes</h3>
     {#each Object.entries(estimatedTimes) as [resourceId, value]}
-      <p style={`color: ${getCostColor(resourceId)}`}>
-        {#if value > 60}
-          {itemName(resourceId)}: {(value / 60).toFixed(2)} h
-        {:else}
-          {itemName(resourceId)}: {value.toFixed(2)} min
-        {/if}
-      </p>
+      <Wrapper>
+        <p style={`color: ${getCostColor(resourceId)}`}>
+          {#if value > 60}
+            {itemName(resourceId)}: {(value / 60).toFixed(2)} h
+          {:else}
+            {itemName(resourceId)}: {value.toFixed(2)} min
+          {/if}
+        </p>
+        <Tooltip xPos="center" yPos="above">
+          {@const minutes = value % 60 }
+          {@const hours = (value - minutes) / 60}
+          {@const seconds = (minutes % 1) * 60}
+          <Label class="text-lg">{`${hours}h ${Math.trunc(minutes)}min ${Math.trunc(seconds)}sec`}</Label>
+        </Tooltip>
+      </Wrapper>
     {/each}
   {/if}
 </Paper>

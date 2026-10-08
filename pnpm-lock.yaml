@@ -182,6 +182,9 @@ importers:
       '@smui/button':
         specifier: ^9.0.2
         version: 9.0.2
+      '@smui/common':
+        specifier: ^9.0.2
+        version: 9.0.2
       '@smui/data-table':
         specifier: ^9.0.2
         version: 9.0.2
@@ -195,6 +198,9 @@ importers:
         specifier: ^9.0.2
         version: 9.0.2
       '@smui/textfield':
+        specifier: ^9.0.2
+        version: 9.0.2
+      '@smui/tooltip':
         specifier: ^9.0.2
         version: 9.0.2
       '@sveltejs/adapter-auto':
@@ -824,6 +830,9 @@ packages:
 
   '@smui/textfield@9.0.2':
     resolution: {integrity: sha512-iMXfpZu9ImdixV6yugkxtSKonZ/084VF5IQywprl44yrt3Z8enxZ1Ps12y29Q+y57reDVZ8kuiaKTZAOWlQqxg==}
+
+  '@smui/tooltip@9.0.2':
+    resolution: {integrity: sha512-VmoQOqnQPH/VHfdL+6z+UzazeWp37/zROD4sr/IbeT0EuS3bgiG2b30pZ/gMeGGfeE4rCyH5hti3qKHj1+IbyA==}
 
   '@smui/touch-target@9.0.2':
     resolution: {integrity: sha512-WZBddE1ifceCtUtGIj5eVGqspUF/RWpEeR55ETxaWgt9SW11o2KJtVEKHswv/5FtuoDyO6zDdSuw7qX74ojtxA==}
@@ -2213,6 +2222,12 @@ snapshots:
       '@smui/line-ripple': 9.0.2
       '@smui/notched-outline': 9.0.2
       '@smui/ripple': 9.0.2
+
+  '@smui/tooltip@9.0.2':
+    dependencies:
+      '@smui/button': 9.0.2
+      '@smui/common': 9.0.2
+      safevalues: 1.2.0
 
   '@smui/touch-target@9.0.2':
     dependencies:
