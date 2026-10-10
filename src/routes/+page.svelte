@@ -4,21 +4,21 @@ import Paper from '@smui/paper';
 layout({});
 
 const warframeLinks = [
-  ["narin", "Narin"],
-  ["sirius-orion", "Sirius & Orion"],
-  ["follie", "Follie"],
-  // ["uriel", "Uriel"],
-  ["nokko", "Nokko"],
-  ["oraxia", "Oraxia"],
-  ["temple", "Temple"],
-  ["koumei", "Koumei"],
-  ["jade", "Jade"],
+  ['narin', 'Narin'],
+  ['sirius-orion', 'Sirius & Orion'],
+  ['follie', 'Follie'],
+  ['uriel', 'Uriel'],
+  ['nokko', 'Nokko'],
+  ['oraxia', 'Oraxia'],
+  ['temple', 'Temple'],
+  ['koumei', 'Koumei'],
+  ['jade', 'Jade'],
   // ["dante", "Dante"],
   // ["qorvex", "Qorvex"],
   // ["dagath", "Dagath"],
-  ["kullervo", "Kullervo"],
-  ["citrine", "Citrine"],
-  ["voruna", "Voruna"],
+  ['kullervo', 'Kullervo'],
+  ['citrine', 'Citrine'],
+  ['voruna', 'Voruna'],
 ];
 </script>
 

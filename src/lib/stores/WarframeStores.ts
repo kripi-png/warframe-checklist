@@ -9,6 +9,7 @@ import {
   oraxiaItems,
   orionSiriusItems,
   templeItems,
+  urielItems,
   vorunaItems,
 } from '$lib/data/items';
 import { createWarframeStore } from './createWarframeStore';
@@ -23,6 +24,11 @@ import { orionSiriusPage } from '$lib/data/sirius_orion';
 import { templePage } from '$lib/data/temple';
 import { vorunaPage } from '$lib/data/voruna';
 import { kullervoPage } from '$lib/data/kullervo';
+import { urielPage } from '$lib/data/uriel';
+
+export const urielStore = createWarframeStore('uriel', urielPage, urielItems, [
+  { resourceId: 'maphica', quantity: 0 },
+]);
 
 export const citrineStore = createWarframeStore(
   'citrine',

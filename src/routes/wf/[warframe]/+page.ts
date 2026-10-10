@@ -12,6 +12,7 @@ import {
   oraxiaStore,
   orionSiriusStore,
   templeStore,
+  urielStore,
   vorunaStore,
 } from '$lib/stores/WarframeStores';
 
@@ -27,6 +28,7 @@ const DATA: Record<string, WarframeStore> = {
   oraxia: oraxiaStore,
   jade: jadeStore,
   kullervo: kullervoStore,
+  uriel: urielStore,
 };
 
 export const load: PageLoad = ({ params }) => {

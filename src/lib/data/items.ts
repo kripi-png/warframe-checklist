@@ -1,5 +1,46 @@
 import type { Item } from './types';
 
+export const urielItems: Item[] = [
+  { id: 'uriel-blueprint', type: 'warframe-part' },
+  { id: 'uriel-chassis-blueprint', type: 'warframe-part' },
+  { id: 'uriel-neuroptics-blueprint', type: 'warframe-part' },
+  { id: 'uriel-systems-blueprint', type: 'warframe-part' },
+
+  { id: 'vinquibus-blueprint', type: 'weapon-part' },
+  { id: 'vinquibus-barrel-blueprint', type: 'weapon-part' },
+  { id: 'vinquibus-blade-blueprint', type: 'weapon-part' },
+  { id: 'vinquibus-receiver-blueprint', type: 'weapon-part' },
+  { id: 'vinquibus-stock-blueprint', type: 'weapon-part' },
+
+  { id: 'galariak-prime-blueprint', type: 'weapon-part' },
+  { id: 'galariak-prime-blade-blueprint', type: 'weapon-part' },
+  { id: 'galariak-prime-handle-blueprint', type: 'weapon-part' },
+
+  { id: 'sagek-prime-blueprint', type: 'weapon-part' },
+  { id: 'sagek-prime-receiver-blueprint', type: 'weapon-part' },
+  { id: 'sagek-prime-barrel-blueprint', type: 'weapon-part' },
+
+  { id: 'primary-bulwark', type: 'arcane', amountNeeded: 21 },
+  { id: 'primary-overcharge', type: 'arcane', amountNeeded: 21 },
+  { id: 'arcane-expertise', type: 'arcane', amountNeeded: 21 },
+  { id: 'arcane-persistence', type: 'arcane', amountNeeded: 21 },
+  { id: 'melee-careen', type: 'arcane', amountNeeded: 21 },
+  { id: 'arcane-circumvent', type: 'arcane', amountNeeded: 21 },
+  { id: 'secondary-irradiate', type: 'arcane', amountNeeded: 21 },
+  { id: 'arcane-concentration', type: 'arcane', amountNeeded: 21 },
+  { id: 'primary-debilitate', type: 'arcane', amountNeeded: 21 },
+
+  { id: 'insign-bundle', type: 'other' },
+  { id: 'makvos-cannon-scene', type: 'other' },
+  { id: 'boro-overlook-scene', type: 'other' },
+  { id: 'world-seeder-scene', type: 'other' },
+  { id: 'fort-tennadis-scene', type: 'other' },
+  { id: 'perita-manifestation-scene', type: 'other' },
+  { id: 'lyons-room-scene', type: 'other' },
+  { id: 'maries-room-scene', type: 'other' },
+  { id: 'roathes-oblivion-arena', type: 'other' },
+];
+
 export const kullervoItems: Item[] = [
   { id: 'kullervo-blueprint', type: 'warframe-part' },
   { id: 'kullervo-chassis-blueprint', type: 'warframe-part' },
