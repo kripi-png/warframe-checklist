@@ -11,14 +11,15 @@ import { getCostColor, itemName } from '$lib/utils';
 const checklist = getChecklistContext();
 type Props = {
   section: PageSection;
+  rotation: number | null;
 };
-let { section }: Props = $props();
+let { section, rotation }: Props = $props();
 
 let isOpen = $state(true);
 </script>
 
 <div class="checklist">
-  <BlockTitleArea bind:isOpen={isOpen} section={section} />
+  <BlockTitleArea bind:isOpen={isOpen} {section} {rotation} />
   {#if isOpen}
     <DataTable
       table$aria-label={`List for ${section.name} items`}

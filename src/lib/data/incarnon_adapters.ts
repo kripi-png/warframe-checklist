@@ -236,8 +236,8 @@ export const incarnons: SectionItem[][] = [
 ];
 
 const sections: PageSection[] = incarnons.map((rotation, i) => {
-  const id = 'rotation_' + (i + 1);
-  const name = 'Rotation ' + (i + 1);
+  const id = 'rotation_' + i;
+  const name = `Rotation ${i + 1} (${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i]})`;
   return {
     id,
     name,

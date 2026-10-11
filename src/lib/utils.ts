@@ -90,3 +90,38 @@ export const getCostSpan = (cost: Cost, withText = false) => {
     cost.quantity % 1 == 0 ? cost.quantity : cost.quantity.toFixed(2);
   return `<span style="color: ${color};">${quantity}${withText ? ' ' + itemName(cost.resourceId) : ''}</span>`;
 };
+
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+const ROTATION_LENGTH = 9;
+const ROTATION_START = new Date('2026-08-31T00:00:00Z');
+
+export function getCircuitRotation(now = new Date()): number {
+  // time diff between current and start date divided by week in milliseconds
+  const weeksElapsed = Math.floor(
+    (now.getTime() - ROTATION_START.getTime()) / WEEK_MS,
+  );
+
+  return ((weeksElapsed % ROTATION_LENGTH) + ROTATION_LENGTH) % ROTATION_LENGTH;
+}
+
+export function getRotationStartDate(
+  targetIndex: number,
+  now = new Date(),
+): Date {
+  // time diff between current and start date divided by week in milliseconds
+  const weeksElapsed = Math.floor(
+    (now.getTime() - ROTATION_START.getTime()) / WEEK_MS,
+  );
+
+  const currentWeekStart = new Date(
+    ROTATION_START.getTime() + weeksElapsed * WEEK_MS,
+  );
+
+  const currentIndex =
+    ((weeksElapsed % ROTATION_LENGTH) + ROTATION_LENGTH) % ROTATION_LENGTH;
+
+  const weeksUntil =
+    (targetIndex - currentIndex + ROTATION_LENGTH) % ROTATION_LENGTH;
+
+  return new Date(currentWeekStart.getTime() + weeksUntil * WEEK_MS);
+}
