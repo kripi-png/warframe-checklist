@@ -1,15 +1,14 @@
 <script lang="ts">
 import Paper from '@smui/paper';
-import TextField from '@smui/textfield';
 import ItemChecklists from '$lib/components/ItemChecklists.svelte';
 import { layout } from '$lib/layout.svelte';
 import { setChecklistContext } from '$lib/context/checklist';
 import type { PageProps } from './$types';
 import ResetDataButton from '$lib/components/ResetDataButton.svelte';
 import Calculations from '$lib/components/Calculations.svelte';
-import { itemName } from '$lib/utils';
 import Button from '@smui/button';
 import HistoryModal from '$lib/components/HistoryModal.svelte';
+import ResourceInput from '$lib/components/molecules/ResourceInput.svelte';
 
 layout({ custom });
 
@@ -29,18 +28,7 @@ let isHistoryOpen = $state(false);
     <Paper>
       <h1>{data.warframeStore.data.name}</h1>
       {#each data.warframeStore.balance as resource (resource.resourceId)}
-        <TextField
-          value={resource.quantity}
-          label={`Owned ${itemName(resource.resourceId)}`}
-          type="number"
-          onchange={(e: Event) => {
-            data.warframeStore.setBalance({
-              resourceId: resource.resourceId,
-          		quantity: Number((e.target as HTMLInputElement).value)
-            })
-          }}
-        >
-        </TextField>
+        <ResourceInput resource={resource} setBalance={data.warframeStore.setBalance} />
       {/each}
 
       <ResetDataButton checklist={data.warframeStore} />
