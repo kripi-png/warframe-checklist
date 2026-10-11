@@ -1,4 +1,5 @@
 <script lang="ts">
+import Tooltip, { Wrapper } from '@smui/tooltip';
 import DataTable, { Head, Body, Row, Cell, Label } from '@smui/data-table';
 import ItemControls from './molecules/ItemControls.svelte';
 import InputWithButtons from './molecules/InputWithButtons.svelte';
@@ -64,11 +65,16 @@ let isOpen = $state(true);
               </Cell>
               <!-- PRICE -->
               <Cell numeric>
-                <div class="flex w-full justify-between items-center">
-                  {#each sectionItem.cost?.filter(cost => cost.resourceId !== 'pathos-clamp') as cost}
-                    <span style={`color: ${getCostColor(cost.resourceId)};`}>{cost.quantity}</span>
-                  {/each}
-                </div>
+                <Wrapper>
+                  <div class="flex w-full justify-between items-center">
+                    {#each sectionItem.cost?.filter(cost => cost.resourceId !== 'pathos-clamp') as cost}
+                      <span style={`color: ${getCostColor(cost.resourceId)};`}>{cost.quantity}</span>
+                    {/each}
+                  </div>
+                  <Tooltip xPos="center" yPos="above">
+                    <Label class="text-lg">{sectionItem.cost?.map((cost) => `${itemName(cost.resourceId)} ${cost.quantity}`).join(", ")}</Label>
+                  </Tooltip>
+                </Wrapper>
               </Cell>
               <!-- ACTIONS -->
               <Cell>

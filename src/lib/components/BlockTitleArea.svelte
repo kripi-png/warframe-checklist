@@ -1,7 +1,7 @@
 <script lang="ts">
 import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
-import { itemName } from '$lib/utils';
+import { getCostSpan } from '$lib/utils';
 
 type Props = {
   section: PageSection;
@@ -24,6 +24,11 @@ let totalCost = $derived(checklist.getTotalNeeded(section));
 <h3 class="text-center">{completedCount} / {section.items.length}</h3>
 <h3 class="text-center">
   {#each Object.entries(totalCost) as cost}
-    <p>{cost[1]} {itemName(cost[0])}</p>
+    <p>
+      {@html getCostSpan(
+        { resourceId: cost[0], quantity: cost[1] },
+        true
+      )}
+    </p>
   {/each}
 </h3>

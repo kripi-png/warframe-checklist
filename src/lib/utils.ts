@@ -83,10 +83,10 @@ export const getCostColor = (itemId: string): string | null => {
   }
 };
 
-export const getCostSpan = (cost: Cost) => {
+export const getCostSpan = (cost: Cost, withText = false) => {
   const color = getCostColor(cost.resourceId);
   // if quantity is a decimal, force to 2 decimal places; otherwise keep as integer
   const quantity =
     cost.quantity % 1 == 0 ? cost.quantity : cost.quantity.toFixed(2);
-  return `<span style="color: ${color};">${quantity}</span>`;
+  return `<span style="color: ${color};">${quantity}${withText ? ' ' + itemName(cost.resourceId) : ''}</span>`;
 };
