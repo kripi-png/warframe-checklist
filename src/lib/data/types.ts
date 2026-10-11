@@ -1,6 +1,7 @@
 export type ItemType =
   | 'warframe-part'
   | 'weapon-part'
+  | 'incarnon-weapon'
   | 'resource'
   | 'mod'
   | 'arcane'

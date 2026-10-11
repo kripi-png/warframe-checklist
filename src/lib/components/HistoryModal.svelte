@@ -24,6 +24,12 @@ const calculateAverages = (duration: number, rewards: Cost[]): Cost[] => {
     quantity: cost.quantity / (duration / 60),
   }));
 };
+
+const resourceIds = $derived(
+  store.data.id === 'incarnon_adapters'
+    ? ['pathos-clamp']
+    : store.balance.map((cost) => cost.resourceId),
+);
 </script>
 
 <Dialog
@@ -38,7 +44,7 @@ const calculateAverages = (duration: number, rewards: Cost[]): Cost[] => {
 
     <HistoryEntryForm
       store={store}
-      costResourceIds={store.balance.map((cost) => cost.resourceId)}
+      costResourceIds={resourceIds}
     />
   </Content>
 

@@ -3,6 +3,7 @@ import {
   dagathItems,
   danteItems,
   follieItems,
+  incaronAdapterItems,
   jadeItems,
   koumeiItems,
   kullervoItems,
@@ -29,10 +30,14 @@ import { kullervoPage } from '$lib/data/kullervo';
 import { urielPage } from '$lib/data/uriel';
 import { dantePage } from '$lib/data/dante';
 import { dagathPage } from '$lib/data/dagath';
+import { incaronAdapterPage } from '$lib/data/incarnon_adapters';
 
-export const dagathStore = createWarframeStore('dagath', dagathPage, dagathItems, [
-  { resourceId: 'vainthorn', quantity: 0 },
-]);
+export const dagathStore = createWarframeStore(
+  'dagath',
+  dagathPage,
+  dagathItems,
+  [{ resourceId: 'vainthorn', quantity: 0 }],
+);
 
 export const danteStore = createWarframeStore('dante', dantePage, danteItems, [
   { resourceId: 'vessel-capillaries', quantity: 0 },
@@ -113,4 +118,28 @@ export const kullervoStore = createWarframeStore(
   kullervoPage,
   kullervoItems,
   [{ resourceId: 'kullervos-bane', quantity: 0 }],
+);
+
+export const incarnonAdapterStore = createWarframeStore(
+  'incaronAdapter',
+  incaronAdapterPage,
+  incaronAdapterItems,
+  [
+    { resourceId: 'pathos-clamp', quantity: 0 },
+    { resourceId: 'nacreous-pebble', quantity: 0 },
+    { resourceId: 'aggristone', quantity: 0 },
+    { resourceId: 'saggen-pearls', quantity: 0 },
+    { resourceId: 'maw-fang', quantity: 0 },
+    { resourceId: 'ariette-scale', quantity: 0 },
+    { resourceId: 'rune-marrow', quantity: 0 },
+    { resourceId: 'silphsela', quantity: 0 },
+    { resourceId: 'tasoma-extract', quantity: 0 },
+    { resourceId: 'dracroot', quantity: 0 },
+    { resourceId: 'ueymag', quantity: 0 },
+    { resourceId: 'yao-shrubs', quantity: 0 },
+    { resourceId: 'kovnik', quantity: 0 },
+    { resourceId: 'connola-sprouts', quantity: 0 },
+    { resourceId: 'eevani', quantity: 0 },
+    { resourceId: 'lamentus', quantity: 0 },
+  ],
 );

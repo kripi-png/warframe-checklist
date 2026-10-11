@@ -14,7 +14,7 @@ const warframeLinks = [
   ['koumei', 'Koumei'],
   ['jade', 'Jade'],
   ['dante', 'Dante'],
-  ["dagath", "Dagath"],
+  ['dagath', 'Dagath'],
   ['kullervo', 'Kullervo'],
   ['citrine', 'Citrine'],
   ['voruna', 'Voruna'],
@@ -37,11 +37,18 @@ const warframeLinks = [
     Developed by klubbu (<a href="https://github.com/kripi-png">kripi-png </a><i class="fa-brands fa-github"></i>).
   </p>
 
+  <br/>
   <div class="text-2xl">Available Warframes</div>
   <div>
     {#each warframeLinks as [path, name]}
       | <a class="text-xl" href={`/wf/${path}`}>{name}</a>&nbsp;
     {/each}
     |
+  </div>
+
+  <br/>
+  <div class="text-2xl">Miscellaneous</div>
+  <div>
+    <a class="text-xl" href="/wf/incarnon-adapters">Incarnon Adapters</a>&nbsp;
   </div>
 </Paper>

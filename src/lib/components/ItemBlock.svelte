@@ -64,12 +64,11 @@ let isOpen = $state(true);
               </Cell>
               <!-- PRICE -->
               <Cell numeric>
-                {#if sectionItem.cost?.length === 1}
-                  <span style={`color: ${getCostColor(sectionItem.cost[0].resourceId)};`}>{sectionItem.cost[0].quantity}</span>
-                {:else if sectionItem.cost?.length === 2}
-                  <span style={`color: ${getCostColor(sectionItem.cost[0].resourceId)};`}>{sectionItem.cost[0].quantity}</span>
-                  <span style={`color: ${getCostColor(sectionItem.cost[1].resourceId)};`}>{sectionItem?.cost[1].quantity}</span>
-                {/if}
+                <div class="flex w-full justify-between items-center">
+                  {#each sectionItem.cost?.filter(cost => cost.resourceId !== 'pathos-clamp') as cost}
+                    <span style={`color: ${getCostColor(cost.resourceId)};`}>{cost.quantity}</span>
+                  {/each}
+                </div>
               </Cell>
               <!-- ACTIONS -->
               <Cell>

@@ -1,5 +1,61 @@
 import type { Item } from './types';
 
+export const incaronAdapterItems: Item[] = [
+  { id: 'incarnon-braton', type: 'incarnon-weapon' },
+  { id: 'incarnon-lato', type: 'incarnon-weapon' },
+  { id: 'incarnon-skana', type: 'incarnon-weapon' },
+  { id: 'incarnon-paris', type: 'incarnon-weapon' },
+  { id: 'incarnon-kunai', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-boar', type: 'incarnon-weapon' },
+  { id: 'incarnon-gammacor', type: 'incarnon-weapon' },
+  { id: 'incarnon-angstrum', type: 'incarnon-weapon' },
+  { id: 'incarnon-gorgon', type: 'incarnon-weapon' },
+  { id: 'incarnon-anku', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-bo', type: 'incarnon-weapon' },
+  { id: 'incarnon-latron', type: 'incarnon-weapon' },
+  { id: 'incarnon-furis', type: 'incarnon-weapon' },
+  { id: 'incarnon-furax', type: 'incarnon-weapon' },
+  { id: 'incarnon-strun', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-lex', type: 'incarnon-weapon' },
+  { id: 'incarnon-magistar', type: 'incarnon-weapon' },
+  { id: 'incarnon-boltor', type: 'incarnon-weapon' },
+  { id: 'incarnon-bronco', type: 'incarnon-weapon' },
+  { id: 'incarnon-ceramic-dagger', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-torid', type: 'incarnon-weapon' },
+  { id: 'incarnon-dual-toxocyst', type: 'incarnon-weapon' },
+  { id: 'incarnon-dual-ichor', type: 'incarnon-weapon' },
+  { id: 'incarnon-miter', type: 'incarnon-weapon' },
+  { id: 'incarnon-atomos', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-ack-and-brunt', type: 'incarnon-weapon' },
+  { id: 'incarnon-soma', type: 'incarnon-weapon' },
+  { id: 'incarnon-vasto', type: 'incarnon-weapon' },
+  { id: 'incarnon-nami-solo', type: 'incarnon-weapon' },
+  { id: 'incarnon-burston', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-zylok', type: 'incarnon-weapon' },
+  { id: 'incarnon-sibear', type: 'incarnon-weapon' },
+  { id: 'incarnon-dread', type: 'incarnon-weapon' },
+  { id: 'incarnon-despair', type: 'incarnon-weapon' },
+  { id: 'incarnon-hate', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-dera', type: 'incarnon-weapon' },
+  { id: 'incarnon-sybaris', type: 'incarnon-weapon' },
+  { id: 'incarnon-cestra', type: 'incarnon-weapon' },
+  { id: 'incarnon-sicarus', type: 'incarnon-weapon' },
+  { id: 'incarnon-okina', type: 'incarnon-weapon' },
+
+  { id: 'incarnon-vectis', type: 'incarnon-weapon' },
+  { id: 'incarnon-obex', type: 'incarnon-weapon' },
+  { id: 'incarnon-destreza', type: 'incarnon-weapon' },
+  { id: 'incarnon-ballistica', type: 'incarnon-weapon' },
+  { id: 'incarnon-stug', type: 'incarnon-weapon' },
+];
+
 export const dagathItems: Item[] = [
   { id: 'dagath-neuroptics', type: 'warframe-part' },
   { id: 'dagath-chassis', type: 'warframe-part' },

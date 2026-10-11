@@ -46,6 +46,38 @@ export const getCostColor = (itemId: string): string | null => {
       return 'red';
     case 'blue':
       return 'blue';
+
+    // durivi resources
+    case 'nacreous-pebble':
+      return '#64DDE0';
+    case 'aggristone':
+      return '#E6A23C';
+    case 'saggen-pearls':
+      return '#F18AB5';
+    case 'maw-fang':
+      return '#C5C9D3';
+    case 'ariette-scale':
+      return '#8D78E8';
+    case 'rune-marrow':
+      return '#E65353';
+    case 'silphsela':
+      return '#6ECA8B';
+    case 'tasoma-extract':
+      return '#B7E34B';
+    case 'dracroot':
+      return '#C47A45';
+    case 'ueymag':
+      return '#E6D45A';
+    case 'yao-shrubs':
+      return '#43A6F5';
+    case 'kovnik':
+      return '#3FBEAF';
+    case 'connola-sprouts':
+      return '#85B8FF';
+    case 'eevani':
+      return '#D58AF0';
+    case 'lamentus':
+      return '#FF8057';
     default:
       return null;
   }

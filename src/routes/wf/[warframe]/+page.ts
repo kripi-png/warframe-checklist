@@ -6,6 +6,7 @@ import {
   dagathStore,
   danteStore,
   follieStore,
+  incarnonAdapterStore,
   jadeStore,
   koumeiStore,
   kullervoStore,
@@ -33,6 +34,7 @@ const DATA: Record<string, WarframeStore> = {
   uriel: urielStore,
   dante: danteStore,
   dagath: dagathStore,
+  'incarnon-adapters': incarnonAdapterStore,
 };
 
 export const load: PageLoad = ({ params }) => {
