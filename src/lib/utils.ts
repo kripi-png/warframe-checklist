@@ -39,13 +39,13 @@ export const secondsToMinutes = (value: number): string => {
 export const getCostColor = (itemId: string): string | null => {
   switch (itemId) {
     case 'emerald':
-      return 'greenyellow';
+      return '#65D98B';
     case 'crimson':
-      return 'crimson';
+      return '#F05262';
     case 'red':
-      return 'red';
+      return '#E84B55';
     case 'blue':
-      return 'blue';
+      return '#398BEE';
 
     // durivi resources
     case 'nacreous-pebble':
