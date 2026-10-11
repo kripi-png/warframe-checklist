@@ -26,9 +26,13 @@ let isHistoryOpen = $state(false);
 {#snippet custom()}
   {#if data.warframeStore}
     <Paper>
-      <h1>{data.warframeStore.data.name}</h1>
+      <h1 class="text-lg">{data.warframeStore.data.name}</h1>
+      <h4 class="text-xs">You can use +/- in the input fields.</h4>
       {#each data.warframeStore.balance as resource (resource.resourceId)}
-        <ResourceInput resource={resource} setBalance={data.warframeStore.setBalance} />
+        <ResourceInput
+          resource={resource}
+          setBalance={data.warframeStore.setBalance}
+        />
       {/each}
 
       <ResetDataButton checklist={data.warframeStore} />
