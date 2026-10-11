@@ -39,7 +39,7 @@ const estimatedTimes = $derived.by(() => {
   return Object.entries(totalNeeded).reduce<Record<string, number>>(
     (times, [resourceId, total]) => {
       const avg = averagePerMinutes[resourceId];
-      if (!avg) return times;
+      if (!avg || total <= 0) return times;
 
       times[resourceId] = total / avg;
       return times;
