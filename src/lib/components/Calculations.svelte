@@ -52,7 +52,7 @@ const estimatedTimes = $derived.by(() => {
 
 <Paper>
   <h2 class="text-center text-lg capitalize">Total:</h2>
-  {#each Object.entries(totalNeeded) as [resourceId, quantity]}
+  {#each Object.entries(totalNeeded).filter((entry) => entry[1] > 0) as [resourceId, quantity]}
     <p style={`color: ${getCostColor(resourceId)}`}>{itemName(resourceId)}: {quantity}</p>
   {/each}
 
