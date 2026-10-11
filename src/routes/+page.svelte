@@ -13,7 +13,7 @@ const warframeLinks = [
   ['temple', 'Temple'],
   ['koumei', 'Koumei'],
   ['jade', 'Jade'],
-  // ["dante", "Dante"],
+  ['dante', 'Dante'],
   // ["qorvex", "Qorvex"],
   // ["dagath", "Dagath"],
   ['kullervo', 'Kullervo'],

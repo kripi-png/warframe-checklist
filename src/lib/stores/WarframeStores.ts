@@ -1,5 +1,6 @@
 import {
   citrineItems,
+  danteItems,
   follieItems,
   jadeItems,
   koumeiItems,
@@ -25,6 +26,11 @@ import { templePage } from '$lib/data/temple';
 import { vorunaPage } from '$lib/data/voruna';
 import { kullervoPage } from '$lib/data/kullervo';
 import { urielPage } from '$lib/data/uriel';
+import { dantePage } from '$lib/data/dante';
+
+export const danteStore = createWarframeStore('dante', dantePage, danteItems, [
+  { resourceId: 'vessel-capillaries', quantity: 0 },
+]);
 
 export const urielStore = createWarframeStore('uriel', urielPage, urielItems, [
   { resourceId: 'maphica', quantity: 0 },

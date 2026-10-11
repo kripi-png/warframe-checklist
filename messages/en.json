@@ -15,7 +15,20 @@
   "vestigial-motes": "Vestigial Motes",
   "kullervos-bane": "Kullervo's Bane",
   "maphica": "Maphica",
+  "vessel-capillaries": "Vessel Capillaries",
 
+  "dante-blueprint": "Dante Blueprint",
+  "dante-neuroptics-blueprint": "Dante Neuroptics Blueprint",
+  "dante-chassis-blueprint": "Dante Chassis Blueprint",
+  "dante-systems-blueprint": "Dante Systems Blueprint",
+  "onos-blueprint": "Onos Blueprint",
+  "ruvox-blueprint": "Ruvox Blueprint",
+  "ruvox-blade-blueprint": "Ruvox Blade Blueprint",
+  "ruvox-glove-blueprint": "Ruvox Glove Blueprint",
+  "dantes-retreat-scene": "Dante's Retreat Scene",
+  "the-abandoned-vessel": "The Abandoned Vessel",
+  "sanctum-simulacrum": "Sanctum Simulacrum",
+  "the-learned-honoria": "The Learned Honoria",
 
   "insign-bundle": "Insign Bundle",
   "uriel-blueprint": "Uriel Blueprint",
@@ -51,7 +64,6 @@
   "maries-room-scene": "Marie's Room Scene",
   "roathes-oblivion-arena": "Roathe's Oblivion Arena",
 
-
   "kullervo-blueprint": "Kullervo Blueprint",
   "kullervo-chassis-blueprint": "Kullervo Chassis Blueprint",
   "kullervo-neuroptics-blueprint": "Kullervo Neuroptics Blueprint",
@@ -62,7 +74,6 @@
   "rauta-stock": "Rauta Stock",
   "kullervo-in-action-glyph": "Kullervo in action Glyph",
   "kullervos-hold-scene": "Kullervo's Hold Scene",
-
 
   "follie-blueprint": "Follie Blueprint",
   "follie-chassis": "Follie Chassis",
@@ -78,7 +89,6 @@
   "follie-prex": "Follie Prex",
   "haunted-vesper-relay-scene": "Haunted Vesper Relay Scene",
   "truths-hammer": "Truth's Hammer",
-
 
   "citrine-blueprint": "Citrine Blueprint",
   "citrine-chassis": "Citrine Chassis",
@@ -113,11 +123,9 @@
   "primary-blight": "Primary Blight",
   "conjunction-voltage": "Conjunction Voltage",
   "secondary-fortifier": "Secondary Fortifier",
-
   "the-prince-level1": "Level 1",
   "the-prince-level2": "Level 2",
   "the-prince-level3": "Level 3",
-
   "rizoma-ephemera": "Rizoma Ephemera",
   "ayatan-chattraka-sculpture": "Ayatan Chattraka Sculpture",
   "roots-n-fruits": "Roots N' Fruits",
@@ -131,7 +139,6 @@
   "deepmines-lab-scene": "Deepmines Lab Scene",
   "deepmines-forward-base-scene": "Deepmines Forward Base Scene",
   "deepmine-nutrient-plant-scene": "Deepmine Nutrient Plant Scene",
-
   "autumnal-bonsai": "Autumnal Bonsai",
   "lanceleaf-plant": "Lanceleaf Plant",
   "monstera-plant": "Monstera Plant",
@@ -193,7 +200,6 @@
   "hanging-flowerpot-narrow": "Hanging Flowerpot (Narrow)",
   "planter-clay": "Planter (Clay)",
 
-
   "koumei-blueprint": "Koumei Blueprint",
   "koumei-chassis": "Koumei Chassis",
   "koumei-neuroptics": "Koumei Neuroptics",
@@ -208,7 +214,6 @@
   "amanata-pressure": "Amanata Pressure",
   "higasa-serration": "Higasa Serration",
   "koumei-prex-card": "Koumei Prex Card",
-
 
   "narin-blueprint": "Narin Blueprint",
   "narin-chassis": "Narin Chassis",
@@ -244,7 +249,6 @@
   "niveus-glaxion-skin": "Niveus Glaxion Skin",
   "niveus-quellor-skin": "Niveus Quellor Skin",
   "niveus-liset-skin": "Niveus Liset Skin",
-
 
   "jades-victory-syandana-blueprint": "Jade's Victory Syandana Blueprint",
   "ryoku": "Ryoku",
@@ -287,7 +291,6 @@
   "melee-assimilation": "Melee Assimilation",
   "hunhows-trinket-blueprint": "Hunhow's Trinket Blueprint",
 
-
   "voruna-blueprint": "Voruna Blueprint",
   "voruna-chassis": "Voruna Chassis",
   "voruna-neuroptics": "Voruna Neuroptics",
@@ -304,7 +307,6 @@
   "arcame-frostbite": "Arcame Frostbite",
   "arcame-voltage": "Arcame Voltage",
   "lua-circulus-scene": "Lua Circulus Scene",
-
 
   "temple-blueprint": "Temple Blueprint",
   "temple-chassis-blueprint": "Temple Chassis Blueprint",
@@ -328,7 +330,6 @@
   "electric-keyboard": "Electric Keyboard",
   "solstice-square-stage-scene": "Solstice Square Stage Scene",
 
-
   "oraxia-blueprint": "Oraxia Blueprint",
   "oraxia-chassis-blueprint": "Oraxia Chassis Blueprint",
   "oraxia-neuroptics-blueprint": "Oraxia Neuroptics Blueprint",
@@ -346,7 +347,6 @@
   "isleweaver-drift-atoll-scene": "Isleweaver Drift Atoll Scene",
   "scholars-landing-scene": "Scholar's Landing Scene",
   "duviri-throne-room-scene": "Duviri Throne Room Scene",
-
 
   "jade-blueprint": "Jade Blueprint",
   "jade-chassis-blueprint": "Jade Chassis Blueprint",

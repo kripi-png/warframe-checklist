@@ -3,6 +3,7 @@ import type { WarframeStore } from '$lib/stores/createWarframeStore';
 import { error } from '@sveltejs/kit';
 import {
   citrineStore,
+  danteStore,
   follieStore,
   jadeStore,
   koumeiStore,
@@ -29,6 +30,7 @@ const DATA: Record<string, WarframeStore> = {
   jade: jadeStore,
   kullervo: kullervoStore,
   uriel: urielStore,
+  dante: danteStore,
 };
 
 export const load: PageLoad = ({ params }) => {

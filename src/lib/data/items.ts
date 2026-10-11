@@ -1,5 +1,22 @@
 import type { Item } from './types';
 
+export const danteItems: Item[] = [
+  { id: 'dante-blueprint', type: 'warframe-part' },
+  { id: 'dante-neuroptics-blueprint', type: 'warframe-part' },
+  { id: 'dante-chassis-blueprint', type: 'warframe-part' },
+  { id: 'dante-systems-blueprint', type: 'warframe-part' },
+
+  { id: 'onos-blueprint', type: 'weapon-part' },
+  { id: 'ruvox-blueprint', type: 'weapon-part' },
+  { id: 'ruvox-blade-blueprint', type: 'weapon-part' },
+  { id: 'ruvox-glove-blueprint', type: 'weapon-part' },
+
+  { id: 'dantes-retreat-scene', type: 'other' },
+  { id: 'the-abandoned-vessel', type: 'other' },
+  { id: 'sanctum-simulacrum', type: 'other' },
+  { id: 'the-learned-honoria', type: 'other' },
+];
+
 export const urielItems: Item[] = [
   { id: 'uriel-blueprint', type: 'warframe-part' },
   { id: 'uriel-chassis-blueprint', type: 'warframe-part' },
