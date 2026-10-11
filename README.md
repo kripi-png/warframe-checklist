@@ -4,8 +4,6 @@
 - tooltip functionality (notes for parts, custom resources for Honoria)
 - wiki links (maybe ctrl-click)
 
-- qorvex
-- dagath
 - circuit / incarnon
 
 - factions:

@@ -1,5 +1,15 @@
 import type { Item } from './types';
 
+export const dagathItems: Item[] = [
+  { id: 'dagath-neuroptics', type: 'warframe-part' },
+  { id: 'dagath-chassis', type: 'warframe-part' },
+  { id: 'dagath-systems', type: 'warframe-part' },
+  { id: 'dorrclave-blade', type: 'weapon-part' },
+  { id: 'dorrclave-hilt', type: 'weapon-part' },
+  { id: 'dorrclave-hook', type: 'weapon-part' },
+  { id: 'dorrclave-string', type: 'weapon-part' },
+];
+
 export const danteItems: Item[] = [
   { id: 'dante-blueprint', type: 'warframe-part' },
   { id: 'dante-neuroptics-blueprint', type: 'warframe-part' },
