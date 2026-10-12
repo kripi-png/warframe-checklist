@@ -44,13 +44,15 @@ let rotationEndDate = $derived(
   <button onclick={() => {isOpen = !isOpen}}>{isOpen? '⬆️' : '⬇️'}</button>
 </h2>
 <h3 class="text-center">{completedCount} / {section.items.length}</h3>
-<h3 class="text-center">
-  {#each Object.entries(totalCost) as cost}
-    <p>
-      {@html getCostSpan(
-        { resourceId: cost[0], quantity: cost[1] },
-        true
-      )}
-    </p>
-  {/each}
-</h3>
+{#if isOpen}
+  <h3 class="text-center">
+    {#each Object.entries(totalCost) as cost}
+      <p>
+        {@html getCostSpan(
+          { resourceId: cost[0], quantity: cost[1] },
+          true
+        )}
+      </p>
+    {/each}
+  </h3>
+{/if}
