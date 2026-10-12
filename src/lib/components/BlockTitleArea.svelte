@@ -2,6 +2,7 @@
 import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
 import { getCostSpan, getRotationStartDate } from '$lib/utils';
+import Tooltip, { Label, Wrapper } from '@smui/tooltip';
 
 type Props = {
   section: PageSection;
@@ -18,13 +19,27 @@ let completedCount = $derived(
 let totalCost = $derived(checklist.getTotalNeeded(section));
 let sectionIndex = $derived(Number(Number(section.id.split('_')[1])));
 let isActiveRotationSection = $derived(rotation && sectionIndex === rotation);
+
+let rotationStartDate = $derived(getRotationStartDate(sectionIndex));
+// add week minus one second to get time just before weekly reset
+let rotationEndDate = $derived(
+  new Date(rotationStartDate.getTime() + 7 * 24 * 60 * 60 * 1000 - 1000),
+);
 </script>
 
 <h2 class="text-center text-2xl font-bold text-white">
   <!-- for incarnon adapter sections -->
   <span style={isActiveRotationSection ? "color:greenyellow;" : null}>{section.name}</span>
   {#if rotation !== null}
-    <p class="text-sm">Starts: {getRotationStartDate(sectionIndex).toLocaleDateString()}</p>
+    <Wrapper>
+    <p class="text-sm">{rotationStartDate.toLocaleDateString()} - {rotationEndDate.toLocaleDateString()}</p>
+      <Tooltip>
+        <Label>
+          Start: {rotationStartDate.toLocaleString()}<br/>
+          End: {rotationEndDate.toLocaleString()}<br/>
+        </Label>
+      </Tooltip>
+    </Wrapper>
   {/if}
   <button onclick={() => {isOpen = !isOpen}}>{isOpen? '⬆️' : '⬇️'}</button>
 </h2>
