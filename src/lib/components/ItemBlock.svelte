@@ -31,7 +31,7 @@ let isOpen = $state(true);
             <Label>Name</Label>
           </Cell>
           <Cell columnId="isCompleted"></Cell>
-          <Cell numeric columnId="price">
+          <Cell columnId="price">
             <Label>Price</Label>
           </Cell>
           <Cell columnId="actions">
@@ -65,7 +65,7 @@ let isOpen = $state(true);
                 {/if}
               </Cell>
               <!-- PRICE -->
-              <Cell numeric>
+              <Cell>
                 <Wrapper>
                   <div class="flex w-full justify-between items-center">
                     {#each sectionItem.cost?.filter(cost => cost.resourceId !== 'pathos-clamp') as cost}
