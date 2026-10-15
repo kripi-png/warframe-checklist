@@ -50,6 +50,7 @@ export const praghasaItems: Item[] = [
   { id: 'melee-influence', type: 'arcane', amountNeeded: 21 },
   { id: 'melee-vortex', type: 'arcane', amountNeeded: 21 },
   { id: 'secondary-fortifier', type: 'arcane', amountNeeded: 21 },
+  { id: 'secondary-surge', type: 'arcane', amountNeeded: 21 },
 ];
 
 export const incaronAdapterItems: Item[] = [

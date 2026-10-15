@@ -79,6 +79,7 @@ const arcanesSection: PageSection = {
     { itemId: 'melee-influence', cost: moonflesh(8) },
     { itemId: 'melee-vortex', cost: moonflesh(8) },
     { itemId: 'secondary-fortifier', cost: moonflesh(8) },
+    { itemId: 'secondary-surge', cost: moonflesh(8) },
   ],
 };
 
