@@ -14,6 +14,7 @@ import {
   nokkoStore,
   oraxiaStore,
   orionSiriusStore,
+  praghasaStore,
   templeStore,
   urielStore,
   vorunaStore,
@@ -35,6 +36,7 @@ const DATA: Record<string, WarframeStore> = {
   dante: danteStore,
   dagath: dagathStore,
   'incarnon-adapters': incarnonAdapterStore,
+  praghasa: praghasaStore,
 };
 
 export const load: PageLoad = ({ params }) => {

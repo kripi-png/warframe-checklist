@@ -47,6 +47,12 @@ const warframeLinks = [
   </div>
 
   <br/>
+  <div class="text-2xl">Operations</div>
+  <div>
+    <a class="text-xl" href="/wf/praghasa">Epoch Operation: Taubound</a>&nbsp;
+  </div>
+
+  <br/>
   <div class="text-2xl">Miscellaneous</div>
   <div>
     <a class="text-xl" href="/wf/incarnon-adapters">Incarnon Adapters</a>&nbsp;

@@ -11,6 +11,7 @@ import {
   nokkoItems,
   oraxiaItems,
   orionSiriusItems,
+  praghasaItems,
   templeItems,
   urielItems,
   vorunaItems,
@@ -31,6 +32,14 @@ import { urielPage } from '$lib/data/uriel';
 import { dantePage } from '$lib/data/dante';
 import { dagathPage } from '$lib/data/dagath';
 import { incaronAdapterPage } from '$lib/data/incarnon_adapters';
+import { praghasaPage } from '$lib/data/taubound_praghasa';
+
+export const praghasaStore = createWarframeStore(
+  'praghasa',
+  praghasaPage,
+  praghasaItems,
+  [{ resourceId: 'moonflesh', quantity: 0 }],
+);
 
 export const dagathStore = createWarframeStore(
   'dagath',
