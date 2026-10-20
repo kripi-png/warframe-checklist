@@ -1,14 +1,10 @@
 <script lang="ts">
-import Paper from '@smui/paper';
 import ItemChecklists from '$lib/components/ItemChecklists.svelte';
 import { layout } from '$lib/layout.svelte';
 import { setChecklistContext } from '$lib/context/checklist';
 import type { PageProps } from './$types';
-import ResetDataButton from '$lib/components/ResetDataButton.svelte';
-import Calculations from '$lib/components/Calculations.svelte';
-import Button from '@smui/button';
 import HistoryModal from '$lib/components/HistoryModal.svelte';
-import ResourceInput from '$lib/components/molecules/ResourceInput.svelte';
+import SideBlock from '$lib/components/SideBlock.svelte';
 
 layout({ custom });
 
@@ -25,21 +21,7 @@ let isHistoryOpen = $state(false);
 
 {#snippet custom()}
   {#if data.warframeStore}
-    <Paper>
-      <h1 class="text-lg">{data.warframeStore.data.name}</h1>
-      <h4 class="text-xs">You can use +/- in the input fields.</h4>
-      {#each data.warframeStore.balance as resource (resource.resourceId)}
-        <ResourceInput
-          resource={resource}
-          setBalance={data.warframeStore.setBalance}
-        />
-      {/each}
-
-      <ResetDataButton checklist={data.warframeStore} />
-      <Button onclick={() => isHistoryOpen=true}>History</Button>
-    </Paper>
-
-    <Calculations warframeStore={data.warframeStore} />
+    <SideBlock warframeStore={data.warframeStore} bind:isHistoryOpen />
   {/if}
 {/snippet}
 
