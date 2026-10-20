@@ -7,6 +7,7 @@ import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
 import BlockTitleArea from './BlockTitleArea.svelte';
 import { getCostColor, itemName } from '$lib/utils';
+import { settingsStore } from '$lib/stores/UserSettings';
 
 const checklist = getChecklistContext();
 type Props = {
@@ -15,7 +16,7 @@ type Props = {
 };
 let { section, rotation }: Props = $props();
 
-let isOpen = $state(true);
+let isOpen = $derived(settingsStore.isSectionOpen(section.id));
 </script>
 
 <div class="checklist">

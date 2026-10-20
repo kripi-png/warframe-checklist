@@ -6,6 +6,8 @@ import LayoutGrid, { Cell } from '@smui/layout-grid';
 import { initLayout } from '$lib/layout.svelte';
 import Button from '@smui/button';
 import { goto } from '$app/navigation';
+import { setLocale } from '../paraglide/runtime';
+import { settingsStore } from '$lib/stores/UserSettings';
 
 let { children } = $props();
 const slots = initLayout();
@@ -13,6 +15,8 @@ const slots = initLayout();
 const goHome = () => {
   goto('/');
 };
+
+setLocale(settingsStore.getSetting('language'));
 </script>
 
 <svelte:head>
