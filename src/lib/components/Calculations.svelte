@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { WarframeStore } from '$lib/stores/createWarframeStore';
+import { settingsStore } from '$lib/stores/UserSettings';
 import { getCostColor, itemName } from '$lib/utils';
 import { Label } from '@smui/common';
 import Paper from '@smui/paper';
@@ -11,8 +12,12 @@ type Props = {
 
 let { warframeStore }: Props = $props();
 
+const includeHelminthSacrifice = $derived(
+  settingsStore.getSetting('includeHelminthSacrifice') as boolean,
+);
+
 const totalNeeded = $derived.by(() => {
-  const needed = warframeStore.getTotalNeeded();
+  const needed = warframeStore.getTotalNeeded(includeHelminthSacrifice);
   for (const resource in needed) {
     needed[resource] -=
       warframeStore.balance.find((balance) => balance.resourceId === resource)

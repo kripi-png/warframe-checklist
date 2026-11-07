@@ -1,22 +1,26 @@
 <script lang="ts">
 import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
+import { settingsStore } from '$lib/stores/UserSettings';
 import { getCostSpan, getRotationStartDate } from '$lib/utils';
 import Tooltip, { Label, Wrapper } from '@smui/tooltip';
 
 type Props = {
   section: PageSection;
   isOpen: boolean;
+  completedCount: number;
   rotation: number | null;
 };
-let { section, isOpen = $bindable(), rotation }: Props = $props();
+let { section, completedCount, isOpen = $bindable(), rotation }: Props = $props();
 const checklist = getChecklistContext();
 
-let completedCount = $derived(
-  section.items.filter((sItem) => checklist.isCompleted(sItem.itemId)).length,
+const includeHelminthSacrifice = $derived(
+  settingsStore.getSetting('includeHelminthSacrifice') as boolean,
 );
 
-let totalCost = $derived(checklist.getTotalNeeded(section));
+let totalCost = $derived(
+  checklist.getTotalNeeded(includeHelminthSacrifice, section),
+);
 let sectionIndex = $derived(Number(Number(section.id.split('_')[1])));
 let isActiveRotationSection = $derived(rotation && sectionIndex === rotation);
 
@@ -25,6 +29,10 @@ let rotationStartDate = $derived(getRotationStartDate(sectionIndex));
 let rotationEndDate = $derived(
   new Date(rotationStartDate.getTime() + 7 * 24 * 60 * 60 * 1000 - 1000),
 );
+
+const handleOpenToggle = () => {
+  settingsStore.toggleSectionOpen(section.id);
+};
 </script>
 
 <h2 class="text-center text-2xl font-bold text-white">
@@ -41,7 +49,7 @@ let rotationEndDate = $derived(
       </Tooltip>
     </Wrapper>
   {/if}
-  <button onclick={() => {isOpen = !isOpen}}>{isOpen? '⬆️' : '⬇️'}</button>
+  <button onclick={handleOpenToggle}>{isOpen? '⬆️' : '⬇️'}</button>
 </h2>
 <h3 class="text-center">{completedCount} / {section.items.length}</h3>
 {#if isOpen}

@@ -15,22 +15,18 @@ const vorunaSection: PageSection = {
     {
       itemId: 'voruna-blueprint',
       cost: luaThraxPlasm(125),
-      amountNeeded: 2
     },
     {
       itemId: 'voruna-chassis',
       cost: luaThraxPlasm(75),
-      amountNeeded: 2
     },
     {
       itemId: 'voruna-neuroptics',
       cost: luaThraxPlasm(75),
-      amountNeeded: 2
     },
     {
       itemId: 'voruna-systems',
       cost: luaThraxPlasm(75),
-      amountNeeded: 2
     }
   ]
 };

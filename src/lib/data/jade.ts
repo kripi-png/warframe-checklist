@@ -12,21 +12,18 @@ const jadeSection: PageSection = {
   id: 'jade',
   name: 'Jade',
   items: [
-    { itemId: 'jade-blueprint', cost: vestigialMotes(450), amountNeeded: 2 },
+    { itemId: 'jade-blueprint', cost: vestigialMotes(450) },
     {
       itemId: 'jade-chassis-blueprint',
       cost: vestigialMotes(150),
-      amountNeeded: 2,
     },
     {
       itemId: 'jade-neuroptics-blueprint',
       cost: vestigialMotes(150),
-      amountNeeded: 2,
     },
     {
       itemId: 'jade-systems-blueprint',
       cost: vestigialMotes(150),
-      amountNeeded: 2,
     },
   ],
 };

@@ -105,17 +105,22 @@ export function createWarframeStore(
       return this.getAcquired(itemId) > 0;
     },
 
-    isCompleted(itemId: string) {
-      const required = this.getRequiredToComplete(itemId);
+    isCompleted(itemId: string, includeHelminth: boolean) {
+      const required = this.getRequiredToComplete(itemId, includeHelminth);
       const owned = this.getAcquired(itemId);
       return owned >= required;
     },
 
-    getRequiredToComplete(itemId: string): number {
+    getRequiredToComplete(itemId: string, includeHelminth: boolean): number {
+      const isWarframePart = this.getItem(itemId)?.type === 'warframe-part';
+
       // get the higher of the two possible requirements
-      return Math.max(
-        this.getItem(itemId)?.amountNeeded ?? 1,
-        this.getSectionItem(itemId)?.amountNeeded ?? 1,
+      // add one for helminth if the setting is turned on
+      return (
+        Math.max(
+          this.getItem(itemId)?.amountNeeded ?? 1,
+          this.getSectionItem(itemId)?.amountNeeded ?? 1,
+        ) + (isWarframePart && includeHelminth ? 1 : 0)
       );
     },
 
@@ -181,16 +186,23 @@ export function createWarframeStore(
       return true;
     },
 
-    getTotalNeeded(section?: PageSection): Record<string, number> {
+    getTotalNeeded(
+      includeHelminth: boolean,
+      section?: PageSection,
+    ): Record<string, number> {
       /* Return total costs of all INCOMPLETE items in the store */
       const sections = section ? [section] : this.data.sections;
 
       return sections.reduce(
         (acc, section) => {
           for (const item of section.items) {
-            if (!item.cost || this.isCompleted(item.itemId)) continue;
+            if (!item.cost || this.isCompleted(item.itemId, includeHelminth))
+              continue;
 
-            const required = this.getRequiredToComplete(item.itemId);
+            const required = this.getRequiredToComplete(
+              item.itemId,
+              includeHelminth,
+            );
             const acquired = this.getAcquired(item.itemId);
             const moreNeeded = Math.max(0, required - acquired);
 

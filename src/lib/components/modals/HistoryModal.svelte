@@ -2,7 +2,7 @@
 import Dialog, { Title, Content, Actions } from '@smui/dialog';
 import Button from '@smui/button';
 import type { WarframeStore } from '$lib/stores/createWarframeStore';
-import HistoryEntryForm from './molecules/HistoryEntryForm.svelte';
+import HistoryEntryForm from '../molecules/HistoryEntryForm.svelte';
 import type { Cost } from '$lib/data/types';
 import DataTable, { Body, Cell, Head, Row } from '@smui/data-table';
 import { getCostSpan, secondsToMinutes } from '$lib/utils';

@@ -18,22 +18,18 @@ const nokkoSection: PageSection = {
     {
       itemId: 'nokko-blueprint',
       cost: fergolyte(240),
-      amountNeeded: 2
     },
     {
       itemId: 'nokko-chassis',
       cost: fergolyte(160),
-      amountNeeded: 2
     },
     {
       itemId: 'nokko-neuro',
       cost: fergolyte(160),
-      amountNeeded: 2
     },
     {
       itemId: 'nokko-systems',
       cost: fergolyte(160),
-      amountNeeded: 2
     },
   ]
 };

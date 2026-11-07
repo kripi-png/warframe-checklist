@@ -23,22 +23,18 @@ const follieSection: PageSection = {
 		{
 			itemId: 'follie-blueprint',
 			cost: atramentum(1200),
-      amountNeeded: 2
 		},
 		{
 			itemId: 'follie-chassis',
 			cost: atramentum(400),
-      amountNeeded: 2
 		},
 		{
 			itemId: 'follie-neuroptics',
 			cost: atramentum(400),
-      amountNeeded: 2
 		},
 		{
 			itemId: 'follie-systems',
 			cost: atramentum(400),
-      amountNeeded: 2
 		}
 	]
 };

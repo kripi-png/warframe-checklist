@@ -7,6 +7,7 @@ import { getChecklistContext } from '$lib/context/checklist';
 import type { PageSection } from '$lib/data/types';
 import BlockTitleArea from './BlockTitleArea.svelte';
 import { getCostColor, itemName } from '$lib/utils';
+import { settingsStore } from '$lib/stores/UserSettings';
 
 const checklist = getChecklistContext();
 type Props = {
@@ -15,11 +16,27 @@ type Props = {
 };
 let { section, rotation }: Props = $props();
 
-let isOpen = $state(true);
+const includeHelminthSacrifice = $derived(
+  settingsStore.getSetting('includeHelminthSacrifice') as boolean,
+);
+const hideCompleted = $derived(
+  settingsStore.getSetting('hideCompleted') as boolean,
+);
+
+let completedCount = $derived(
+  section.items.filter((sItem) =>
+    checklist.isCompleted(sItem.itemId, includeHelminthSacrifice),
+  ).length,
+);
+
+const isCompleted = $derived(
+  hideCompleted && completedCount === section.items.length,
+);
+let isOpen = $derived(settingsStore.isSectionOpen(section.id) && !isCompleted);
 </script>
 
 <div class="checklist">
-  <BlockTitleArea bind:isOpen={isOpen} {section} {rotation} />
+  <BlockTitleArea bind:isOpen={isOpen} {section} {completedCount} {rotation} />
   {#if isOpen}
     <DataTable
       table$aria-label={`List for ${section.name} items`}
@@ -46,9 +63,10 @@ let isOpen = $state(true);
           {@const item = checklist.getItem(sectionItem.itemId)}
           {#if item}
             {@const canAfford = checklist.canAfford(sectionItem.itemId)}
-				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId)}
-            {@const requiredToComplete = checklist.getRequiredToComplete(sectionItem.itemId)}
-            <Row>
+				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId, includeHelminthSacrifice)}
+            {@const requiredToComplete = checklist.getRequiredToComplete(sectionItem.itemId, includeHelminthSacrifice)}
+            <!-- if hideCompleted === true and item is completed, hide it from the list -->
+            <Row style={`display: ${settingsStore.getSetting('hideCompleted') && isCompleted ? 'none' : 'table-row'};`}>
               <!-- NAME & COUNT -->
               <Cell>
                 {#if requiredToComplete > 1}

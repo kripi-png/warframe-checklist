@@ -12,21 +12,18 @@ const kullervoSection: PageSection = {
   id: 'kullervo',
   name: 'Kullervo',
   items: [
-    { itemId: 'kullervo-blueprint', cost: kullervosBane(15), amountNeeded: 2 },
+    { itemId: 'kullervo-blueprint', cost: kullervosBane(15) },
     {
       itemId: 'kullervo-chassis-blueprint',
       cost: kullervosBane(9),
-      amountNeeded: 2,
     },
     {
       itemId: 'kullervo-neuroptics-blueprint',
       cost: kullervosBane(9),
-      amountNeeded: 2,
     },
     {
       itemId: 'kullervo-systems-blueprint',
       cost: kullervosBane(9),
-      amountNeeded: 2,
     },
   ],
 };

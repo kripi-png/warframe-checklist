@@ -25,42 +25,34 @@ const siriusOrionSection: PageSection = {
     {
       itemId: 'sirius-orion-blueprint',
       cost: [emerald(275)],
-      amountNeeded: 2
     },
     {
       itemId: 'sirius-orion-blueprint',
       cost: [crimson(275)],
-      amountNeeded: 2
     },
     {
       itemId: 'sirius-orion-chassis',
       cost: [emerald(90)],
-      amountNeeded: 2
     },
     {
       itemId: 'sirius-orion-chassis',
       cost: [crimson(90)],
-      amountNeeded: 2
     },
     {
       itemId: 'sirius-orion-neuroptics',
       cost: [emerald(90)],
-      amountNeeded: 2
     },
     {
       itemId: 'sirius-orion-neuroptics',
       cost: [crimson(90)],
-      amountNeeded: 2
     },
     {
       itemId: 'sirius-orion-systems',
       cost: [emerald(90)],
-      amountNeeded: 2
     },
     {
       itemId: 'sirius-orion-systems',
       cost: [crimson(90)],
-      amountNeeded: 2
     },
   ],
 };

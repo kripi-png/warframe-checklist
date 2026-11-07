@@ -12,10 +12,10 @@ const oraxiaSection: PageSection = {
   id: 'oraxia',
   name: 'Oraxia',
   items: [
-    { itemId: 'oraxia-blueprint', cost: scuttlerHusks(60), amountNeeded: 2 },
-    { itemId: 'oraxia-chassis-blueprint', cost: scuttlerHusks(20), amountNeeded: 2 },
-    { itemId: 'oraxia-neuroptics-blueprint', cost: scuttlerHusks(20), amountNeeded: 2 },
-    { itemId: 'oraxia-systems-blueprint', cost: scuttlerHusks(20), amountNeeded: 2 },
+    { itemId: 'oraxia-blueprint', cost: scuttlerHusks(60) },
+    { itemId: 'oraxia-chassis-blueprint', cost: scuttlerHusks(20) },
+    { itemId: 'oraxia-neuroptics-blueprint', cost: scuttlerHusks(20) },
+    { itemId: 'oraxia-systems-blueprint', cost: scuttlerHusks(20) },
   ]
 };
 
