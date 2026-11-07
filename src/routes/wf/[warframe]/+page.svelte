@@ -3,9 +3,9 @@ import ItemChecklists from '$lib/components/ItemChecklists.svelte';
 import { layout } from '$lib/layout.svelte';
 import { setChecklistContext } from '$lib/context/checklist';
 import type { PageProps } from './$types';
-import HistoryModal from '$lib/components/HistoryModal.svelte';
 import SideBlock from '$lib/components/SideBlock.svelte';
-import UserSettingsModal from '$lib/components/UserSettingsModal.svelte';
+import HistoryModal from '$lib/components/modals/HistoryModal.svelte';
+import UserSettingsModal from '$lib/components/modals/UserSettingsModal.svelte';
 
 layout({ custom });
 
