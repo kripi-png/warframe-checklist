@@ -1,6 +1,8 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
 
+  "hideCompleted": "Hide Completed",
+
   "red": "Rania Crystal Fragment",
   "blue": "Belric Crystal Fragment",
   "atramentum": "Atramentum",

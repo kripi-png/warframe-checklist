@@ -49,7 +49,8 @@ let isOpen = $derived(settingsStore.isSectionOpen(section.id));
             {@const canAfford = checklist.canAfford(sectionItem.itemId)}
 				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId)}
             {@const requiredToComplete = checklist.getRequiredToComplete(sectionItem.itemId)}
-            <Row>
+            <!-- if hideCompleted === true and item is completed, hide it from the list -->
+            <Row style={`display: ${settingsStore.getSetting('hideCompleted') && isCompleted ? 'none' : 'table-row'};`}>
               <!-- NAME & COUNT -->
               <Cell>
                 {#if requiredToComplete > 1}

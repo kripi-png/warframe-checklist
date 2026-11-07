@@ -16,7 +16,7 @@ const goHome = () => {
   goto('/');
 };
 
-setLocale(settingsStore.getSetting('language'));
+setLocale(settingsStore.getSetting('language') ?? 'en');
 </script>
 
 <svelte:head>

@@ -9,9 +9,14 @@ import type { WarframeStore } from '$lib/stores/createWarframeStore';
 type Props = {
   warframeStore: WarframeStore;
   isHistoryOpen: boolean;
+  isSettingsOpen: boolean;
 };
 
-let { warframeStore, isHistoryOpen = $bindable() }: Props = $props();
+let {
+  warframeStore,
+  isHistoryOpen = $bindable(),
+  isSettingsOpen = $bindable(),
+}: Props = $props();
 </script>
 
 <Paper>
@@ -26,6 +31,7 @@ let { warframeStore, isHistoryOpen = $bindable() }: Props = $props();
 
   <ResetDataButton checklist={warframeStore} />
   <Button onclick={() => isHistoryOpen=true}>History</Button>
+  <Button onclick={() => isSettingsOpen=true}>Settings</Button>
 </Paper>
 
 <Calculations warframeStore={warframeStore} />

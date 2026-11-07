@@ -1,43 +1,52 @@
 import { PersistedState } from 'runed';
 
-type UserSettings = Record<string, any> &
-  Partial<{
-    language: 'en';
-  }>;
+export type UserSettings = {
+  language: 'en';
+  hideCompleted: boolean;
+  [key: `section_open::${string}`]: boolean;
+};
+
+export type UserSettingsKey = keyof UserSettings;
 
 export function createSettingsStore() {
-  const initialState: UserSettings = { language: 'en' };
-  const state = new PersistedState<UserSettings>('user_settings', initialState);
+  const initialState: Partial<UserSettings> = { language: 'en' };
+  const state = new PersistedState<Partial<UserSettings>>(
+    'user_settings',
+    initialState,
+  );
 
   // merge possible new fields
   state.current = { ...initialState, ...state.current };
 
   return {
-    getSetting(key: string) {
+    getSetting<K extends UserSettingsKey>(key: K): UserSettings[K] | null {
       return state.current[key] ?? null;
     },
-    removeSetting(key: string) {
-      const { [key]: _, ...rest } = state.current;
-      state.current = rest;
+    removeSetting(key: UserSettingsKey): void {
+      const copy = { ...state.current };
+      delete copy[key];
+      state.current = copy;
     },
-    setSetting(key: string, value: any) {
+    setSetting<K extends UserSettingsKey>(
+      key: K,
+      value: UserSettings[K],
+    ): void {
       state.current = {
         ...state.current,
         [key]: value,
       };
     },
-    reset() {
+    reset(): void {
       state.current = { ...initialState };
     },
 
     isSectionOpen(sectionId: string): boolean {
-      // defaults to open
       return this.getSetting(`section_open::${sectionId}`) ?? true;
     },
-    toggleSectionOpen(sectionId: string) {
-      const key = `section_open::${sectionId}`;
+    toggleSectionOpen(sectionId: string): void {
+      const key: `section_open::${string}` = `section_open::${sectionId}`;
 
-      if (state.current[key] === false) {
+      if (this.getSetting(key) === false) {
         this.removeSetting(key);
       } else {
         this.setSetting(key, false);
