@@ -16,15 +16,27 @@ type Props = {
 };
 let { section, rotation }: Props = $props();
 
-let isOpen = $derived(settingsStore.isSectionOpen(section.id));
-
 const includeHelminthSacrifice = $derived(
   settingsStore.getSetting('includeHelminthSacrifice') as boolean,
 );
+const hideCompleted = $derived(
+  settingsStore.getSetting('hideCompleted') as boolean,
+);
+
+let completedCount = $derived(
+  section.items.filter((sItem) =>
+    checklist.isCompleted(sItem.itemId, includeHelminthSacrifice),
+  ).length,
+);
+
+const isCompleted = $derived(
+  hideCompleted && completedCount === section.items.length,
+);
+let isOpen = $derived(settingsStore.isSectionOpen(section.id) && !isCompleted);
 </script>
 
 <div class="checklist">
-  <BlockTitleArea bind:isOpen={isOpen} {section} {rotation} />
+  <BlockTitleArea bind:isOpen={isOpen} {section} {completedCount} {rotation} />
   {#if isOpen}
     <DataTable
       table$aria-label={`List for ${section.name} items`}

@@ -8,19 +8,14 @@ import Tooltip, { Label, Wrapper } from '@smui/tooltip';
 type Props = {
   section: PageSection;
   isOpen: boolean;
+  completedCount: number;
   rotation: number | null;
 };
-let { section, isOpen = $bindable(), rotation }: Props = $props();
+let { section, completedCount, isOpen = $bindable(), rotation }: Props = $props();
 const checklist = getChecklistContext();
 
 const includeHelminthSacrifice = $derived(
   settingsStore.getSetting('includeHelminthSacrifice') as boolean,
-);
-
-let completedCount = $derived(
-  section.items.filter((sItem) =>
-    checklist.isCompleted(sItem.itemId, includeHelminthSacrifice),
-  ).length,
 );
 
 let totalCost = $derived(
