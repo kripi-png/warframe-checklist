@@ -1,5 +1,6 @@
 <script lang="ts">
 import ItemBlock from '$lib/components/ItemBlock.svelte';
+import ItemBlockFrame from '$lib/components/ItemBlockFrame.svelte';
 import { getChecklistContext } from '$lib/context/checklist';
 import { getCircuitRotation } from '$lib/utils';
 import { BalancedMasonryGrid as MasonryGrid } from '@masonry-grid/svelte';
@@ -15,7 +16,9 @@ if (checklistStore.data.id === 'incarnon_adapters') {
 {#if checklistStore.data.sections}
   <MasonryGrid frameWidth={400} gap={10}>
     {#each checklistStore.data.sections as section (section.id)}
-      <ItemBlock {section} {rotation} />
+      <ItemBlockFrame>
+        <ItemBlock {section} {rotation} />
+      </ItemBlockFrame>
     {/each}
   </MasonryGrid>
 {/if}
