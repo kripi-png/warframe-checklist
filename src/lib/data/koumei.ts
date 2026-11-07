@@ -13,22 +13,18 @@ const koumeiSection: PageSection = {
   items: [
     {
       itemId: 'koumei-blueprint',
-      amountNeeded: 2,
       cost: fatePearl(165)
     },
     {
       itemId: 'koumei-chassis',
-      amountNeeded: 2,
       cost: fatePearl(55)
     },
     {
       itemId: 'koumei-neuroptics',
-      amountNeeded: 2,
       cost: fatePearl(55)
     },
     {
       itemId: 'koumei-systems',
-      amountNeeded: 2,
       cost: fatePearl(55)
     }
   ]

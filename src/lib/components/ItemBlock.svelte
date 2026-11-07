@@ -17,6 +17,10 @@ type Props = {
 let { section, rotation }: Props = $props();
 
 let isOpen = $derived(settingsStore.isSectionOpen(section.id));
+
+const includeHelminthSacrifice = $derived(
+  settingsStore.getSetting('includeHelminthSacrifice') as boolean,
+);
 </script>
 
 <div class="checklist">
@@ -47,8 +51,8 @@ let isOpen = $derived(settingsStore.isSectionOpen(section.id));
           {@const item = checklist.getItem(sectionItem.itemId)}
           {#if item}
             {@const canAfford = checklist.canAfford(sectionItem.itemId)}
-				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId)}
-            {@const requiredToComplete = checklist.getRequiredToComplete(sectionItem.itemId)}
+				    {@const isCompleted = checklist.isCompleted(sectionItem.itemId, includeHelminthSacrifice)}
+            {@const requiredToComplete = checklist.getRequiredToComplete(sectionItem.itemId, includeHelminthSacrifice)}
             <!-- if hideCompleted === true and item is completed, hide it from the list -->
             <Row style={`display: ${settingsStore.getSetting('hideCompleted') && isCompleted ? 'none' : 'table-row'};`}>
               <!-- NAME & COUNT -->

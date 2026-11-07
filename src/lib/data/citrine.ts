@@ -13,22 +13,18 @@ const citrineSection: PageSection = {
     {
       itemId: 'citrine-blueprint',
       cost: crystals(500, 500),
-      amountNeeded: 2,
     },
     {
       itemId: 'citrine-chassis',
       cost: crystals(350, 350),
-      amountNeeded: 2,
     },
     {
       itemId: 'citrine-neuro',
       cost: crystals(350, 350),
-      amountNeeded: 2,
     },
     {
       itemId: 'citrine-systems',
       cost: crystals(350, 300),
-      amountNeeded: 2,
     },
   ],
 };

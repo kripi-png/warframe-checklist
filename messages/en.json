@@ -2,6 +2,7 @@
   "$schema": "https://inlang.com/schema/inlang-message-format",
 
   "hideCompleted": "Hide Completed",
+  "includeHelminthSacrifice": "Include Helminth Warframe",
 
   "red": "Rania Crystal Fragment",
   "blue": "Belric Crystal Fragment",

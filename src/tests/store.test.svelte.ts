@@ -1,4 +1,4 @@
-import type { Cost } from '$lib/data/types';
+import type { Cost, Item } from '$lib/data/types';
 import { CURRENT_VERSION } from '$lib/migrations';
 import {
   createWarframeStore,
@@ -20,10 +20,17 @@ const testStoreData = {
       items: [
         { itemId: 'test1', cost: coin(10) },
         { itemId: 'test2', cost: coin(20), amountNeeded: 2 },
+        { itemId: 'warframe-part', cost: coin(20) },
       ],
     },
   ],
 };
+
+const items: Item[] = [
+  { id: 'test1', type: 'other' },
+  { id: 'test2', type: 'other' },
+  { id: 'warframe-part', type: 'warframe-part' },
+];
 
 describe('wareframe store', () => {
   let store: WarframeStore;
@@ -31,7 +38,7 @@ describe('wareframe store', () => {
   beforeEach(() => {
     // recreating store alone won't clear the existing persisted data
     localStorage.clear();
-    store = createWarframeStore('test', testStoreData, []);
+    store = createWarframeStore('test', testStoreData, items);
   });
 
   describe('store', () => {
@@ -47,11 +54,16 @@ describe('wareframe store', () => {
     });
 
     it('method: getRequiredToComplete', () => {
-      expect(store.getRequiredToComplete('test2')).toBe(2);
+      expect(store.getRequiredToComplete('test2', false)).toBe(2);
     });
 
     it('method: getTotalNeeded', () => {
-      expect(store.getTotalNeeded()['coin']).toBe(10 + 20 * 2);
+      expect(store.getTotalNeeded(false)['coin']).toBe(10 + 20 * 2 + 20);
+    });
+
+    it('method: getTotalNeeded helminth', () => {
+      expect(store.getRequiredToComplete('warframe-part', true)).toBe(2); // with helminth
+      expect(store.getRequiredToComplete('warframe-part', false)).toBe(1); // withouth helminth
     });
   });
 

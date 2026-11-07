@@ -3,13 +3,17 @@ import { PersistedState } from 'runed';
 export type UserSettings = {
   language: 'en';
   hideCompleted: boolean;
+  includeHelminthSacrifice: boolean;
   [key: `section_open::${string}`]: boolean;
 };
 
 export type UserSettingsKey = keyof UserSettings;
 
 export function createSettingsStore() {
-  const initialState: Partial<UserSettings> = { language: 'en' };
+  const initialState: Partial<UserSettings> = {
+    language: 'en',
+    includeHelminthSacrifice: true,
+  };
   const state = new PersistedState<Partial<UserSettings>>(
     'user_settings',
     initialState,

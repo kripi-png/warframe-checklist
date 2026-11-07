@@ -11,10 +11,10 @@ const narinSection: PageSection = {
   id: 'narin',
   name: 'Narin',
   items: [
-    { itemId: "narin-blueprint", cost: entropicKuva(400), amountNeeded: 2 },
-    { itemId: "narin-chassis", cost: entropicKuva(130), amountNeeded: 2 },
-    { itemId: "narin-neuroptics", cost: entropicKuva(130), amountNeeded: 2 },
-    { itemId: "narin-systems", cost: entropicKuva(130), amountNeeded: 2 }
+    { itemId: "narin-blueprint", cost: entropicKuva(400) },
+    { itemId: "narin-chassis", cost: entropicKuva(130) },
+    { itemId: "narin-neuroptics", cost: entropicKuva(130) },
+    { itemId: "narin-systems", cost: entropicKuva(130) }
   ]
 };
 

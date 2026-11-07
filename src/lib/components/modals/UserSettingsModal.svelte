@@ -1,7 +1,7 @@
 <script lang="ts">
 import Dialog, { Title, Content, Actions } from '@smui/dialog';
 import Button from '@smui/button';
-import Checkbox from '@smui/checkbox';
+import Switch from '@smui/switch';
 import FormField from '@smui/form-field';
 import { settingsStore } from '$lib/stores/UserSettings';
 import { itemName } from '$lib/utils';
@@ -14,6 +14,7 @@ let { open = $bindable() }: Props = $props();
 
 const defaultSettings = {
   hideCompleted: false,
+  includeHelminthSacrifice: false,
 };
 
 type LocalSettings = typeof defaultSettings;
@@ -41,12 +42,14 @@ const settings: LocalSettings = $derived(
 
     {#each settingKeys as settingKey}
       {@const checked = settings[settingKey]}
-      <FormField>
-      <Checkbox {checked} onchange={() => settingsStore.setSetting(settingKey, !checked)} />
-        {#snippet label()}
-          <span>{itemName(settingKey)}</span>
-        {/snippet}
-      </FormField>
+      <div>
+        <FormField>
+          <Switch {checked} onSMUISwitchChange={() => settingsStore.setSetting(settingKey, !checked)} />
+          {#snippet label()}
+            <span>{itemName(settingKey)}</span>
+          {/snippet}
+        </FormField>
+      </div>
     {/each}
   </Content>
 

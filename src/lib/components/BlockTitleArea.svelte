@@ -13,11 +13,19 @@ type Props = {
 let { section, isOpen = $bindable(), rotation }: Props = $props();
 const checklist = getChecklistContext();
 
-let completedCount = $derived(
-  section.items.filter((sItem) => checklist.isCompleted(sItem.itemId)).length,
+const includeHelminthSacrifice = $derived(
+  settingsStore.getSetting('includeHelminthSacrifice') as boolean,
 );
 
-let totalCost = $derived(checklist.getTotalNeeded(section));
+let completedCount = $derived(
+  section.items.filter((sItem) =>
+    checklist.isCompleted(sItem.itemId, includeHelminthSacrifice),
+  ).length,
+);
+
+let totalCost = $derived(
+  checklist.getTotalNeeded(includeHelminthSacrifice, section),
+);
 let sectionIndex = $derived(Number(Number(section.id.split('_')[1])));
 let isActiveRotationSection = $derived(rotation && sectionIndex === rotation);
 

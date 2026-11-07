@@ -12,14 +12,13 @@ const urielSection: PageSection = {
   id: 'uriel',
   name: 'Uriel',
   items: [
-    { itemId: 'uriel-blueprint', cost: maphica(75), amountNeeded: 2 },
-    { itemId: 'uriel-chassis-blueprint', cost: maphica(25), amountNeeded: 2 },
+    { itemId: 'uriel-blueprint', cost: maphica(75) },
+    { itemId: 'uriel-chassis-blueprint', cost: maphica(25) },
     {
       itemId: 'uriel-neuroptics-blueprint',
       cost: maphica(25),
-      amountNeeded: 2,
     },
-    { itemId: 'uriel-systems-blueprint', cost: maphica(25), amountNeeded: 2 },
+    { itemId: 'uriel-systems-blueprint', cost: maphica(25) },
   ],
 };
 
