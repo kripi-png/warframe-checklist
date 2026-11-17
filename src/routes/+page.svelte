@@ -46,11 +46,11 @@ const warframeLinks = [
     |
   </div>
 
-  <br/>
+  <!-- <br/>
   <div class="text-2xl">Operations</div>
   <div>
     <a class="text-xl" href="/wf/praghasa">Epoch Operation: Taubound</a>&nbsp;
-  </div>
+  </div> -->
 
   <br/>
   <div class="text-2xl">Miscellaneous</div>
