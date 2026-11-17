@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { WarframeStore } from '$lib/stores/createWarframeStore';
+import type { WarframeStore } from '$lib/stores/createWarframeStore';
 import Button from '@smui/button';
 
 type Props = {
@@ -9,8 +9,14 @@ type Props = {
 let { checklist }: Props = $props();
 
 const handleClick = () => {
-  checklist.reset();
+  if (
+    confirm(
+      'Are you sure you want to reset all data? This action cannot be undone.',
+    )
+  ) {
+    checklist.reset();
+  }
 };
 </script>
 
-<Button onclick={handleClick}>Reset Data</Button>
+<Button onclick={handleClick}>Reset All Data</Button>
