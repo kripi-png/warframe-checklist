@@ -884,6 +884,7 @@ export const narinItems: Item[] = [
   { id: 'niveus-sumdali', type: 'cosmetic' },
   { id: 'yuvan-peak-scene', type: 'other' },
   { id: 'melicas-laboratory-scene', type: 'other' },
+  { id: 'glacial-laboratory-scene', type: 'other' },
   { id: 'neotes-dance', type: 'other' },
   { id: 'ice-speaker', type: 'other' },
   { id: 'tidon-shoulder-medallion', type: 'cosmetic' },
@@ -898,6 +899,7 @@ export const narinItems: Item[] = [
   { id: 'niveus-glaxion-skin', type: 'cosmetic' },
   { id: 'niveus-quellor-skin', type: 'cosmetic' },
   { id: 'niveus-liset-skin', type: 'cosmetic' },
+  { id: 'tethyan-parchment-tatter', type: 'other' },
 ];
 
 export const orionSiriusItems: Item[] = [

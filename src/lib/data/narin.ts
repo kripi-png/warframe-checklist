@@ -52,6 +52,7 @@ const otherSection: PageSection = {
     { itemId: "niveus-sumdali", cost: entropicKuva(500) },
     { itemId: "yuvan-peak-scene", cost: entropicKuva(500) },
     { itemId: "melicas-laboratory-scene", cost: entropicKuva(500) },
+    { itemId: "glacial-laboratory-scene", cost: entropicKuva(500) },
     { itemId: "neotes-dance", cost: entropicKuva(50) },
     { itemId: "ice-speaker", cost: entropicKuva(50) },
     { itemId: "tidon-shoulder-medallion", cost: entropicKuva(80) },
@@ -66,7 +67,7 @@ const otherSection: PageSection = {
     { itemId: "niveus-glaxion-skin", cost: entropicKuva(150) },
     { itemId: "niveus-quellor-skin", cost: entropicKuva(150) },
     { itemId: "niveus-liset-skin", cost: entropicKuva(150) },
-    { itemId: "10500-kuva", cost: entropicKuva(150) }
+    { itemId: "tethyan-parchment-tatter", cost: entropicKuva(10), amountNeeded: 7 },
   ]
 };
 
